@@ -1,0 +1,585 @@
+{"location":"app/layout.tsx:7","message":"Layout module loading - before font initialization","data":{"timestamp":1769019447541},"timestamp":1769019447541,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:15","message":"Inter font initialized","data":{"variable":"__variable_f367f3","className":"__className_f367f3"},"timestamp":1769019447547,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:23","message":"Playfair font initialized","data":{"variable":"__variable_0a80b4","className":"__className_0a80b4"},"timestamp":1769019447548,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019447571,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019447577,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019447576,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019447745,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019447746,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019448285,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019448287,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019448288,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019448298,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019448299,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019463801,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019463806,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019463972,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019463988,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":1},"timestamp":1769019464438,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":1},"timestamp":1769019464473,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"app/layout.tsx:7","message":"Layout module loading - before font initialization","data":{"timestamp":1769019483837},"timestamp":1769019483837,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:15","message":"Inter font initialized","data":{"variable":"__variable_f367f3","className":"__className_f367f3"},"timestamp":1769019483843,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:23","message":"Playfair font initialized","data":{"variable":"__variable_0a80b4","className":"__className_0a80b4"},"timestamp":1769019483845,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019483858,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:9","message":"Home page - before Hero import","data":{"HeroType":"function"},"timestamp":1769019483859,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019483863,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019483866,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019483867,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019484283,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:9","message":"Home page - before Hero import","data":{"HeroType":"function"},"timestamp":1769019484284,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019484285,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019484286,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019484287,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019484450,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:9","message":"Home page - before Hero import","data":{"HeroType":"function"},"timestamp":1769019484451,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019484453,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019484452,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019484453,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019484650,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:9","message":"Home page - before Hero import","data":{"HeroType":"function"},"timestamp":1769019484651,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019484651,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019484653,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019484653,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{},"timestamp":1769019484906,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:9","message":"Home page - before Hero import","data":{"HeroType":"function"},"timestamp":1769019484907,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019484907,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019484908,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019484909,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019485118,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019485119,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019503491,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019503669,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019503758,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019503786,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":2,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019504688,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":2,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019504723,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"app/layout.tsx:7","message":"Layout module loading - before font initialization","data":{"timestamp":1769019506007},"timestamp":1769019506007,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:15","message":"Inter font initialized","data":{"variable":"__variable_f367f3","className":"__className_f367f3"},"timestamp":1769019506016,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:23","message":"Playfair font initialized","data":{"variable":"__variable_0a80b4","className":"__className_0a80b4"},"timestamp":1769019506018,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019506030,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019506032,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019506037,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019506037,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019506364,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019506365,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019506370,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019506388,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019506637,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019506682,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019506696,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019506699,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:7","message":"Layout module loading - before font initialization","data":{"timestamp":1769019509602},"timestamp":1769019509602,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:15","message":"Inter font initialized","data":{"variable":"__variable_f367f3","className":"__className_f367f3"},"timestamp":1769019509607,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:23","message":"Playfair font initialized","data":{"variable":"__variable_0a80b4","className":"__className_0a80b4"},"timestamp":1769019509608,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019509619,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019509621,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019509624,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019509624,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019509709,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019509746,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019509751,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019509765,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019509849,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019509851,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019509861,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019509862,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":4,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019509915,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":4,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019509917,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"app/layout.tsx:7","message":"Layout module loading - before font initialization","data":{"timestamp":1769019522879},"timestamp":1769019522879,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:15","message":"Inter font initialized","data":{"variable":"__variable_f367f3","className":"__className_f367f3"},"timestamp":1769019522880,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:23","message":"Playfair font initialized","data":{"variable":"__variable_0a80b4","className":"__className_0a80b4"},"timestamp":1769019522880,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019522888,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019522892,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019522896,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019522896,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019523299,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019523303,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019523305,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019523306,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:7","message":"Layout module loading - before font initialization","data":{"timestamp":1769019615916},"timestamp":1769019615916,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:15","message":"Inter font initialized","data":{"variable":"__variable_f367f3","className":"__className_f367f3"},"timestamp":1769019615922,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/layout.tsx:23","message":"Playfair font initialized","data":{"variable":"__variable_0a80b4","className":"__className_0a80b4"},"timestamp":1769019615922,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019615953,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019615958,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019615955,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019615960,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019616114,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019616115,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:body","message":"Client-side page load detected","data":{"readyState":"loading","url":"http://localhost:3001/"},"timestamp":1769019616284,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019617116,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019617117,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019617118,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019617119,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":1,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019617178,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":1,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019617186,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019636682,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019636689,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019636689,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019636686,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019636746,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019636747,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019636749,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019636749,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019637045,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019637046,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:35","message":"RootLayout rendering - before return","data":{"htmlClassName":"__variable_f367f3 __variable_0a80b4"},"timestamp":1769019637050,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:30","message":"RootLayout rendering - entry","data":{"hasChildren":true},"timestamp":1769019637049,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019637112,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019637117,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019637161,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019637176,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019644736,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019644737,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019644738,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019644740,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":2,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019644783,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":2,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019644784,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"app/page.tsx:5","message":"Home page rendering - entry","data":{"HeroType":"function"},"timestamp":1769019644856,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019644859,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019644986,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019644993,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019644991,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019644991,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":4,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019645078,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:16","message":"Navigation mounted - checking CSS and fonts","data":{"cssLoaded":true,"fontInter":"'__Inter_f367f3', '_","fontPlayfair":"'__Playfair_Display_","styleSheetsCount":4,"bodyColor":"rgb(237, 237, 237)","bodyBg":"rgb(10, 10, 10)"},"timestamp":1769019645079,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019647701,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019647702,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019647702,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019647703,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019647846,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019647980,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019647981,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:7","message":"Navigation component rendering - entry","data":{},"timestamp":1769019647997,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Navigation.tsx:11","message":"Navigation state initialized","data":{"isMenuOpen":false,"linksCount":4},"timestamp":1769019648004,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019657791,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"components/Hero.tsx:4","message":"Hero component rendering - server side","data":{},"timestamp":1769019660366,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"app/layout.tsx:6","message":"Layout module loading","data":{"timestamp":1769039516549},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:8","message":"Before Inter font init","data":{"timestamp":1769039516558},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:14","message":"After Inter font init","data":{"interVariable":"__variable_0fc2d1","timestamp":1769039516558},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:16","message":"Before Playfair font init","data":{"timestamp":1769039516559},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:23","message":"After Playfair font init","data":{"playfairVariable":"__variable_f41b66","timestamp":1769039516559},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/page.tsx:3","message":"Page module loading","data":{"timestamp":1769039516569},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Hero component imported","data":{"heroImported":true,"timestamp":1769039516570},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769039516611},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769039516621},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769039516663},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769039516666},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Navigation.tsx:6","message":"Navigation component module loading","data":{"timestamp":1769039516882},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:5","message":"Hero component module loading","data":{"timestamp":1769039516912},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Footer.tsx:4","message":"Footer component module loading","data":{"timestamp":1769039516944},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769039518475},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769039518478},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039523046},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039523048},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039528284},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039528285},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039533286},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039533287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039538286},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039538287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039543286},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039543287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039548281},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039548282},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039553260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039553261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039558262},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039558260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039563273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039563274},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039568263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039568264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039573256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039573257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039578258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039578259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039583270},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039583271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039588273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039588276},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039593257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039593258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039598263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039598264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039603255},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039603256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039608303},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039608306},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039613272},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039613273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039618264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039618265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039623274},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039623276},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039628294},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039628295},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039633258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039633259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039638255},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039638256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039643273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039643274},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039648270},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039648271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039653265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039653265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039658266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039658266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039663263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039663264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039668257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039668258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039673255},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039673257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039678267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039678268},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039683278},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039683279},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039688290},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039688291},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039693261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039693262},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039698258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039698260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039703256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039703257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039708256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039708258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039713270},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039713271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039718258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039718259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039723257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039723258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039728270},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039728271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039733291},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039733292},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039738289},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039738289},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039743279},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039743279},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039748263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039748264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039753264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039753265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039758329},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039758330},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039763258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039763260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039768265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039768266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039773282},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039773283},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039778266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039778267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039783291},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039783292},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039788258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039788260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039793258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039793259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039798269},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039798271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039803264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039803265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039808265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039808266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039813258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039813259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039818281},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039818282},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039823267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039823268},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039828259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039828260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039833259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039833261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039838258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039838259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039843272},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039843273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039848287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039848288},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039853263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039853264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039858267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039858268},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039863273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039863273},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039868258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039868259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039873257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039873258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039878265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039878266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039883257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039883258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039888275},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039888276},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039893262},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039893263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039898265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039898266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039903263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039903264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039908257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039908258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039913256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039913257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039918258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039918259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039923271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039923272},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039928260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039928261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039933274},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039933275},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039938264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039938265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039943294},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039943295},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039948298},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039948299},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039953256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039953257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039958265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039958266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039963269},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039963271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039968259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039968259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039973259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039973260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039978271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039978272},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039983262},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039983263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039988281},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039988282},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039993269},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039993270},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039998256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769039998257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040003267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040003268},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040008263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040008264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040013263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040013264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040018264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040018265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040023265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040023267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040028264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040028265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040033256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040033257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040038287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040038288},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040043288},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040043289},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040048275},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040048276},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040053272},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040053272},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040058271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040058271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040063260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040063261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040068266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040068267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040073256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040073256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040078257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040078258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040083259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040083260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040088264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040088266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040093256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040093257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040098258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040098259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040103258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040103258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040108270},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040108271},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040113267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040113268},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040118264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040118265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040123264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040123265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040128256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040128257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040133261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040133262},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040138260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040138261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040143282},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040143283},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040148266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040148267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040153266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040153267},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040158255},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040158256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040163262},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040163264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040168293},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040168294},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040173261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040173261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040178278},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040178279},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040183286},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040183287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040188288},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040188289},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040193268},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040193269},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040198258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040198256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040203260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040203261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040208263},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040208264},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040213256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040213257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040218265},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040218266},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040223301},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040223303},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040227384},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040227388},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040228259},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040228261},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040232304},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040232306},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040233415},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040233410},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040237946},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040237951},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040238335},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040238338},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040243285},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040243287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040248287},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040248288},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040248339},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040248947},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040253315},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040253317},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040253594},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040253637},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040258342},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040258344},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040263292},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040263292},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040268276},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040268277},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040273255},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040273256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/layout.tsx:6","message":"Layout module loading","data":{"timestamp":1769040277446},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:8","message":"Before Inter font init","data":{"timestamp":1769040277452},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:14","message":"After Inter font init","data":{"interVariable":"__variable_0fc2d1","timestamp":1769040277453},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:16","message":"Before Playfair font init","data":{"timestamp":1769040277454},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:23","message":"After Playfair font init","data":{"playfairVariable":"__variable_f41b66","timestamp":1769040277455},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/page.tsx:3","message":"Page module loading","data":{"timestamp":1769040277469},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Hero component imported","data":{"heroImported":true,"timestamp":1769040277470},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040277479},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040277485},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040277856},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040277857},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040278436},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040278437},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040283278},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040283279},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/layout.tsx:23","message":"After Playfair font init","data":{"playfairVariable":"__variable_f41b66","timestamp":1769040283962},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/page.tsx:5","message":"Hero component imported","data":{"heroImported":true,"timestamp":1769040284063},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:3","message":"Page module loading","data":{"timestamp":1769040284062},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040284074},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040284215},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:6","message":"Layout module loading","data":{"timestamp":1769040283956},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:8","message":"Before Inter font init","data":{"timestamp":1769040283961},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:14","message":"After Inter font init","data":{"interVariable":"__variable_0fc2d1","timestamp":1769040283961},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:16","message":"Before Playfair font init","data":{"timestamp":1769040283962},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040284581},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040284580},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040288724},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040288726},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040291501},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040291554},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040293258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040293260},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/layout.tsx:6","message":"Layout module loading","data":{"timestamp":1769040296052},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:8","message":"Before Inter font init","data":{"timestamp":1769040296056},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:14","message":"After Inter font init","data":{"interVariable":"__variable_0fc2d1","timestamp":1769040296056},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:16","message":"Before Playfair font init","data":{"timestamp":1769040296057},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:23","message":"After Playfair font init","data":{"playfairVariable":"__variable_f41b66","timestamp":1769040296057},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/page.tsx:3","message":"Page module loading","data":{"timestamp":1769040296102},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:5","message":"Hero component imported","data":{"heroImported":true,"timestamp":1769040296103},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040296106},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040296110},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040296483},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040296520},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040296681},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040296680},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040298255},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040298256},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040303293},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040303294},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040308211},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040308208},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040308164},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040308257},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040308258},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040308280},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/page.tsx:42","message":"Home component rendering","data":{"timestamp":1769040309307},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:99","message":"RootLayout rendering","data":{"hasChildren":true,"timestamp":1769040309309},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040309584},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040309594},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040313535},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040313536},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040316597},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040316599},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"app/layout.tsx:6","message":"Layout module loading","data":{"timestamp":1769040317117},"sessionId":"debug-session","runId":"startup","hypothesisId":"B"}
+{"location":"app/layout.tsx:8","message":"Before Inter font init","data":{"timestamp":1769040317126},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:14","message":"After Inter font init","data":{"interVariable":"__variable_0fc2d1","timestamp":1769040317126},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:16","message":"Before Playfair font init","data":{"timestamp":1769040317127},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"app/layout.tsx:23","message":"After Playfair font init","data":{"playfairVariable":"__variable_f41b66","timestamp":1769040317127},"sessionId":"debug-session","runId":"startup","hypothesisId":"D"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040351584},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040351585},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040363584},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040363585},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040423604},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040423612},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040471279},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040471275},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040472903},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040472904},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040478587},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040478589},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040483607},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040483628},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040488583},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040488584},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040493590},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040493591},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040498595},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040498603},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040503592},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040503593},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040508591},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040508595},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040513584},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040513589},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040518589},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040518590},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040523588},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040523589},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040528586},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040528588},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040543878},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
+{"location":"components/Hero.tsx:15","message":"Hero component rendering (client)","data":{"timestamp":1769040543887},"sessionId":"debug-session","runId":"startup","hypothesisId":"C"}
