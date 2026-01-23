@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/data/products";
 import StaggeredGrid from "@/components/animations/StaggeredGrid";
-import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
+import CollectionVideoBanner from "@/components/CollectionVideoBanner";
 import { useEffect } from "react";
 import { initSmoothScroll } from "@/lib/smooth-scroll";
 
@@ -17,31 +16,16 @@ export default function Shop() {
 
   return (
     <div>
-      {/* Hero Banner */}
-      <FadeInOnScroll>
-        <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-warm-900/50 to-warm-900/60 z-10" />
-          <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&q=80"
-              alt="Shop collection"
-              fill
-              priority
-              quality={90}
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair text-warm-50 mb-6 tracking-wide">
-              Collection
-            </h1>
-            <p className="text-xl md:text-2xl text-warm-100 font-light tracking-wide max-w-2xl mx-auto">
-              Curated pieces of timeless elegance
-            </p>
-          </div>
-        </section>
-      </FadeInOnScroll>
+      {/* Collection Video Banner */}
+      <CollectionVideoBanner
+        // Optional: Add video URL when ready
+        // videoUrl="/videos/collection-banner.mp4"
+        imageUrl="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&q=80"
+        collectionName="Collection"
+        description="Curated pieces of timeless elegance"
+        ctaLink="/shop"
+        ctaText="Shop Collection"
+      />
 
       {/* Products Section */}
       <div className="pt-20 pb-40 px-6 lg:px-8 bg-warm-50">

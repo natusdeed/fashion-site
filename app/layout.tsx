@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Dancing_Script } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import "./globals.css";
@@ -31,36 +31,25 @@ const QuickViewModal = dynamic(() => import("@/components/QuickViewModal"), {
   loading: () => null, // No loading state needed
 });
 
-// Clean sans-serif for body text - optimized for luxury brand
-// Preload and optimize fonts for better LCP
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap", // Prevents invisible text during font load
-  weight: ["300", "400", "500", "600"],
-  preload: true, // Preload critical font
-  fallback: ["system-ui", "-apple-system", "sans-serif"],
-});
-
-// High-end serif for headings - luxury fashion brand typography
+// Primary font for logo & headings - luxury serif
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   display: "swap", // Prevents invisible text during font load
-  weight: ["400", "500", "600", "700", "900"],
+  weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   preload: true, // Preload critical font
   fallback: ["Georgia", "serif"],
 });
 
-// Elegant script font for logo
-const dancingScript = Dancing_Script({
+// Secondary font for body & navigation - clean sans-serif
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dancing",
+  variable: "--font-inter",
   display: "swap", // Prevents invisible text during font load
-  weight: ["400", "500", "600", "700"],
-  preload: false, // Don't preload non-critical font
-  fallback: ["cursive"],
+  weight: ["400", "500", "600"],
+  preload: true, // Preload critical font
+  fallback: ["system-ui", "-apple-system", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -142,7 +131,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${dancingScript.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#faf8f5" />

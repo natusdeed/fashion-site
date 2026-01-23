@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import OptimizedVideo from "@/components/OptimizedVideo";
 
 interface ProductVideoCardProps {
   id?: number;
@@ -24,54 +24,13 @@ export default function ProductVideoCard({
   imageAlt,
   videoUrl,
 }: ProductVideoCardProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const playVideo = () => {
-    if (videoRef.current && videoUrl) {
-      videoRef.current.play().catch(() => {
-        // Handle autoplay restrictions gracefully
-      });
-      setIsPlaying(true);
-      setIsHovered(true);
-    }
-  };
-
-  const stopVideo = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-      setIsPlaying(false);
-      setIsHovered(false);
-    }
-  };
-
-  const handleMouseEnter = () => {
-    playVideo();
-  };
-
-  const handleMouseLeave = () => {
-    stopVideo();
-  };
-
-  const handleMouseDown = () => {
-    playVideo();
-  };
-
-  const handleTouchStart = () => {
-    playVideo();
-  };
 
   return (
-    <Link 
+      <Link 
       href={`/shop/${slug}`} 
       className="group block h-full"
       aria-label={`View ${name} product details`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={handleMouseDown}
-      onTouchStart={handleTouchStart}
     >
       <div className="relative bg-white border border-warm-200/60 transition-all duration-300 ease-in-out group-hover:border-gold-500/40 group-hover:shadow-2xl group-hover:shadow-warm-900/10 overflow-hidden h-full flex flex-col">
         {/* Luxury Card Container */}
@@ -80,36 +39,30 @@ export default function ProductVideoCard({
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold-500/0 to-transparent group-hover:via-gold-500/60 transition-all duration-300 ease-in-out z-20" />
           
           {/* Product Video/Image Container */}
-          <div className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 via-warm-100 to-warm-50 overflow-hidden">
-            {/* Video Element */}
-            <video
-              ref={videoRef}
-              src={videoUrl}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                isPlaying && isHovered ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            />
-            {/* Fallback Image */}
-            {imageUrl && (
-              <Image
-                src={imageUrl}
+          <div 
+            className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 via-warm-100 to-warm-50 overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Optimized Video Component */}
+            {videoUrl && imageUrl && (
+              <OptimizedVideo
+                videoUrl={videoUrl}
+                posterUrl={imageUrl}
                 alt={imageAlt || name}
-                fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className={`object-cover transition-all duration-300 ease-in-out ${
-                  isPlaying && isHovered ? "opacity-0 scale-110" : "opacity-100 scale-100"
-                }`}
-                loading="lazy"
-                quality={90}
+                type="product"
+                autoplay={isHovered}
+                loop={true}
+                muted={true}
+                showControls={false}
+                duration={15} // Product videos: 3-15 seconds
+                aspectRatio="3/4"
+                className="absolute inset-0"
               />
             )}
             {/* Video Play Indicator */}
             <div className={`absolute top-4 left-4 z-20 transition-all duration-300 ease-in-out ${
-              isHovered || isPlaying ? "opacity-100" : "opacity-70"
+              isHovered ? "opacity-100" : "opacity-70"
             }`}>
               <div className="bg-warm-900/80 backdrop-blur-sm px-3 py-1.5 border border-gold-500/40 rounded-sm">
                 <div className="flex items-center gap-2">

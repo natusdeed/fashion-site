@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import AmbientVideoBackground from "@/components/AmbientVideoBackground";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Elegant fashion shopping bags image
+// Background media URLs
 const heroBackgroundImage = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80";
+// Optional: Add your ambient video URL here when ready
+// Example: const heroVideoUrl = "/videos/hero-ambient.mp4";
+const heroVideoUrl = ""; // Set this to your video URL when ready
 
 export default function Hero() {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -46,26 +50,39 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Parallax Background Image - Optimized with Next.js Image */}
+      {/* Ambient Video Background or Static Image */}
       <div 
         ref={parallaxRef}
         className="absolute inset-0 w-full h-[120%]"
       >
-        <Image
-          src={heroBackgroundImage}
-          alt="Luxury fashion collection"
-          fill
-          priority
-          quality={90}
-          sizes="100vw"
-          className="object-cover"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-        />
+        {heroVideoUrl ? (
+          <AmbientVideoBackground
+            videoUrl={heroVideoUrl}
+            fallbackImageUrl={heroBackgroundImage}
+            overlayOpacity={0.5}
+            playbackRate={0.75}
+            alt="Luxury fashion collection"
+            className="w-full h-full"
+          />
+        ) : (
+          // Fallback to static image if no video URL provided
+          <>
+            <Image
+              src={heroBackgroundImage}
+              alt="Luxury fashion collection"
+              fill
+              priority
+              quality={90}
+              sizes="100vw"
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            />
+            {/* Dark Overlay for Text Readability */}
+            <div className="absolute inset-0 bg-black/30 z-10" />
+          </>
+        )}
       </div>
-      
-      {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-black/30 z-10" />
 
       {/* Content Overlay */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-6 lg:px-8 text-center">

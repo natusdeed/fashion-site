@@ -126,42 +126,51 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-black/80 shadow-lg backdrop-blur-md border-b border-gray-200/20"
-            : "bg-transparent"
+        className={`sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-[8px] border-b border-gray-100 transition-shadow duration-300 ${
+          isScrolled ? "shadow-sm" : ""
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-3 lg:px-8 lg:py-4">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto min-h-16 lg:min-h-20 px-4 py-3 lg:px-8 lg:py-4">
+          <div className="flex items-center justify-between h-full">
             {/* Logo - Left Side */}
             <Link
               href="/"
-              className="flex items-center group focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm p-1 -m-1 z-50"
+              className="flex-shrink-0 flex items-center group focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm p-1 -m-1 z-50"
               aria-label="Lola Drip - Home"
             >
-              <span className="text-5xl lg:text-[3.5rem] font-dancing font-semibold tracking-wide transition-colors duration-300 group-hover:text-[#D4AF37] text-[#FFFFFF] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-                Lola Drip
+              <span 
+                className="text-2xl lg:text-3xl font-semibold tracking-tight transition-all duration-300 group-hover:scale-105 group-hover:text-[#D4AF37] text-[#1a1a1a]"
+                style={{
+                  fontFamily: 'var(--font-playfair), Georgia, serif',
+                  fontWeight: 600,
+                  filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))',
+                }}
+              >
+                Lola <span className="italic">Drip</span>
               </span>
             </Link>
 
             {/* Desktop Navigation Links - Center */}
-            <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+            <div className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
               {navLinks.map((link) => (
                 <div key={link.href} className="relative" ref={link.label === "SHOP" ? shopMenuRef : null}>
                   <Link
                     href={link.href}
                     onMouseEnter={() => link.label === "SHOP" && setIsShopMenuOpen(true)}
-                    className={`relative px-4 py-2 text-sm font-medium tracking-wider uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
+                    className={`group relative px-3 py-2 text-sm font-medium tracking-widest uppercase transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
                       isActive(link.href)
-                        ? "text-warm-900"
-                        : "text-warm-600 hover:text-[#D4AF37]"
+                        ? "text-[#D4AF37]"
+                        : "text-[#4a4a4a] hover:text-[#1a1a1a]"
                     }`}
                   >
                     {link.label}
-                    {/* Active gold border */}
+                    {/* Active gold underline */}
                     {isActive(link.href) && (
-                      <span className="absolute bottom-0 left-[-4px] right-[-4px] h-[2px] bg-[#D4AF37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.3)] transition-all duration-300" />
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full transition-all duration-300" />
+                    )}
+                    {/* Hover underline (only when not active) */}
+                    {!isActive(link.href) && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#1a1a1a] rounded-full scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100" />
                     )}
                   </Link>
 
@@ -204,19 +213,19 @@ export default function Navigation() {
             </div>
 
             {/* Right Side Icons */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center gap-6">
               {/* Search Icon */}
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#FFFFFF]"
+                className="p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Search"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
+                  strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
@@ -227,17 +236,15 @@ export default function Navigation() {
               {/* Wishlist Icon with Badge */}
               <Link
                 href="/wishlist"
-                className={`relative p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 ${
-                  isScrolled ? "text-[#2C2C2C]" : "text-[#FFFFFF]"
-                }`}
+                className="relative p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Wishlist"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
+                  strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
@@ -248,7 +255,7 @@ export default function Navigation() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute -top-1 -right-1 bg-gold-500 text-warm-900 text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center"
+                    className="absolute top-0 right-0 bg-[#D4AF37] text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center"
                   >
                     {wishlistCount > 9 ? "9+" : wishlistCount}
                   </motion.span>
@@ -258,15 +265,15 @@ export default function Navigation() {
               {/* User Icon */}
               <Link
                 href="/account"
-                className="p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#FFFFFF]"
+                className="p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Account"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
+                  strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
@@ -277,19 +284,17 @@ export default function Navigation() {
               {/* Shopping Cart Icon with Badge */}
               <motion.button
                 onClick={() => setIsCartOpen(true)}
-                className={`relative p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 ${
-                  isScrolled ? "text-[#2C2C2C]" : "text-[#FFFFFF]"
-                }`}
+                className="relative p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Shopping Cart"
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
+                  strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
@@ -300,7 +305,7 @@ export default function Navigation() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute -top-1 -right-1 bg-gold-500 text-warm-900 text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center"
+                    className="absolute top-0 right-0 bg-[#D4AF37] text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center"
                   >
                     {cartCount > 9 ? "9+" : cartCount}
                   </motion.span>

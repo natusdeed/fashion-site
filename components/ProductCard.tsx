@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import LazyImage from "@/components/LazyImage";
 import { useToast } from "@/lib/toast-context";
@@ -20,6 +20,7 @@ interface ProductCardProps {
   category: string;
   imageUrl?: string;
   imageAlt?: string;
+  videoUrl?: string;
 }
 
 export default function ProductCard({
@@ -32,14 +33,120 @@ export default function ProductCard({
   category,
   imageUrl,
   imageAlt,
+  videoUrl,
 }: ProductCardProps) {
   const { showToast } = useToast();
   const { addToCart, setIsCartOpen } = useCart();
   const { openQuickView } = useQuickView();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isMobileVideoActive, setIsMobileVideoActive] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   const isWishlisted = id ? isInWishlist(id) : false;
+  const hasVideo = Boolean(videoUrl);
+
+  // Intersection Observer to stop video when out of viewport
+  useEffect(() => {
+    if (!hasVideo || !videoRef.current || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && videoRef.current) {
+            // Stop video when out of viewport
+            videoRef.current.pause();
+            setIsVideoPlaying(false);
+            setIsMobileVideoActive(false);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasVideo]);
+
+  // Handle desktop hover to play/pause video
+  useEffect(() => {
+    if (!hasVideo || !videoRef.current) return;
+
+    const video = videoRef.current;
+
+    if (isHovered && !isMobileVideoActive) {
+      // Load video if not loaded yet
+      if (!isVideoLoaded) {
+        video.load();
+        setIsVideoLoaded(true);
+      }
+      // Play video on hover (desktop only)
+      video.play().catch(() => {
+        // Handle autoplay restrictions gracefully
+        setIsVideoPlaying(false);
+      });
+      setIsVideoPlaying(true);
+    } else if (!isHovered && !isMobileVideoActive) {
+      // Pause video on unhover (desktop only)
+      video.pause();
+      video.currentTime = 0;
+      setIsVideoPlaying(false);
+    }
+  }, [isHovered, hasVideo, isMobileVideoActive, isVideoLoaded]);
+
+  // Handle mobile tap to toggle video
+  const handleMobileVideoToggle = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!hasVideo || !videoRef.current) return;
+    
+    // Only handle on mobile devices
+    if (window.innerWidth >= 768) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const video = videoRef.current;
+
+    if (isMobileVideoActive) {
+      // Pause and reset video
+      video.pause();
+      video.currentTime = 0;
+      setIsMobileVideoActive(false);
+      setIsVideoPlaying(false);
+    } else {
+      // Load video if not loaded yet
+      if (!isVideoLoaded) {
+        video.load();
+        setIsVideoLoaded(true);
+      }
+      // Play video
+      video.play().catch(() => {
+        setIsVideoPlaying(false);
+      });
+      setIsMobileVideoActive(true);
+      setIsVideoPlaying(true);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 768) {
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 768) {
+      setIsHovered(false);
+    }
+  };
 
   const handleWishlistClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -135,17 +242,67 @@ export default function ProductCard({
         aria-label={`View ${name} product details`}
       >
         {/* Product Image Container */}
-        <div className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm">
-          {imageUrl ? (
-            <LazyImage
-              src={imageUrl}
-              alt={imageAlt || name}
-              fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-cover transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105"
+        <div 
+          ref={containerRef}
+          className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleMobileVideoToggle}
+          onTouchStart={handleMobileVideoToggle}
+        >
+          {/* Image Display */}
+          {imageUrl && (
+            <div
+              className={`absolute inset-0 transition-opacity duration-[400ms] ease-in-out ${
+                (isHovered && hasVideo && !isMobileVideoActive) || (isMobileVideoActive && hasVideo)
+                  ? "opacity-0"
+                  : "opacity-100"
+              }`}
+            >
+              <LazyImage
+                src={imageUrl}
+                alt={imageAlt || name}
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-cover transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105"
+              />
+            </div>
+          )}
+
+          {/* Video Display */}
+          {hasVideo && videoUrl && (
+            <video
+              ref={videoRef}
+              src={videoUrl}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105 ${
+                (isHovered && !isMobileVideoActive) || isMobileVideoActive
+                  ? "opacity-100 z-10"
+                  : "opacity-0 z-0"
+              }`}
+              muted
+              loop
+              playsInline
+              preload="none"
+              onPlay={() => setIsVideoPlaying(true)}
+              onPause={() => setIsVideoPlaying(false)}
             />
-          ) : (
+          )}
+
+          {!imageUrl && !hasVideo && (
             <div className="absolute inset-0 bg-warm-200" />
+          )}
+
+          {/* Video Icon Badge - Bottom Right */}
+          {hasVideo && (
+            <div className="absolute bottom-3 right-3 z-20 bg-[#D4AF37] rounded-full p-2 shadow-lg">
+              <svg
+                className="w-4 h-4 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
           )}
 
           {/* SALE Badge - Top Left */}

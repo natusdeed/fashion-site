@@ -54,8 +54,6 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
         serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-        playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
-        dancing: ['var(--font-dancing)', 'cursive'],
       },
       fontWeight: {
         light: '300',
