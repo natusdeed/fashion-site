@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 :root {
-  /* Lola Drip Design System Colors */
-  --background: #F5F1E8; /* cream */
-  --foreground: #2C2C2C; /* soft black */
-  --gold-accent: #D4AF37; /* gold accent */
+  --background: #faf8f5;
+  --foreground: #251f18;
 }
 
 @media (prefers-color-scheme: dark) {
