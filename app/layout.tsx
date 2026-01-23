@@ -22,29 +22,27 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yourbrand.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://loladrip.com'),
   title: {
-    default: "Luxe Couture | Luxury Women's Fashion & Designer Collections",
-    template: "%s | Luxe Couture",
+    default: "Lola Drip | Modern Women's Fashion & Premium Collections",
+    template: "%s | Lola Drip",
   },
-  description: "Discover exquisite luxury women's fashion with our curated collection of designer dresses, elegant evening wear, and sophisticated ready-to-wear pieces. Premium quality, timeless elegance, and exceptional craftsmanship.",
+  description: "Discover modern women's fashion with Lola Drip. Curated collection of designer pieces, elegant styles, and premium quality clothing. Timeless elegance meets contemporary style.",
   keywords: [
-    "luxury fashion",
-    "women's designer clothing",
-    "high-end fashion",
-    "luxury dresses",
-    "designer women's wear",
-    "premium fashion",
-    "elegant evening wear",
-    "sophisticated fashion",
-    "luxury boutique",
-    "couture fashion",
-    "designer collections",
-    "premium women's clothing"
+    "women's fashion",
+    "modern fashion",
+    "premium clothing",
+    "designer dresses",
+    "women's clothing",
+    "fashion boutique",
+    "contemporary fashion",
+    "style",
+    "fashion collections",
+    "women's wear"
   ],
-  authors: [{ name: "Luxe Couture" }],
-  creator: "Luxe Couture",
-  publisher: "Luxe Couture",
+  authors: [{ name: "Lola Drip" }],
+  creator: "Lola Drip",
+  publisher: "Lola Drip",
   formatDetection: {
     email: false,
     address: false,
@@ -54,24 +52,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Luxe Couture",
-    title: "Luxe Couture | Luxury Women's Fashion & Designer Collections",
-    description: "Discover exquisite luxury women's fashion with our curated collection of designer dresses, elegant evening wear, and sophisticated ready-to-wear pieces.",
+    siteName: "Lola Drip",
+    title: "Lola Drip | Modern Women's Fashion & Premium Collections",
+    description: "Discover modern women's fashion with Lola Drip. Curated collection of designer pieces and premium quality clothing.",
     images: [
       {
         url: "/og-image.jpg", // You should add this image to your public folder
         width: 1200,
         height: 630,
-        alt: "Luxe Couture - Luxury Women's Fashion",
+        alt: "Lola Drip - Modern Women's Fashion",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luxe Couture | Luxury Women's Fashion & Designer Collections",
-    description: "Discover exquisite luxury women's fashion with our curated collection of designer dresses and elegant evening wear.",
+    title: "Lola Drip | Modern Women's Fashion & Premium Collections",
+    description: "Discover modern women's fashion with Lola Drip. Curated collection of designer pieces and premium quality clothing.",
     images: ["/og-image.jpg"], // You should add this image to your public folder
-    creator: "@luxecouture", // Update with your actual Twitter handle
+    creator: "@loladrip", // Update with your actual Twitter handle
   },
   robots: {
     index: true,
