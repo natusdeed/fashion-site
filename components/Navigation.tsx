@@ -4,10 +4,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/Navigation.tsx:6',message:'Navigation component module loading',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'C'})}).catch(()=>{}); }
-// #endregion
-
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();

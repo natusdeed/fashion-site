@@ -4,28 +4,15 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/layout.tsx:6',message:'Layout module loading',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'B'})}).catch(()=>{}); }
-// #endregion
-
 // Clean sans-serif for body text - optimized for luxury brand
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/layout.tsx:8',message:'Before Inter font init',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'D'})}).catch(()=>{}); }
-// #endregion
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
   weight: ["300", "400", "500", "600"],
 });
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/layout.tsx:14',message:'After Inter font init',data:{interVariable:inter.variable,timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'D'})}).catch(()=>{}); }
-// #endregion
 
 // High-end serif for headings - luxury fashion brand typography
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/layout.tsx:16',message:'Before Playfair font init',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'D'})}).catch(()=>{}); }
-// #endregion
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
@@ -33,9 +20,6 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "900"],
   style: ["normal", "italic"],
 });
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/layout.tsx:23',message:'After Playfair font init',data:{playfairVariable:playfair.variable,timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'D'})}).catch(()=>{}); }
-// #endregion
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yourbrand.com'),
@@ -117,9 +101,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // #region agent log
-  if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/layout.tsx:99',message:'RootLayout rendering',data:{hasChildren:!!children,timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'B'})}).catch(()=>{}); }
-  // #endregion
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>

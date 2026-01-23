@@ -3,10 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/Hero.tsx:5',message:'Hero component module loading',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'C'})}).catch(()=>{}); }
-// #endregion
-
 // Luxury fashion images featuring well-dressed ladies
 const heroImages = [
   "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1920&q=80",
@@ -17,9 +13,6 @@ const heroImages = [
 ];
 
 export default function Hero() {
-  // #region agent log
-  if (typeof window !== 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/Hero.tsx:15',message:'Hero component rendering (client)',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'C'})}).catch(()=>{}); }
-  // #endregion
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Auto-advance slideshow

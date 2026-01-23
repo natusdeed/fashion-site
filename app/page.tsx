@@ -1,12 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/page.tsx:3',message:'Page module loading',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'B'})}).catch(()=>{}); }
-// #endregion
 import Hero from "@/components/Hero";
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/page.tsx:5',message:'Hero component imported',data:{heroImported:!!Hero,timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'C'})}).catch(()=>{}); }
-// #endregion
 
 export const metadata: Metadata = {
   title: "Luxury Women's Fashion | Designer Collections & Premium Clothing",
@@ -46,9 +40,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // #region agent log
-  if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/page.tsx:42',message:'Home component rendering',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'B'})}).catch(()=>{}); }
-  // #endregion
   return (
     <div className="pt-24">
       <Hero />

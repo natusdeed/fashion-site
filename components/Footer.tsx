@@ -2,10 +2,6 @@
 
 import Link from "next/link";
 
-// #region agent log
-if (typeof window === 'undefined') { fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/Footer.tsx:4',message:'Footer component module loading',data:{timestamp:Date.now()},sessionId:'debug-session',runId:'startup',hypothesisId:'C'})}).catch(()=>{}); }
-// #endregion
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
