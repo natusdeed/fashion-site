@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const collections = [
@@ -61,28 +62,35 @@ export default function Collections() {
 
         {/* Collection Cards Grid */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 transition-opacity duration-1000 ${
+          className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 transition-opacity duration-200 md:duration-1000 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
           {collections.map((collection, index) => (
-            <div
+            <Link
+              href={collection.href}
               key={collection.title}
-              className="group relative overflow-hidden aspect-[3/4] rounded-sm"
+              className="group relative overflow-hidden aspect-[3/4] rounded-sm block"
               style={{
                 animationDelay: `${index * 150}ms`,
                 animation: isVisible
                   ? "fadeInUp 0.8s ease-out forwards"
                   : "none",
               }}
+              aria-label={`Shop ${collection.title} collection`}
             >
-              {/* Background Image with Zoom Effect */}
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-110"
-                style={{
-                  backgroundImage: `url('${collection.image}')`,
-                }}
-              />
+              {/* Background Image with Zoom Effect - Optimized with Next.js Image */}
+              <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110">
+                <Image
+                  src={collection.image}
+                  alt={collection.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                  loading="lazy"
+                  quality={85}
+                />
+              </div>
 
               {/* Semi-transparent Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20 group-hover:from-black/80 transition-all duration-300" />
@@ -92,11 +100,7 @@ export default function Collections() {
                 <h3 className="text-3xl md:text-4xl font-playfair text-white mb-6 font-normal tracking-wide">
                   {collection.title}
                 </h3>
-                <Link
-                  href={collection.href}
-                  aria-label={`Shop ${collection.title} collection`}
-                  className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-3 md:px-10 md:py-4 hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 ease-in-out text-xs md:text-sm uppercase tracking-[0.15em] font-inter font-light group-hover:border-gold-accent group-hover:bg-gold-accent"
-                >
+                <span className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-3.5 md:px-10 md:py-4 hover:bg-white hover:text-[#1a1a1a] transition-all duration-200 md:duration-300 ease-in-out text-xs md:text-sm uppercase tracking-[0.15em] font-inter font-light group-hover:border-gold-accent group-hover:bg-gold-accent min-h-[44px]">
                   SHOP NOW
                   <svg
                     className="ml-3 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
@@ -109,9 +113,9 @@ export default function Collections() {
                   >
                     <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </Link>
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

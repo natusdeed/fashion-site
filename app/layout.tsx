@@ -1,24 +1,66 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Dancing_Script } from "next/font/google";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
+import { ToastProvider } from "@/lib/toast-context";
+import { CartProvider } from "@/lib/cart-context";
+import { QuickViewProvider } from "@/lib/quickview-context";
+import { WishlistProvider } from "@/lib/wishlist-context";
+import PageTransition from "@/components/animations/PageTransition";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import Analytics from "@/components/Analytics";
+
+// Dynamic imports for modals - code splitting for better performance
+// These components are loaded only when needed (below the fold or on interaction)
+const NewsletterPopup = dynamic(() => import("@/components/NewsletterPopup"), {
+  ssr: false, // No SSR needed for popup
+  loading: () => null, // No loading state needed
+});
+
+const CartDrawer = dynamic(() => import("@/components/CartDrawer"), {
+  ssr: false, // No SSR needed for drawer
+  loading: () => null, // No loading state needed
+});
+
+const QuickViewModal = dynamic(() => import("@/components/QuickViewModal"), {
+  ssr: false, // No SSR needed for modal
+  loading: () => null, // No loading state needed
+});
 
 // Clean sans-serif for body text - optimized for luxury brand
+// Preload and optimize fonts for better LCP
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  display: "swap", // Prevents invisible text during font load
   weight: ["300", "400", "500", "600"],
+  preload: true, // Preload critical font
+  fallback: ["system-ui", "-apple-system", "sans-serif"],
 });
 
 // High-end serif for headings - luxury fashion brand typography
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
-  display: "swap",
+  display: "swap", // Prevents invisible text during font load
   weight: ["400", "500", "600", "700", "900"],
   style: ["normal", "italic"],
+  preload: true, // Preload critical font
+  fallback: ["Georgia", "serif"],
+});
+
+// Elegant script font for logo
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing",
+  display: "swap", // Prevents invisible text during font load
+  weight: ["400", "500", "600", "700"],
+  preload: false, // Don't preload non-critical font
+  fallback: ["cursive"],
 });
 
 export const metadata: Metadata = {
@@ -100,17 +142,53 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${dancingScript.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#faf8f5" />
+        {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        {/* Favicon and App Icons - Add actual icon files to public folder */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        {/* Preload critical hero image for better LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80"
+          imageSizes="100vw"
+          imageSrcSet="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=640&q=80 640w, https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1080&q=80 1080w, https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80 1920w"
+        />
       </head>
       <body className={`${inter.variable} antialiased font-sans`}>
-        <Navigation />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
+        <ErrorBoundary>
+          <ToastProvider>
+            <CartProvider>
+              <WishlistProvider>
+                <QuickViewProvider>
+                  <Navigation />
+                  <PageTransition>
+                    <main className="min-h-screen pb-16 md:pb-0">{children}</main>
+                  </PageTransition>
+                  <Footer />
+                  <MobileBottomNav />
+                  <NewsletterPopup />
+                  <CartDrawer />
+                  <QuickViewModal />
+                </QuickViewProvider>
+              </WishlistProvider>
+            </CartProvider>
+          </ToastProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

@@ -1,19 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+// CartDrawer and QuickViewModal are now dynamically imported in layout.tsx for better code splitting
+import SearchBar from "@/components/SearchBar";
+import { motion } from "framer-motion";
+import { useCart } from "@/lib/cart-context";
+import { useQuickView } from "@/lib/quickview-context";
+import { useWishlist } from "@/lib/wishlist-context";
+
+// Shop categories with images for mega-menu
+const shopCategories = [
+  {
+    name: "Dresses",
+    href: "/shop/dresses",
+    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&q=80",
+  },
+  {
+    name: "Outerwear",
+    href: "/shop/outerwear",
+    image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400&q=80",
+  },
+  {
+    name: "Tops",
+    href: "/shop/tops",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&q=80",
+  },
+  {
+    name: "Bottoms",
+    href: "/shop/bottoms",
+    image: "https://images.unsplash.com/photo-1506629905607-1b8c0c4e3b5e?w=400&q=80",
+  },
+  {
+    name: "Evening Wear",
+    href: "/shop/evening-wear",
+    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80",
+  },
+];
 
 export default function Navigation() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isShopMenuOpen, setIsShopMenuOpen] = useState(false);
+  const { getCartCount, isCartOpen, setIsCartOpen } = useCart();
+  const { getWishlistCount } = useWishlist();
+  const cartCount = getCartCount();
+  const wishlistCount = getWishlistCount();
   const pathname = usePathname();
+  const shopMenuRef = useRef<HTMLDivElement>(null);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/shop", label: "Shop" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-  ];
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -32,149 +77,461 @@ export default function Navigation() {
     };
   }, [isMenuOpen]);
 
-  const isActive = (href: string) => pathname === href;
+
+  // Close shop menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (shopMenuRef.current && !shopMenuRef.current.contains(event.target as Node)) {
+        setIsShopMenuOpen(false);
+      }
+    };
+    if (isShopMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isShopMenuOpen]);
+
+  // Close search on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+    };
+    if (isSearchOpen) {
+      window.addEventListener("keydown", handleEscape);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isSearchOpen]);
+
+  const navLinks = [
+    { href: "/", label: "HOME" },
+    { href: "/shop", label: "SHOP" },
+    { href: "/about", label: "ABOUT" },
+    { href: "/contact", label: "CONTACT" },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
+
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-warm-50/80 backdrop-blur-md border-b border-warm-200/50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-center h-24 relative">
-          {/* Desktop Navigation - Left */}
-          <div className="hidden lg:flex items-center absolute left-0 space-x-10">
-            {navLinks.slice(0, 2).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-label={`Navigate to ${link.label} page`}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className="group relative text-warm-600 hover:text-warm-900 font-light text-sm tracking-[0.15em] uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm px-2 py-1 -mx-2"
-              >
-                <span className="relative inline-block">
-                  {link.label}
-                  {/* Active indicator line */}
-                  <span
-                    className={`absolute bottom-0 left-0 h-px bg-gold-600 transition-all duration-500 ease-out ${
-                      isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                    style={{ transform: "translateY(2px)" }}
-                  />
-                  {/* Hover background effect */}
-                  <span className="absolute inset-0 bg-warm-100 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-                </span>
-                {/* Active page indicator */}
-                {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gold-600 rounded-full" />
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Centered Logo */}
-          <Link
-            href="/"
-            className="flex items-center group focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm p-1 -m-1"
-            aria-label="ÉLÉGANCE - Home"
-          >
-            <span className="text-3xl font-playfair font-normal text-warm-900 tracking-[0.2em] transition-all duration-300 group-hover:text-gold-600 group-hover:scale-105">
-              ÉLÉGANCE
-            </span>
-          </Link>
-
-          {/* Desktop Navigation - Right */}
-          <div className="hidden lg:flex items-center absolute right-0 space-x-10">
-            {navLinks.slice(2).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-label={`Navigate to ${link.label} page`}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className="group relative text-warm-600 hover:text-warm-900 font-light text-sm tracking-[0.15em] uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm px-2 py-1 -mx-2"
-              >
-                <span className="relative inline-block">
-                  {link.label}
-                  {/* Active indicator line */}
-                  <span
-                    className={`absolute bottom-0 left-0 h-px bg-gold-600 transition-all duration-500 ease-out ${
-                      isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                    style={{ transform: "translateY(2px)" }}
-                  />
-                  {/* Hover background effect */}
-                  <span className="absolute inset-0 bg-warm-100 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-                </span>
-                {/* Active page indicator */}
-                {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gold-600 rounded-full" />
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button - Optimized */}
-          <button
-            className="lg:hidden absolute right-0 p-3 -mr-3 text-warm-600 hover:text-warm-900 active:text-gold-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            <svg
-              className="w-6 h-6 transform transition-transform duration-300"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-black/80 shadow-lg backdrop-blur-md border-b border-gray-200/20"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-3 lg:px-8 lg:py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo - Left Side */}
+            <Link
+              href="/"
+              className="flex items-center group focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 rounded-sm p-1 -m-1 z-50"
+              aria-label="Lola Drip - Home"
             >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+              <span className="text-5xl lg:text-[3.5rem] font-dancing font-semibold tracking-wide transition-colors duration-300 group-hover:text-[#D4AF37] text-[#FFFFFF] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+                Lola Drip
+              </span>
+            </Link>
+
+            {/* Desktop Navigation Links - Center */}
+            <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+              {navLinks.map((link) => (
+                <div key={link.href} className="relative" ref={link.label === "SHOP" ? shopMenuRef : null}>
+                  <Link
+                    href={link.href}
+                    onMouseEnter={() => link.label === "SHOP" && setIsShopMenuOpen(true)}
+                    className={`relative px-4 py-2 text-sm font-medium tracking-wider uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
+                      isActive(link.href)
+                        ? "text-warm-900"
+                        : "text-warm-600 hover:text-[#D4AF37]"
+                    }`}
+                  >
+                    {link.label}
+                    {/* Active gold border */}
+                    {isActive(link.href) && (
+                      <span className="absolute bottom-0 left-[-4px] right-[-4px] h-[2px] bg-[#D4AF37] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.3)] transition-all duration-300" />
+                    )}
+                  </Link>
+
+                  {/* Shop Mega Menu */}
+                  {link.label === "SHOP" && (
+                    <div
+                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-warm-50 border border-warm-200 shadow-2xl transition-all duration-300 ${
+                        isShopMenuOpen
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible -translate-y-2 pointer-events-none"
+                      }`}
+                      onMouseLeave={() => setIsShopMenuOpen(false)}
+                    >
+                      <div className="grid grid-cols-3 gap-4 p-6">
+                        {shopCategories.map((category) => (
+                          <Link
+                            key={category.name}
+                            href={category.href}
+                            className="group block focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-sm"
+                            onClick={() => setIsShopMenuOpen(false)}
+                          >
+                            <div className="relative overflow-hidden rounded-sm mb-2 aspect-square">
+                              <img
+                                src={category.image}
+                                alt={category.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                            <p className="text-sm font-light text-warm-700 group-hover:text-gold-600 transition-colors duration-300 text-center">
+                              {category.name}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Right Side Icons */}
+            <div className="flex items-center space-x-6">
+              {/* Search Icon */}
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#FFFFFF]"
+                aria-label="Search"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+
+              {/* Wishlist Icon with Badge */}
+              <Link
+                href="/wishlist"
+                className={`relative p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 ${
+                  isScrolled ? "text-[#2C2C2C]" : "text-[#FFFFFF]"
+                }`}
+                aria-label="Wishlist"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                {wishlistCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute -top-1 -right-1 bg-gold-500 text-warm-900 text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center"
+                  >
+                    {wishlistCount > 9 ? "9+" : wishlistCount}
+                  </motion.span>
+                )}
+              </Link>
+
+              {/* User Icon */}
+              <Link
+                href="/account"
+                className="p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#FFFFFF]"
+                aria-label="Account"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </Link>
+
+              {/* Shopping Cart Icon with Badge */}
+              <motion.button
+                onClick={() => setIsCartOpen(true)}
+                className={`relative p-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 ${
+                  isScrolled ? "text-[#2C2C2C]" : "text-[#FFFFFF]"
+                }`}
+                aria-label="Shopping Cart"
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {cartCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute -top-1 -right-1 bg-gold-500 text-warm-900 text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center"
+                  >
+                    {cartCount > 9 ? "9+" : cartCount}
+                  </motion.span>
+                )}
+              </motion.button>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden p-2.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
+              >
+                <svg
+                  className="w-6 h-6 transform transition-transform duration-200"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isMenuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Mobile Navigation - Improved with smooth animation */}
+        {/* Expandable Search Bar */}
         <div
-          id="mobile-menu"
-          className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-            isMenuOpen
-              ? "max-h-96 opacity-100 border-t border-warm-200/50"
-              : "max-h-0 opacity-0 border-t-0"
+          className={`overflow-visible transition-all duration-500 ease-in-out ${
+            isSearchOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="py-6">
-            <nav className="flex flex-col items-center space-y-4" aria-label="Mobile navigation">
-              {navLinks.map((link, index) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-label={`Navigate to ${link.label} page`}
-                  aria-current={isActive(link.href) ? "page" : undefined}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`relative group w-full text-center px-6 py-3 rounded-sm font-light text-sm tracking-[0.15em] uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-warm-50 ${
-                    isActive(link.href)
-                      ? "text-warm-900 bg-warm-100"
-                      : "text-warm-600 hover:text-warm-900 hover:bg-warm-50"
-                  } ${isMenuOpen ? "animate-fade-in-up" : ""}`}
-                  style={{
-                    animationDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
-                  }}
+          {isSearchOpen && (
+            <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+          )}
+        </div>
+      </nav>
+
+      {/* Mobile Menu Drawer */}
+      <motion.div
+        className="fixed inset-0 z-40 lg:hidden"
+        initial={false}
+        animate={{
+          pointerEvents: isMenuOpen ? "auto" : "none",
+        }}
+      >
+        {/* Backdrop */}
+        <motion.div
+          className="absolute inset-0 bg-warm-900/50 backdrop-blur-sm"
+          onClick={() => setIsMenuOpen(false)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isMenuOpen ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+        />
+
+        {/* Drawer */}
+        <motion.div
+          className="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] bg-warm-50 shadow-2xl overflow-y-auto"
+          initial={{ x: "100%" }}
+          animate={{ x: isMenuOpen ? 0 : "100%" }}
+          transition={{
+            type: "spring",
+            damping: 30,
+            stiffness: 300,
+            duration: 0.2,
+          }}
+        >
+          <div className="p-6">
+            {/* Close Button */}
+            <div className="flex justify-end mb-8">
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Close menu"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <span className="relative inline-block">
-                    {link.label}
-                    {/* Active indicator for mobile */}
-                    {isActive(link.href) && (
-                      <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-px bg-gold-600" />
-                    )}
-                  </span>
-                </Link>
+                  <path d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Navigation Links */}
+            <nav className="flex flex-col space-y-2">
+              {navLinks.map((link, index) => (
+                <div key={link.href}>
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{
+                      opacity: isMenuOpen ? 1 : 0,
+                      x: isMenuOpen ? 0 : 20,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                      delay: index * 0.05,
+                    }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block px-4 py-3.5 text-base font-light tracking-[0.15em] uppercase transition-all duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold-500 min-h-[44px] flex items-center ${
+                        isActive(link.href)
+                          ? "text-warm-900 bg-warm-100 border-l-4 border-gold-500"
+                          : "text-warm-600 hover:text-warm-900 hover:bg-warm-100"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+
+                  {/* Mobile Shop Submenu */}
+                  {link.label === "SHOP" && (
+                    <motion.div
+                      className="mt-2 ml-4 space-y-1"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{
+                        opacity: isMenuOpen ? 1 : 0,
+                        height: isMenuOpen ? "auto" : 0,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {shopCategories.map((category) => (
+                        <Link
+                          key={category.name}
+                          href={category.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block px-4 py-3 text-sm text-warm-600 hover:text-gold-600 hover:bg-warm-100 rounded-sm transition-all duration-200 min-h-[44px] flex items-center"
+                        >
+                          {category.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
               ))}
             </nav>
+
+            {/* Mobile Account & Cart Links */}
+            <motion.div
+              className="mt-8 pt-8 border-t border-warm-200"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: isMenuOpen ? 1 : 0,
+                y: isMenuOpen ? 0 : 20,
+              }}
+              transition={{ duration: 0.2, delay: 0.2 }}
+            >
+              <Link
+                href="/wishlist"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center px-4 py-3.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 min-h-[44px]"
+              >
+                <svg
+                  className="w-5 h-5 mr-3"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                Wishlist
+                {wishlistCount > 0 && (
+                  <span className="ml-2 bg-gold-500 text-warm-900 text-xs font-semibold rounded-full px-2 py-0.5">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/account"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center px-4 py-3.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 min-h-[44px]"
+              >
+                <svg
+                  className="w-5 h-5 mr-3"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Account
+              </Link>
+              <Link
+                href="/cart"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center px-4 py-3.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 min-h-[44px]"
+              >
+                <svg
+                  className="w-5 h-5 mr-3"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Shopping Cart
+                {cartCount > 0 && (
+                  <span className="ml-2 bg-gold-500 text-warm-900 text-xs font-semibold rounded-full px-2 py-0.5">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+            </motion.div>
           </div>
-        </div>
-      </div>
-    </nav>
+        </motion.div>
+      </motion.div>
+
+      {/* Cart Drawer and Quick View Modal are now in layout.tsx for better code splitting */}
+    </>
   );
 }

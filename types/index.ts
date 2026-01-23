@@ -18,3 +18,16 @@ export interface Category {
   slug: string;
   description?: string;
 }
+
+export interface CartItem {
+  id: string; // Unique cart item ID
+  productId: number;
+  name: string;
+  price: number;
+  image: string;
+  size: string;
+  color: string;
+  colorValue: string; // Hex color value
+  quantity: number;
+  slug: string;
+}

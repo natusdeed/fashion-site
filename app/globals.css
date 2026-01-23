@@ -31,9 +31,24 @@
     text-rendering: optimizeLegibility;
   }
   
-  /* Performance optimizations */
+  /* Performance optimizations for Core Web Vitals */
   img {
     content-visibility: auto;
+    /* Prevent layout shift */
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Optimize font rendering */
+  * {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Reduce CLS (Cumulative Layout Shift) */
+  img, video, iframe {
+    aspect-ratio: attr(width) / attr(height);
   }
   
   /* Mobile optimizations */
@@ -45,6 +60,40 @@
     img {
       max-width: 100%;
       height: auto;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Touch-friendly button sizes - minimum 44x44px */
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile-specific animation speeds (200ms) */
+  @media (max-width: 768px) {
+    * {
+      --mobile-transition: 200ms;
+    }
+    
+    button,
+    a,
+    [class*="transition"] {
+      transition-duration: var(--mobile-transition) !important;
     }
   }
 
@@ -94,6 +143,20 @@
   /* Smooth scroll - SAFE */
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Enhanced smooth scroll for anchor links */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Smooth scroll polyfill for better browser support */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 }
 
@@ -164,4 +227,33 @@
             drop-shadow(0 0 30px rgba(255, 255, 255, 0.12)) 
             drop-shadow(0 0 45px rgba(255, 255, 255, 0.08));
   }
+}
+
+/* Newsletter Popup Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
 }

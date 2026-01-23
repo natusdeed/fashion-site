@@ -2,33 +2,159 @@
 
 import { useState } from "react";
 
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Subject validation
+    if (!formData.subject.trim()) {
+      newErrors.subject = "Subject is required";
+    } else if (formData.subject.trim().length < 3) {
+      newErrors.subject = "Subject must be at least 3 characters";
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    // Clear error when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors({
+        ...errors,
+        [name]: undefined,
+      });
+    }
+  };
+
+  const handleBlur = (field: keyof FormErrors) => {
+    // Validate individual field on blur
+    const newErrors: FormErrors = { ...errors };
+
+    if (field === "name") {
+      if (!formData.name.trim()) {
+        newErrors.name = "Name is required";
+      } else if (formData.name.trim().length < 2) {
+        newErrors.name = "Name must be at least 2 characters";
+      } else {
+        delete newErrors.name;
+      }
+    }
+
+    if (field === "email") {
+      if (!formData.email.trim()) {
+        newErrors.email = "Email is required";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        newErrors.email = "Please enter a valid email address";
+      } else {
+        delete newErrors.email;
+      }
+    }
+
+    if (field === "subject") {
+      if (!formData.subject.trim()) {
+        newErrors.subject = "Subject is required";
+      } else if (formData.subject.trim().length < 3) {
+        newErrors.subject = "Subject must be at least 3 characters";
+      } else {
+        delete newErrors.subject;
+      }
+    }
+
+    if (field === "message") {
+      if (!formData.message.trim()) {
+        newErrors.message = "Message is required";
+      } else if (formData.message.trim().length < 10) {
+        newErrors.message = "Message must be at least 10 characters";
+      } else {
+        delete newErrors.message;
+      }
+    }
+
+    setErrors(newErrors);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitSuccess(false);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate API call
+    try {
+      // Replace with actual API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      
+      console.log("Form submitted:", formData);
+      setSubmitSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="bg-warm-50">
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[450px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-warm-900/40 to-warm-900/60 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-warm-900/50 to-warm-900/70 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -40,7 +166,7 @@ export default function Contact() {
             Contact Us
           </h1>
           <p className="text-xl md:text-2xl text-warm-100 font-light tracking-wide max-w-2xl mx-auto">
-            We&apos;d love to hear from you. Get in touch with us.
+            We&apos;d love to hear from you - Get in touch with us
           </p>
         </div>
       </section>
@@ -48,21 +174,12 @@ export default function Contact() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
-          {/* Contact Information */}
+          {/* Left Column: Contact Info Cards */}
           <div className="space-y-10">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-playfair text-warm-900 mb-6">
-                Get in Touch
-              </h2>
-              <p className="text-warm-700 mb-10 font-light leading-relaxed text-lg">
-                Have a question or want to learn more about our collections?
-                We&apos;re here to help. Visit us, call us, or send us a message.
-              </p>
-            </div>
-
             {/* Contact Cards */}
             <div className="space-y-6">
-              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-colors duration-300">
+              {/* Email Card */}
+              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-all duration-300 hover:shadow-lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
@@ -76,16 +193,17 @@ export default function Contact() {
                       Email
                     </h3>
                     <a
-                      href="mailto:info@elegance.com"
+                      href="mailto:info@loladrip.com"
                       className="text-warm-800 hover:text-gold-600 transition-colors duration-300 font-light text-lg"
                     >
-                      info@elegance.com
+                      info@loladrip.com
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-colors duration-300">
+              {/* Phone Card */}
+              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-all duration-300 hover:shadow-lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
@@ -108,7 +226,32 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="bg-white p-6 border border-warm-200">
+              {/* Address Card */}
+              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-all duration-300 hover:shadow-lg">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-light text-warm-600 uppercase tracking-[0.2em] mb-2">
+                      Address
+                    </h3>
+                    <p className="text-warm-800 font-light text-lg leading-relaxed">
+                      123 Fashion Avenue<br />
+                      New York, NY 10001<br />
+                      United States
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Office Hours Card */}
+              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-all duration-300 hover:shadow-lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
@@ -119,7 +262,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-xs font-light text-warm-600 uppercase tracking-[0.2em] mb-3">
-                      Hours
+                      Office Hours
                     </h3>
                     <div className="text-warm-800 font-light leading-relaxed space-y-1">
                       <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
@@ -131,7 +274,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Location Section */}
+            {/* Embedded Map Section */}
             <div className="mt-10 pt-10 border-t border-warm-200">
               <h3 className="text-2xl font-playfair text-warm-900 mb-4">
                 Visit Our Boutique
@@ -140,24 +283,37 @@ export default function Contact() {
                 Experience our collections in person at our flagship boutique.
                 Our expert stylists are ready to help you find the perfect piece.
               </p>
-              <div className="relative h-[250px] rounded-sm overflow-hidden">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80')",
-                  }}
+              <div className="relative h-[300px] rounded-sm overflow-hidden border border-warm-200">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.184133389887!2d-73.98811768459399!3d40.748440979327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0"
+                  title="Lola Drip Boutique Location"
                 />
-                <div className="absolute inset-0 bg-warm-900/30" />
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Right Column: Contact Form */}
           <div className="bg-white p-8 lg:p-10 border border-warm-200">
             <h2 className="text-3xl font-playfair text-warm-900 mb-8">
               Send Us a Message
             </h2>
+            
+            {/* Success Message */}
+            {submitSuccess && (
+              <div className="mb-6 p-4 bg-gold-50 border border-gold-200 text-gold-800 text-sm font-light">
+                Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name Field */}
               <div>
                 <label
                   htmlFor="name"
@@ -171,12 +327,22 @@ export default function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3.5 bg-warm-50 border border-warm-300 text-warm-900 placeholder-warm-400 rounded-none focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all duration-300 font-light"
+                  onBlur={() => handleBlur("name")}
+                  className={`w-full px-4 py-3.5 bg-warm-50 border text-warm-900 placeholder-warm-400 rounded-sm focus:outline-none focus:ring-2 transition-all duration-300 font-light ${
+                    errors.name
+                      ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                      : "border-warm-300 focus:border-gold-500 focus:ring-gold-500/20"
+                  }`}
                   placeholder="Your name"
                 />
+                {errors.name && (
+                  <p className="mt-2 text-sm text-red-500 font-light animate-fade-in">
+                    {errors.name}
+                  </p>
+                )}
               </div>
 
+              {/* Email Field */}
               <div>
                 <label
                   htmlFor="email"
@@ -190,12 +356,51 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3.5 bg-warm-50 border border-warm-300 text-warm-900 placeholder-warm-400 rounded-none focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all duration-300 font-light"
+                  onBlur={() => handleBlur("email")}
+                  className={`w-full px-4 py-3.5 bg-warm-50 border text-warm-900 placeholder-warm-400 rounded-sm focus:outline-none focus:ring-2 transition-all duration-300 font-light ${
+                    errors.email
+                      ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                      : "border-warm-300 focus:border-gold-500 focus:ring-gold-500/20"
+                  }`}
                   placeholder="your.email@example.com"
                 />
+                {errors.email && (
+                  <p className="mt-2 text-sm text-red-500 font-light animate-fade-in">
+                    {errors.email}
+                  </p>
+                )}
               </div>
 
+              {/* Subject Field */}
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-xs font-light text-warm-700 uppercase tracking-[0.15em] mb-3"
+                >
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  onBlur={() => handleBlur("subject")}
+                  className={`w-full px-4 py-3.5 bg-warm-50 border text-warm-900 placeholder-warm-400 rounded-sm focus:outline-none focus:ring-2 transition-all duration-300 font-light ${
+                    errors.subject
+                      ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                      : "border-warm-300 focus:border-gold-500 focus:ring-gold-500/20"
+                  }`}
+                  placeholder="What is this regarding?"
+                />
+                {errors.subject && (
+                  <p className="mt-2 text-sm text-red-500 font-light animate-fade-in">
+                    {errors.subject}
+                  </p>
+                )}
+              </div>
+
+              {/* Message Field */}
               <div>
                 <label
                   htmlFor="message"
@@ -208,18 +413,29 @@ export default function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
+                  onBlur={() => handleBlur("message")}
                   rows={6}
-                  className="w-full px-4 py-3.5 bg-warm-50 border border-warm-300 text-warm-900 placeholder-warm-400 rounded-none focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all duration-300 resize-none font-light"
+                  className={`w-full px-4 py-3.5 bg-warm-50 border text-warm-900 placeholder-warm-400 rounded-sm focus:outline-none focus:ring-2 transition-all duration-300 resize-none font-light ${
+                    errors.message
+                      ? "border-red-400 focus:border-red-500 focus:ring-red-500/20"
+                      : "border-warm-300 focus:border-gold-500 focus:ring-gold-500/20"
+                  }`}
                   placeholder="Your message..."
                 />
+                {errors.message && (
+                  <p className="mt-2 text-sm text-red-500 font-light animate-fade-in">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
+              {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-warm-900 text-warm-50 px-8 py-4 hover:bg-warm-800 transition-colors duration-300 text-xs uppercase tracking-[0.2em] font-light mt-4"
+                disabled={isSubmitting}
+                className="w-full bg-warm-900 hover:bg-warm-800 text-warm-50 px-8 py-4 transition-all duration-300 text-xs uppercase tracking-[0.2em] font-light mt-4 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-warm-900 focus:ring-offset-2"
               >
-                Send Message
+                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
               </button>
             </form>
           </div>

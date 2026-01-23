@@ -3,6 +3,8 @@ export interface Product {
   slug: string;
   name: string;
   price: number;
+  originalPrice?: number; // For sale items
+  isOnSale?: boolean; // Flag to indicate if product is on sale
   category: string;
   imageUrl?: string;
   imageAlt?: string;
@@ -16,16 +18,18 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 1,
-    slug: "silk-evening-gown",
-    name: "Silk Evening Gown",
-    price: 1299,
-    category: "Evening Wear",
+    slug: "elegant-silk-dress",
+    name: "Elegant Silk Dress",
+    price: 499,
+    originalPrice: 599,
+    isOnSale: true,
+    category: "Dresses",
     imageUrl: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80",
-    imageAlt: "Silk Evening Gown",
+    imageAlt: "Elegant Silk Dress",
     description:
-      "An exquisite silk evening gown that embodies timeless elegance. Crafted from the finest Italian silk, this piece features delicate draping and sophisticated tailoring. Perfect for the most special occasions, where you want to make an unforgettable impression.",
+      "An exquisite silk dress that embodies timeless elegance. Crafted from the finest Italian silk, this piece features delicate draping and sophisticated tailoring.",
     longDescription:
-      "This stunning evening gown is a masterpiece of luxury fashion. The flowing silhouette is designed to flatter every figure, while the premium silk fabric feels luxurious against the skin. Each gown is carefully constructed with attention to detail, ensuring a perfect fit and exceptional quality. The elegant design transitions seamlessly from cocktail hour to formal dinner, making it a versatile addition to any sophisticated wardrobe.",
+      "This stunning dress is a masterpiece of luxury fashion. The flowing silhouette is designed to flatter every figure, while the premium silk fabric feels luxurious against the skin.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Midnight Black", value: "#1a1a1a" },
@@ -35,21 +39,20 @@ export const products: Product[] = [
     images: [
       "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80",
       "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80",
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80",
     ],
   },
   {
     id: 2,
-    slug: "cashmere-trench-coat",
-    name: "Cashmere Trench Coat",
-    price: 899,
+    slug: "luxury-trench-coat",
+    name: "Luxury Trench Coat",
+    price: 549,
     category: "Outerwear",
     imageUrl: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80",
-    imageAlt: "Cashmere Trench Coat",
+    imageAlt: "Luxury Trench Coat",
     description:
-      "A luxurious cashmere trench coat that combines classic sophistication with modern elegance. This timeless piece is perfect for any season, offering both warmth and impeccable style.",
+      "A luxurious trench coat that combines classic sophistication with modern elegance. This timeless piece is perfect for any season.",
     longDescription:
-      "Crafted from premium cashmere, this trench coat features a tailored silhouette that flatters every figure. The double-breasted design and belted waist create a refined, structured look, while the soft cashmere fabric provides exceptional comfort and warmth. Perfect for the modern woman who appreciates both function and fashion.",
+      "Crafted from premium materials, this trench coat features a tailored silhouette that flatters every figure. The double-breasted design and belted waist create a refined, structured look.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Camel", value: "#c19a6b" },
@@ -62,14 +65,16 @@ export const products: Product[] = [
     id: 3,
     slug: "lace-cocktail-dress",
     name: "Lace Cocktail Dress",
-    price: 699,
+    price: 399,
+    originalPrice: 499,
+    isOnSale: true,
     category: "Dresses",
     imageUrl: "https://images.unsplash.com/photo-1566479179817-2781c0a0d89a?w=800&q=80",
     imageAlt: "Lace Cocktail Dress",
     description:
-      "An elegant lace cocktail dress that perfectly balances femininity and sophistication. The intricate lace detailing and flattering silhouette make this a standout piece for any special occasion.",
+      "An elegant lace cocktail dress that perfectly balances femininity and sophistication. The intricate lace detailing makes this a standout piece.",
     longDescription:
-      "This beautiful cocktail dress features delicate hand-crafted lace overlays that create a romantic, ethereal aesthetic. The fitted bodice and flowing skirt create a timeless silhouette that works for weddings, parties, and formal events. The high-quality lace is soft against the skin while maintaining its shape and elegance.",
+      "This beautiful cocktail dress features delicate hand-crafted lace overlays that create a romantic, ethereal aesthetic. The fitted bodice and flowing skirt create a timeless silhouette.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Ivory", value: "#faf8f3" },
@@ -82,14 +87,14 @@ export const products: Product[] = [
     id: 4,
     slug: "velvet-blazer",
     name: "Velvet Blazer",
-    price: 599,
+    price: 449,
     category: "Tops",
     imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
     imageAlt: "Velvet Blazer",
     description:
-      "A luxurious velvet blazer that adds a touch of opulence to any ensemble. The rich texture and structured cut make this piece perfect for both formal and semi-formal occasions.",
+      "A luxurious velvet blazer that adds a touch of opulence to any ensemble. The rich texture and structured cut make this piece perfect for formal occasions.",
     longDescription:
-      "This sophisticated blazer features premium velvet fabric that catches the light beautifully, creating depth and dimension. The tailored fit and sharp lapels give it a modern, professional edge while the velvet texture adds a luxurious, tactile element. Perfect for elevating any outfit from day to night.",
+      "This sophisticated blazer features premium velvet fabric that catches the light beautifully. The tailored fit and sharp lapels give it a modern, professional edge.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Emerald Green", value: "#064e3b" },
@@ -102,14 +107,16 @@ export const products: Product[] = [
     id: 5,
     slug: "satin-maxi-dress",
     name: "Satin Maxi Dress",
-    price: 799,
+    price: 479,
+    originalPrice: 599,
+    isOnSale: true,
     category: "Dresses",
     imageUrl: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&q=80",
     imageAlt: "Satin Maxi Dress",
     description:
-      "A flowing satin maxi dress that embodies effortless elegance. The luxurious fabric and graceful silhouette create a stunning, feminine look perfect for any special occasion.",
+      "A flowing satin maxi dress that embodies effortless elegance. The luxurious fabric and graceful silhouette create a stunning, feminine look.",
     longDescription:
-      "This beautiful maxi dress features premium satin fabric that drapes beautifully and moves with you. The V-neckline and flowing skirt create a flattering, romantic silhouette. Perfect for summer events, garden parties, or evening occasions where you want to feel both comfortable and elegant.",
+      "This beautiful maxi dress features premium satin fabric that drapes beautifully and moves with you. The V-neckline and flowing skirt create a flattering, romantic silhouette.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Midnight Blue", value: "#1e293b" },
@@ -122,14 +129,14 @@ export const products: Product[] = [
     id: 6,
     slug: "wool-tailored-pants",
     name: "Wool Tailored Pants",
-    price: 449,
+    price: 349,
     category: "Bottoms",
     imageUrl: "https://images.unsplash.com/photo-1506629905607-1b8c0c4e3b5e?w=800&q=80",
     imageAlt: "Wool Tailored Pants",
     description:
-      "Classic wool tailored pants that combine comfort with sophisticated style. Perfect for the modern professional wardrobe, these pants offer a flawless fit and timeless elegance.",
+      "Classic wool tailored pants that combine comfort with sophisticated style. Perfect for the modern professional wardrobe.",
     longDescription:
-      "Crafted from premium wool blend, these tailored pants feature a straight-leg silhouette that's both contemporary and classic. The high-quality fabric maintains its shape throughout the day while offering exceptional comfort. Perfect for office wear or dressed-up casual occasions.",
+      "Crafted from premium wool blend, these tailored pants feature a straight-leg silhouette that's both contemporary and classic.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Charcoal", value: "#374151" },
@@ -142,14 +149,16 @@ export const products: Product[] = [
     id: 7,
     slug: "chiffon-blouse",
     name: "Chiffon Blouse",
-    price: 349,
+    price: 299,
+    originalPrice: 399,
+    isOnSale: true,
     category: "Tops",
     imageUrl: "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=800&q=80",
     imageAlt: "Chiffon Blouse",
     description:
-      "An elegant chiffon blouse with delicate details that adds sophistication to any outfit. The lightweight fabric and feminine design make it perfect for both professional and casual settings.",
+      "An elegant chiffon blouse with delicate details that adds sophistication to any outfit. The lightweight fabric makes it perfect for any setting.",
     longDescription:
-      "This beautiful blouse features soft, flowing chiffon that moves gracefully. The classic design with subtle details makes it versatile enough to pair with anything from tailored pants to flowing skirts. Perfect for the woman who appreciates refined, feminine style.",
+      "This beautiful blouse features soft, flowing chiffon that moves gracefully. The classic design with subtle details makes it versatile enough to pair with anything.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Ivory", value: "#faf8f3" },
@@ -162,14 +171,14 @@ export const products: Product[] = [
     id: 8,
     slug: "leather-midi-skirt",
     name: "Leather Midi Skirt",
-    price: 549,
+    price: 429,
     category: "Bottoms",
     imageUrl: "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&q=80",
     imageAlt: "Leather Midi Skirt",
     description:
-      "A stylish leather midi skirt that adds edge to any outfit. The high-quality leather and flattering midi length create a sophisticated, modern look.",
+      "A stylish leather midi skirt that adds edge to any outfit. The high-quality leather and flattering midi length create a sophisticated look.",
     longDescription:
-      "This contemporary midi skirt features premium genuine leather with a subtle sheen. The A-line silhouette and midi length create a flattering, modern look that can be dressed up or down. Perfect for adding a touch of sophistication and edge to your wardrobe.",
+      "This contemporary midi skirt features premium genuine leather with a subtle sheen. The A-line silhouette and midi length create a flattering, modern look.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Black", value: "#1a1a1a" },
@@ -181,14 +190,14 @@ export const products: Product[] = [
     id: 9,
     slug: "embroidered-jacket",
     name: "Embroidered Jacket",
-    price: 899,
+    price: 579,
     category: "Outerwear",
     imageUrl: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&q=80",
     imageAlt: "Embroidered Jacket",
     description:
       "A stunning embroidered jacket featuring intricate hand-stitched details. This statement piece combines traditional craftsmanship with contemporary design.",
     longDescription:
-      "This exquisite jacket features hand-embroidered floral motifs that showcase traditional craftsmanship. The structured silhouette and premium fabric create a luxurious piece that makes a bold statement. Perfect for special occasions or when you want to elevate a simple outfit.",
+      "This exquisite jacket features hand-embroidered floral motifs that showcase traditional craftsmanship. The structured silhouette and premium fabric create a luxurious piece.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Ivory", value: "#faf8f3" },
@@ -200,14 +209,16 @@ export const products: Product[] = [
     id: 10,
     slug: "silk-wrap-dress",
     name: "Silk Wrap Dress",
-    price: 649,
+    price: 459,
+    originalPrice: 549,
+    isOnSale: true,
     category: "Dresses",
     imageUrl: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80",
     imageAlt: "Silk Wrap Dress",
     description:
       "A flattering silk wrap dress that adapts to your figure perfectly. The timeless wrap design and luxurious silk fabric create an effortlessly elegant look.",
     longDescription:
-      "This classic wrap dress features premium silk fabric that feels luxurious against the skin. The wrap design creates a flattering V-neckline and adjustable fit that works for every body type. Perfect for both day and night occasions, this versatile piece is a wardrobe essential.",
+      "This classic wrap dress features premium silk fabric that feels luxurious against the skin. The wrap design creates a flattering V-neckline and adjustable fit.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Floral Print", value: "#f4d5d5" },
@@ -220,14 +231,14 @@ export const products: Product[] = [
     id: 11,
     slug: "tweed-blazer",
     name: "Tweed Blazer",
-    price: 749,
+    price: 519,
     category: "Tops",
     imageUrl: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80",
     imageAlt: "Tweed Blazer",
     description:
       "A classic tweed blazer that embodies timeless sophistication. The textured fabric and structured silhouette make this a versatile wardrobe staple.",
     longDescription:
-      "This elegant blazer features premium tweed fabric with a subtle texture that adds depth and interest. The tailored fit and classic design make it perfect for both professional settings and casual elegance. A timeless piece that will remain stylish for years to come.",
+      "This elegant blazer features premium tweed fabric with a subtle texture that adds depth and interest. The tailored fit and classic design make it perfect for any occasion.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Herringbone Gray", value: "#6b7280" },
@@ -240,14 +251,16 @@ export const products: Product[] = [
     id: 12,
     slug: "organza-evening-gown",
     name: "Organza Evening Gown",
-    price: 1399,
+    price: 589,
+    originalPrice: 699,
+    isOnSale: true,
     category: "Evening Wear",
     imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80",
     imageAlt: "Organza Evening Gown",
     description:
-      "A breathtaking organza evening gown that captures the essence of luxury and romance. The layered fabric and elegant design create a truly special piece for the most important occasions.",
+      "A breathtaking organza evening gown that captures the essence of luxury and romance. The layered fabric and elegant design create a truly special piece.",
     longDescription:
-      "This stunning evening gown features layers of delicate organza that create movement and dimension. The elegant design with its flowing silhouette and sophisticated details makes this gown perfect for galas, formal events, and special celebrations. A true statement piece that will make you feel like royalty.",
+      "This stunning evening gown features layers of delicate organza that create movement and dimension. The elegant design with its flowing silhouette makes this gown perfect for special occasions.",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
       { name: "Ivory", value: "#faf8f3" },
@@ -255,6 +268,47 @@ export const products: Product[] = [
       { name: "Dusty Rose", value: "#c49a9a" },
     ],
     images: ["https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80"],
+  },
+  {
+    id: 13,
+    slug: "premium-cashmere-t-shirt",
+    name: "Premium Cashmere T-Shirt",
+    price: 299,
+    category: "Tops",
+    imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80",
+    imageAlt: "Premium Cashmere T-Shirt",
+    description:
+      "A luxurious cashmere-blend t-shirt that combines comfort with sophistication. The soft fabric and relaxed fit make it perfect for everyday elegance.",
+    longDescription:
+      "This premium t-shirt features a blend of cashmere and silk that feels incredibly soft against the skin. The classic design with subtle details makes it versatile enough for any occasion.",
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      { name: "White", value: "#ffffff" },
+      { name: "Black", value: "#1a1a1a" },
+      { name: "Navy", value: "#1e3a5f" },
+      { name: "Cream", value: "#f5f1e8" },
+    ],
+    images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"],
+  },
+  {
+    id: 14,
+    slug: "designer-leather-jacket",
+    name: "Designer Leather Jacket",
+    price: 1299,
+    category: "Outerwear",
+    imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
+    imageAlt: "Designer Leather Jacket",
+    description:
+      "A sophisticated leather jacket that combines timeless style with modern elegance. Crafted from premium Italian leather with impeccable attention to detail.",
+    longDescription:
+      "This exquisite jacket features premium Italian leather that ages beautifully. The tailored fit and classic design make it a timeless investment piece that will last for years.",
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      { name: "Black", value: "#1a1a1a" },
+      { name: "Brown", value: "#6b4423" },
+      { name: "Navy", value: "#1e3a5f" },
+    ],
+    images: ["https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80"],
   },
 ];
 

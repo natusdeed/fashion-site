@@ -216,7 +216,7 @@ export default function ProductPage({
                 {product.sizes.map((size) => (
                   <button
                     key={size}
-                    className="px-6 py-3 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm uppercase tracking-wider"
+                    className="px-6 py-3.5 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm uppercase tracking-wider min-h-[44px] min-w-[44px] flex items-center justify-center"
                   >
                     {size}
                   </button>
@@ -233,7 +233,7 @@ export default function ProductPage({
                 {product.colors.map((color) => (
                   <button
                     key={color.name}
-                    className="px-6 py-3 border border-gray-300 hover:border-gray-900 transition-colors duration-200 text-sm uppercase tracking-wider"
+                    className="px-6 py-3.5 border border-gray-300 hover:border-gray-900 transition-colors duration-200 text-sm uppercase tracking-wider min-h-[44px] min-w-[44px] flex items-center justify-center"
                   >
                     {color.name}
                   </button>
@@ -242,11 +242,11 @@ export default function ProductPage({
             </div>
 
             {/* Add to Cart Button */}
-            <button className="w-full bg-gray-900 text-white px-8 py-4 hover:bg-gray-800 transition-colors duration-200 text-sm uppercase tracking-wider font-medium mb-4">
+            <button className="w-full bg-gray-900 text-white px-8 py-4 hover:bg-gray-800 transition-colors duration-200 text-sm uppercase tracking-wider font-medium mb-4 min-h-[44px]">
               Add to Cart
             </button>
 
-            <button className="w-full border-2 border-gray-900 text-gray-900 px-8 py-4 hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm uppercase tracking-wider font-medium">
+            <button className="w-full border-2 border-gray-900 text-gray-900 px-8 py-4 hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm uppercase tracking-wider font-medium min-h-[44px]">
               Add to Wishlist
             </button>
 
