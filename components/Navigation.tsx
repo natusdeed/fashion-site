@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 // CartDrawer and QuickViewModal are now dynamically imported in layout.tsx for better code splitting
@@ -196,10 +197,12 @@ export default function Navigation() {
                             onClick={() => setIsShopMenuOpen(false)}
                           >
                             <div className="relative overflow-hidden rounded-sm mb-2 aspect-square">
-                              <img
+                              <Image
                                 src={category.image}
                                 alt={category.name}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                fill
+                                sizes="(max-width: 768px) 50vw, 200px"
+                                className="object-cover transition-transform duration-500 group-hover:scale-110"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>

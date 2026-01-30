@@ -140,10 +140,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        {/* Favicon and App Icons - Add actual icon files to public folder */}
-        <link rel="icon" href="/favicon.ico" />
+        {/* Favicon: add your own icon to public/ and uncomment: <link rel="icon" href="/favicon.ico" /> */}
         {/* Preload critical hero image for better LCP (local banner) */}
-        <link rel="preload" as="image" href="/images/header-banner.png" />
+        <link rel="preload" as="image" href="/images/header.banner.png.png" />
       </head>
       <body className={`${inter.variable} antialiased font-sans`}>
         <Suspense fallback={null}>

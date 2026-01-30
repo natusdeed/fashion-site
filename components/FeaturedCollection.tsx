@@ -36,6 +36,7 @@ export default function FeaturedCollection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = sectionRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -47,13 +48,13 @@ export default function FeaturedCollection() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (el) {
+      observer.observe(el);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (el) {
+        observer.unobserve(el);
       }
     };
   }, []);

@@ -235,9 +235,6 @@ export default function OptimizedVideo({
             setIsPlaying(false);
             onPause?.();
           }}
-          // Video format: Must be MP4 (H.264 codec) for best compatibility
-          // Desktop: 1080p max, Mobile: 720p recommended
-          type="video/mp4"
         />
       )}
 

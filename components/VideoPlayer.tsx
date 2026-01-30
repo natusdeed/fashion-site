@@ -3,6 +3,21 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
+// Vendor-prefixed Fullscreen API (not in all TS lib.dom versions)
+interface FullscreenElement extends HTMLElement {
+  webkitRequestFullscreen?: () => Promise<void>;
+  mozRequestFullScreen?: () => Promise<void>;
+  msRequestFullscreen?: () => Promise<void>;
+}
+interface FullscreenDocument extends Document {
+  webkitFullscreenElement?: Element | null;
+  webkitExitFullscreen?: () => Promise<void>;
+  mozFullScreenElement?: Element | null;
+  mozCancelFullScreen?: () => Promise<void>;
+  msFullscreenElement?: Element | null;
+  msExitFullscreen?: () => Promise<void>;
+}
+
 interface VideoPlayerProps {
   src: string;
   poster: string;
@@ -151,25 +166,27 @@ export default function VideoPlayer({
   const toggleFullscreen = useCallback(() => {
     if (!containerRef.current) return;
 
+    const el = containerRef.current as FullscreenElement;
     if (!isFullscreen) {
-      if (containerRef.current.requestFullscreen) {
-        containerRef.current.requestFullscreen();
-      } else if ((containerRef.current as any).webkitRequestFullscreen) {
-        (containerRef.current as any).webkitRequestFullscreen();
-      } else if ((containerRef.current as any).mozRequestFullScreen) {
-        (containerRef.current as any).mozRequestFullScreen();
-      } else if ((containerRef.current as any).msRequestFullscreen) {
-        (containerRef.current as any).msRequestFullscreen();
+      if (el.requestFullscreen) {
+        el.requestFullscreen();
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      } else if (el.mozRequestFullScreen) {
+        el.mozRequestFullScreen();
+      } else if (el.msRequestFullscreen) {
+        el.msRequestFullscreen();
       }
     } else {
+      const doc = document as FullscreenDocument;
       if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if ((document as any).webkitExitFullscreen) {
-        (document as any).webkitExitFullscreen();
-      } else if ((document as any).mozCancelFullScreen) {
-        (document as any).mozCancelFullScreen();
-      } else if ((document as any).msExitFullscreen) {
-        (document as any).msExitFullscreen();
+      } else if (doc.webkitExitFullscreen) {
+        doc.webkitExitFullscreen();
+      } else if (doc.mozCancelFullScreen) {
+        doc.mozCancelFullScreen();
+      } else if (doc.msExitFullscreen) {
+        doc.msExitFullscreen();
       }
     }
     resetControlsTimeout();
@@ -381,11 +398,12 @@ export default function VideoPlayer({
     if (typeof document === 'undefined') return;
 
     const handleFullscreenChange = () => {
+      const doc = document as FullscreenDocument;
       const isFull =
         document.fullscreenElement ||
-        (document as any).webkitFullscreenElement ||
-        (document as any).mozFullScreenElement ||
-        (document as any).msFullscreenElement;
+        doc.webkitFullscreenElement ||
+        doc.mozFullScreenElement ||
+        doc.msFullscreenElement;
 
       setIsFullscreen(!!isFull);
     };

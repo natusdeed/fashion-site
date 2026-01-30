@@ -6,8 +6,8 @@ import AmbientVideoBackground from "@/components/AmbientVideoBackground";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Background media URLs
-const heroBackgroundImage = "/images/header-banner.png";
+// Background media URLs (use actual file: header.banner.png.png)
+const heroBackgroundImage = "/images/header.banner.png.png";
 // Optional: Add your ambient video URL here when ready
 // Example: const heroVideoUrl = "/videos/hero-ambient.mp4";
 const heroVideoUrl = ""; // Set this to your video URL when ready
@@ -72,9 +72,9 @@ export default function Hero() {
               alt="Luxury fashion collection"
               fill
               priority
-              quality={90}
+              quality={85}
               sizes="100vw"
-              className="object-cover"
+              className="object-cover object-[center_35%]"
             />
             {/* Dark Overlay for Text Readability */}
             <div className="absolute inset-0 bg-black/30 z-10" />

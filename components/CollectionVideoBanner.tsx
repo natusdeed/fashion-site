@@ -5,6 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+// Network Information API (vendor-prefixed in some browsers)
+interface NavigatorWithConnection extends Navigator {
+  connection?: { effectiveType?: string; downlink?: number; addEventListener: (type: string, fn: () => void) => void; removeEventListener: (type: string, fn: () => void) => void };
+  mozConnection?: { effectiveType?: string; downlink?: number; addEventListener: (type: string, fn: () => void) => void; removeEventListener: (type: string, fn: () => void) => void };
+  webkitConnection?: { effectiveType?: string; downlink?: number; addEventListener: (type: string, fn: () => void) => void; removeEventListener: (type: string, fn: () => void) => void };
+}
+
 interface CollectionVideoBannerProps {
   // Media
   videoUrl?: string; // Optional video URL
@@ -108,10 +115,8 @@ export default function CollectionVideoBanner({
       }
 
       // Check connection API
-      const connection = 
-        (navigator as any).connection || 
-        (navigator as any).mozConnection || 
-        (navigator as any).webkitConnection;
+      const nav = navigator as NavigatorWithConnection;
+      const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
 
       if (!connection) {
         // Assume good connection if API not available
@@ -135,11 +140,9 @@ export default function CollectionVideoBanner({
     checkConnection();
 
     // Listen for connection changes
-    const connection = 
-      (navigator as any).connection || 
-      (navigator as any).mozConnection || 
-      (navigator as any).webkitConnection;
-    
+    const nav = navigator as NavigatorWithConnection;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+
     if (connection) {
       connection.addEventListener("change", checkConnection);
       return () => connection.removeEventListener("change", checkConnection);
@@ -350,7 +353,6 @@ export default function CollectionVideoBanner({
             onLoadedData={handleVideoLoaded}
             onPlay={handlePlay}
             onPause={handlePause}
-            type="video/mp4"
           />
         )}
       </div>

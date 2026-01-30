@@ -113,6 +113,28 @@ For `www.loladrip.com`:
 
 ## Troubleshooting
 
+### "The provided GitHub repository does not contain the requested branch or commit reference"
+
+This happens when **Vercel is looking for a branch (usually `main`) that doesn’t exist on GitHub** or the repo is empty.
+
+**Fix:**
+
+1. **Point Git at your real GitHub repo** (replace with your username and repo name):
+   ```bash
+   git remote set-url origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   ```
+
+2. **Push the branch Vercel expects (usually `main`)**. Your latest work is on `test-safe-changes`, so either:
+   - **Option A – Use `main` (recommended):** Merge into `main` and push:
+     ```bash
+     git checkout main
+     git merge test-safe-changes
+     git push -u origin main
+     ```
+   - **Option B – Use `test-safe-changes`:** Push that branch, then in Vercel: **Project → Settings → Git → Production Branch** set to `test-safe-changes`, and redeploy.
+
+3. **Re-run the import/deploy** in Vercel so it can see the branch and commit.
+
 ### Build Errors
 
 - Check build logs in Vercel dashboard

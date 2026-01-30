@@ -3,6 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
+// Network Information API (vendor-prefixed in some browsers)
+interface NavigatorWithConnection extends Navigator {
+  connection?: { effectiveType?: string; downlink?: number; addEventListener: (type: string, fn: () => void) => void; removeEventListener: (type: string, fn: () => void) => void };
+  mozConnection?: { effectiveType?: string; downlink?: number; addEventListener: (type: string, fn: () => void) => void; removeEventListener: (type: string, fn: () => void) => void };
+  webkitConnection?: { effectiveType?: string; downlink?: number; addEventListener: (type: string, fn: () => void) => void; removeEventListener: (type: string, fn: () => void) => void };
+}
+
 interface AmbientVideoBackgroundProps {
   videoUrl: string;
   fallbackImageUrl: string;
@@ -69,10 +76,8 @@ export default function AmbientVideoBackground({
       }
 
       // Check connection API
-      const connection = 
-        (navigator as any).connection || 
-        (navigator as any).mozConnection || 
-        (navigator as any).webkitConnection;
+      const nav = navigator as NavigatorWithConnection;
+      const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
 
       if (!connection) {
         // Assume good connection if API not available
@@ -97,11 +102,9 @@ export default function AmbientVideoBackground({
     checkConnection();
 
     // Listen for connection changes
-    const connection = 
-      (navigator as any).connection || 
-      (navigator as any).mozConnection || 
-      (navigator as any).webkitConnection;
-    
+    const nav = navigator as NavigatorWithConnection;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+
     if (connection) {
       connection.addEventListener("change", checkConnection);
       return () => connection.removeEventListener("change", checkConnection);
@@ -314,8 +317,6 @@ export default function AmbientVideoBackground({
           onLoadedData={handleVideoLoaded}
           onPlay={handlePlay}
           onPause={handlePause}
-          // Video format: MP4 (H.264 codec)
-          type="video/mp4"
         />
       )}
 
