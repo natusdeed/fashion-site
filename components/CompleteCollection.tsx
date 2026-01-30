@@ -362,6 +362,7 @@ export default function CompleteCollection() {
                       category={product.category}
                       imageUrl={product.imageUrl}
                       imageAlt={product.imageAlt}
+                      videoUrl={product.videoUrl}
                     />
                   ))}
                 </StaggeredGrid>

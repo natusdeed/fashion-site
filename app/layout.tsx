@@ -142,18 +142,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {/* Favicon and App Icons - Add actual icon files to public folder */}
         <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        {/* Preload critical hero image for better LCP */}
-        <link
-          rel="preload"
-          as="image"
-          href="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80"
-          imageSizes="100vw"
-          imageSrcSet="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=640&q=80 640w, https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1080&q=80 1080w, https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80 1920w"
-        />
+        {/* Preload critical hero image for better LCP (local banner) */}
+        <link rel="preload" as="image" href="/images/header-banner.png" />
       </head>
       <body className={`${inter.variable} antialiased font-sans`}>
         <Suspense fallback={null}>

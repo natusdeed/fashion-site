@@ -45,13 +45,6 @@ export default function VideoPlayer({
   // CRITICAL RULE: Autoplay MUST be muted (no sound with autoplay)
   // This prevents browser autoplay restrictions and poor UX
   const muted = autoplay ? true : initialMuted;
-  // #region agent log
-  if (typeof window !== 'undefined') {
-    fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'VideoPlayer.tsx:44',message:'Component render - CLIENT',data:{windowExists:typeof window!=='undefined',isSSR:false},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  } else {
-    fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'VideoPlayer.tsx:44',message:'Component render - SERVER',data:{windowExists:false,isSSR:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  }
-  // #endregion
 
   // State management
   const [isPlaying, setIsPlaying] = useState(autoplay);
@@ -85,11 +78,6 @@ export default function VideoPlayer({
 
   // Auto-hide controls after 3s of inactivity
   const resetControlsTimeout = useCallback(() => {
-    // #region agent log
-    const windowCheck = typeof window !== 'undefined' ? window.innerWidth : 'undefined';
-    fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'VideoPlayer.tsx:82',message:'resetControlsTimeout - window.innerWidth check',data:{windowExists:typeof window!=='undefined',innerWidth:windowCheck},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
-
     if (controlsTimeoutRef.current) {
       clearTimeout(controlsTimeoutRef.current);
     }
@@ -487,11 +475,6 @@ export default function VideoPlayer({
       }}
       onMouseMove={handleMouseMove}
       onClick={(e) => {
-        // #region agent log
-        const windowCheck = typeof window !== 'undefined' ? window.innerWidth : 'undefined';
-        fetch('http://127.0.0.1:7244/ingest/03c008b9-73dd-4259-8e28-9e129667c391',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'VideoPlayer.tsx:465',message:'onClick handler - window.innerWidth check',data:{windowExists:typeof window!=='undefined',innerWidth:windowCheck},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-        // #endregion
-
         // On mobile, delay click to check for double-tap
         if (typeof window !== 'undefined' && window.innerWidth < 768) {
           setTimeout(() => {

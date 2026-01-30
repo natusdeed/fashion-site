@@ -8,6 +8,7 @@ export interface Product {
   category: string;
   imageUrl?: string;
   imageAlt?: string;
+  videoUrl?: string; // Optional video URL for product hover preview
   description: string;
   longDescription?: string;
   sizes: string[];
@@ -26,6 +27,7 @@ export const products: Product[] = [
     category: "Dresses",
     imageUrl: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80",
     imageAlt: "Elegant Silk Dress",
+    videoUrl: "https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_25fps.mp4",
     description:
       "An exquisite silk dress that embodies timeless elegance. Crafted from the finest Italian silk, this piece features delicate draping and sophisticated tailoring.",
     longDescription:
@@ -49,6 +51,7 @@ export const products: Product[] = [
     category: "Outerwear",
     imageUrl: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80",
     imageAlt: "Luxury Trench Coat",
+    videoUrl: "https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_25fps.mp4",
     description:
       "A luxurious trench coat that combines classic sophistication with modern elegance. This timeless piece is perfect for any season.",
     longDescription:
@@ -69,7 +72,7 @@ export const products: Product[] = [
     originalPrice: 499,
     isOnSale: true,
     category: "Dresses",
-    imageUrl: "https://images.unsplash.com/photo-1566479179817-2781c0a0d89a?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
     imageAlt: "Lace Cocktail Dress",
     description:
       "An elegant lace cocktail dress that perfectly balances femininity and sophistication. The intricate lace detailing makes this a standout piece.",
@@ -81,7 +84,7 @@ export const products: Product[] = [
       { name: "Black", value: "#1a1a1a" },
       { name: "Dusty Rose", value: "#c49a9a" },
     ],
-    images: ["https://images.unsplash.com/photo-1566479179817-2781c0a0d89a?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80"],
   },
   {
     id: 4,
@@ -91,6 +94,7 @@ export const products: Product[] = [
     category: "Tops",
     imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
     imageAlt: "Velvet Blazer",
+    videoUrl: "https://videos.pexels.com/video-files/3044083/3044083-hd_1920_1080_25fps.mp4",
     description:
       "A luxurious velvet blazer that adds a touch of opulence to any ensemble. The rich texture and structured cut make this piece perfect for formal occasions.",
     longDescription:
@@ -131,7 +135,7 @@ export const products: Product[] = [
     name: "Wool Tailored Pants",
     price: 349,
     category: "Bottoms",
-    imageUrl: "https://images.unsplash.com/photo-1506629905607-1b8c0c4e3b5e?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
     imageAlt: "Wool Tailored Pants",
     description:
       "Classic wool tailored pants that combine comfort with sophisticated style. Perfect for the modern professional wardrobe.",
@@ -143,7 +147,7 @@ export const products: Product[] = [
       { name: "Navy", value: "#1e3a5f" },
       { name: "Black", value: "#1a1a1a" },
     ],
-    images: ["https://images.unsplash.com/photo-1506629905607-1b8c0c4e3b5e?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80"],
   },
   {
     id: 7,

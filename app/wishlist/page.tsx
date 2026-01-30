@@ -182,6 +182,7 @@ export default function WishlistPage() {
                   category={item.category}
                   imageUrl={item.imageUrl}
                   imageAlt={item.imageAlt}
+                  videoUrl={item.videoUrl}
                 />
                 {/* Mobile Quick Actions */}
                 <div className="md:hidden mt-4 flex gap-2">

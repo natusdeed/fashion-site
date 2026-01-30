@@ -77,31 +77,59 @@ export default function ProductCard({
     };
   }, [hasVideo]);
 
-  // Handle desktop hover to play/pause video
+  // Load video metadata when component mounts
   useEffect(() => {
     if (!hasVideo || !videoRef.current) return;
+    
+    const video = videoRef.current;
+    
+    const handleLoadedData = () => {
+      setIsVideoLoaded(true);
+    };
+
+    const handleError = (e: Event) => {
+      console.error('Video load error:', e);
+      setIsVideoLoaded(false);
+    };
+
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+
+    // Preload metadata
+    video.load();
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+    };
+  }, [hasVideo]);
+
+  // Handle desktop hover to play/pause video
+  useEffect(() => {
+    if (!hasVideo || !videoRef.current || isMobileVideoActive) return;
 
     const video = videoRef.current;
 
-    if (isHovered && !isMobileVideoActive) {
-      // Load video if not loaded yet
-      if (!isVideoLoaded) {
-        video.load();
-        setIsVideoLoaded(true);
+    if (isHovered) {
+      // Try to play the video
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsVideoPlaying(true);
+          })
+          .catch((error) => {
+            console.error('Video play error:', error);
+            setIsVideoPlaying(false);
+          });
       }
-      // Play video on hover (desktop only)
-      video.play().catch(() => {
-        // Handle autoplay restrictions gracefully
-        setIsVideoPlaying(false);
-      });
-      setIsVideoPlaying(true);
-    } else if (!isHovered && !isMobileVideoActive) {
+    } else {
       // Pause video on unhover (desktop only)
       video.pause();
       video.currentTime = 0;
       setIsVideoPlaying(false);
     }
-  }, [isHovered, hasVideo, isMobileVideoActive, isVideoLoaded]);
+  }, [isHovered, hasVideo, isMobileVideoActive]);
 
   // Handle mobile tap to toggle video
   const handleMobileVideoToggle = (e: React.MouseEvent | React.TouchEvent) => {
@@ -253,7 +281,7 @@ export default function ProductCard({
           {/* Image Display */}
           {imageUrl && (
             <div
-              className={`absolute inset-0 transition-opacity duration-[400ms] ease-in-out ${
+              className={`absolute inset-0 transition-opacity duration-300 ${
                 (isHovered && hasVideo && !isMobileVideoActive) || (isMobileVideoActive && hasVideo)
                   ? "opacity-0"
                   : "opacity-100"
@@ -274,7 +302,7 @@ export default function ProductCard({
             <video
               ref={videoRef}
               src={videoUrl}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[400ms] ease-in-out transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105 ${
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105 ${
                 (isHovered && !isMobileVideoActive) || isMobileVideoActive
                   ? "opacity-100 z-10"
                   : "opacity-0 z-0"
@@ -282,9 +310,14 @@ export default function ProductCard({
               muted
               loop
               playsInline
-              preload="none"
+              preload="auto"
               onPlay={() => setIsVideoPlaying(true)}
               onPause={() => setIsVideoPlaying(false)}
+              onLoadedData={() => setIsVideoLoaded(true)}
+              onError={(e) => {
+                console.error('Video error:', e);
+                setIsVideoLoaded(false);
+              }}
             />
           )}
 

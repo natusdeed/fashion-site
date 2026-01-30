@@ -26,7 +26,7 @@ const featuredItems: FeaturedItem[] = [
   {
     name: "Lace Cocktail Dress",
     price: 699,
-    imageUrl: "https://images.unsplash.com/photo-1566479179817-278d34797222?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
     imageAlt: "Beautiful lace cocktail dress",
   },
 ];

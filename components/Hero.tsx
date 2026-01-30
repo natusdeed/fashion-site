@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 // Background media URLs
-const heroBackgroundImage = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80";
+const heroBackgroundImage = "/images/header-banner.png";
 // Optional: Add your ambient video URL here when ready
 // Example: const heroVideoUrl = "/videos/hero-ambient.mp4";
 const heroVideoUrl = ""; // Set this to your video URL when ready
@@ -75,8 +75,6 @@ export default function Hero() {
               quality={90}
               sizes="100vw"
               className="object-cover"
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             />
             {/* Dark Overlay for Text Readability */}
             <div className="absolute inset-0 bg-black/30 z-10" />

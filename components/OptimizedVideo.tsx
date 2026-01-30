@@ -89,6 +89,24 @@ export default function OptimizedVideo({
     }
   }, [explicitControls, duration, type]);
 
+  // Detect mobile device with responsive detection
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    if (typeof window !== "undefined") {
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
+  
+  const finalVideoUrl = isMobile && videoUrlMobile ? videoUrlMobile : videoUrl;
+
   // Intersection Observer for lazy loading
   useEffect(() => {
     if (!containerRef.current) return;
@@ -117,7 +135,7 @@ export default function OptimizedVideo({
     return () => {
       observer.disconnect();
     };
-  }, [isLoaded]);
+  }, [isLoaded, finalVideoUrl]);
 
   // Handle autoplay for ambient videos
   useEffect(() => {
@@ -130,24 +148,6 @@ export default function OptimizedVideo({
         });
     }
   }, [autoplay, isInViewport, isLoaded]);
-
-  // Detect mobile device with responsive detection
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    // Initial check
-    if (typeof window !== "undefined") {
-      checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
-    }
-  }, []);
-  
-  const finalVideoUrl = isMobile && videoUrlMobile ? videoUrlMobile : videoUrl;
 
   const handlePlay = () => {
     if (videoRef.current) {

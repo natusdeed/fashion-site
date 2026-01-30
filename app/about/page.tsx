@@ -61,7 +61,7 @@ export default function About() {
           className="absolute inset-0 w-full h-[120%]"
         >
           <Image
-            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80"
+            src="/images/about-header.png.jpg"
             alt="About us hero"
             fill
             priority
@@ -70,9 +70,6 @@ export default function About() {
             className="object-cover"
           />
         </div>
-        
-        {/* Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-warm-900/50 to-warm-900/70 z-10" />
         
         {/* Overlay Text */}
         <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">

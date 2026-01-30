@@ -13,6 +13,7 @@ export interface WishlistItem {
   category: string;
   imageUrl?: string;
   imageAlt?: string;
+  videoUrl?: string; // Optional video URL for product hover preview
   addedAt: number; // Timestamp
 }
 
@@ -77,6 +78,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
         category: product.category,
         imageUrl: product.imageUrl,
         imageAlt: product.imageAlt,
+        videoUrl: product.videoUrl,
         addedAt: Date.now(),
       };
       return [...prevItems, newItem];

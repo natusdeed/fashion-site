@@ -30,7 +30,7 @@ const shopCategories = [
   {
     name: "Bottoms",
     href: "/shop/bottoms",
-    image: "https://images.unsplash.com/photo-1506629905607-1b8c0c4e3b5e?w=400&q=80",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80",
   },
   {
     name: "Evening Wear",
@@ -126,11 +126,11 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-[8px] border-b border-gray-100 transition-shadow duration-300 ${
+        className={`sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300 ${
           isScrolled ? "shadow-sm" : ""
         }`}
       >
-        <div className="max-w-7xl mx-auto min-h-16 lg:min-h-20 px-4 py-3 lg:px-8 lg:py-4">
+        <div className="max-w-7xl mx-auto h-24 px-8 py-4">
           <div className="flex items-center justify-between h-full">
             {/* Logo - Left Side */}
             <Link
@@ -139,11 +139,10 @@ export default function Navigation() {
               aria-label="Lola Drip - Home"
             >
               <span 
-                className="text-2xl lg:text-3xl font-semibold tracking-tight transition-all duration-300 group-hover:scale-105 group-hover:text-[#D4AF37] text-[#1a1a1a]"
+                className="text-4xl tracking-tight transition-all duration-300 group-hover:scale-105 group-hover:text-[#D4AF37] text-[#1a1a1a]"
                 style={{
                   fontFamily: 'var(--font-playfair), Georgia, serif',
                   fontWeight: 600,
-                  filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))',
                 }}
               >
                 Lola <span className="italic">Drip</span>
@@ -151,26 +150,30 @@ export default function Navigation() {
             </Link>
 
             {/* Desktop Navigation Links - Center */}
-            <div className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
+            <div className="hidden lg:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
               {navLinks.map((link) => (
                 <div key={link.href} className="relative" ref={link.label === "SHOP" ? shopMenuRef : null}>
                   <Link
                     href={link.href}
                     onMouseEnter={() => link.label === "SHOP" && setIsShopMenuOpen(true)}
-                    className={`group relative px-3 py-2 text-sm font-medium tracking-widest uppercase transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
+                    className={`group relative px-3 py-2 text-base font-medium tracking-widest uppercase transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
                       isActive(link.href)
                         ? "text-[#D4AF37]"
                         : "text-[#4a4a4a] hover:text-[#1a1a1a]"
                     }`}
+                    style={{
+                      fontFamily: 'var(--font-inter), system-ui, sans-serif',
+                      fontWeight: 500,
+                    }}
                   >
                     {link.label}
                     {/* Active gold underline */}
                     {isActive(link.href) && (
                       <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full transition-all duration-300" />
                     )}
-                    {/* Hover underline (only when not active) */}
+                    {/* Hover underline (only when not active) - gold underline appearing */}
                     {!isActive(link.href) && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#1a1a1a] rounded-full scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100" />
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100" />
                     )}
                   </Link>
 
@@ -221,7 +224,7 @@ export default function Navigation() {
                 aria-label="Search"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -240,7 +243,7 @@ export default function Navigation() {
                 aria-label="Wishlist"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -269,7 +272,7 @@ export default function Navigation() {
                 aria-label="Account"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -290,7 +293,7 @@ export default function Navigation() {
                 transition={{ duration: 0.2 }}
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
