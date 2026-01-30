@@ -227,8 +227,18 @@ export default function AmbientVideoBackground({
     }
   }, [shouldLoadVideo, isVideoLoaded, isVisible, isPaused]);
 
+  // Keep playbackRate in sync when prop changes
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = playbackRate;
+    }
+  }, [playbackRate]);
+
   // Handle video loaded
   const handleVideoLoaded = () => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = playbackRate;
+    }
     setIsVideoLoaded(true);
   };
 
@@ -301,7 +311,6 @@ export default function AmbientVideoBackground({
           loop
           playsInline
           preload="none"
-          playbackRate={playbackRate}
           onLoadedData={handleVideoLoaded}
           onPlay={handlePlay}
           onPause={handlePause}
