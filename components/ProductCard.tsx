@@ -281,7 +281,7 @@ export default function ProductCard({
           {/* Image Display */}
           {imageUrl && (
             <div
-              className={`absolute inset-0 transition-opacity duration-300 ${
+              className={`absolute inset-0 transition-opacity duration-150 ${
                 (isHovered && hasVideo && !isMobileVideoActive) || (isMobileVideoActive && hasVideo)
                   ? "opacity-0"
                   : "opacity-100"
@@ -292,7 +292,7 @@ export default function ProductCard({
                 alt={imageAlt || name}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="object-cover transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-200 ease-out group-hover:scale-105"
               />
             </div>
           )}
@@ -302,7 +302,7 @@ export default function ProductCard({
             <video
               ref={videoRef}
               src={videoUrl}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 transition-transform duration-200 md:duration-500 ease-out group-hover:scale-105 ${
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-150 transition-transform duration-200 ease-out group-hover:scale-105 ${
                 (isHovered && !isMobileVideoActive) || isMobileVideoActive
                   ? "opacity-100 z-10"
                   : "opacity-0 z-0"
@@ -348,7 +348,7 @@ export default function ProductCard({
           {/* Wishlist Heart Icon - Top Right - Always visible on mobile */}
           <motion.button
             onClick={handleWishlistClick}
-            className="absolute top-3 right-3 z-10 p-2.5 bg-white/90 backdrop-blur-sm rounded-full md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-all duration-200 md:duration-300 hover:bg-white shadow-md min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="absolute top-3 right-3 z-10 p-2.5 bg-white/90 backdrop-blur-sm rounded-full md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-transform duration-100 hover:bg-white shadow-md min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95"
             aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -375,7 +375,7 @@ export default function ProductCard({
           {/* Quick View Icon - Center - Hidden on mobile */}
           <motion.button
             onClick={handleQuickViewClick}
-            className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 p-3 bg-white/95 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-white shadow-lg min-h-[44px] min-w-[44px]"
+            className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 p-3 bg-white/95 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-transform duration-100 hover:bg-white shadow-lg min-h-[44px] min-w-[44px] active:scale-95"
             aria-label="Quick view"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -410,7 +410,7 @@ export default function ProductCard({
             <motion.button
               onClick={handleAddToCart}
               disabled={isAddingToCart}
-              className="w-full bg-warm-900 text-warm-50 py-3.5 md:py-3 text-xs uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-colors duration-200 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-warm-900 text-warm-50 py-3.5 md:py-3 text-xs uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-transform duration-100 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-95"
               aria-label="Add to cart"
               whileHover={{ scale: isAddingToCart ? 1 : 1.02 }}
               whileTap={{ scale: isAddingToCart ? 1 : 0.98 }}
@@ -430,7 +430,7 @@ export default function ProductCard({
           </motion.div>
 
           {/* Hover overlay - Only on desktop */}
-          <div className="absolute inset-0 bg-warm-900/0 md:group-hover:bg-warm-900/5 transition-all duration-200 md:duration-500" />
+          <div className="absolute inset-0 bg-warm-900/0 md:group-hover:bg-warm-900/5 transition-opacity duration-150" />
         </div>
 
         {/* Product Info - Simplified for mobile */}

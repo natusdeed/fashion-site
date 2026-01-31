@@ -2,39 +2,86 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { getProductBySlug } from "@/data/products";
-import SwipeableImageGallery from "@/components/SwipeableImageGallery";
+import {
+  getProductBySlug,
+  getCategoryBySlug,
+  getProductsByCategory,
+  getRelatedProducts,
+} from "@/data/products";
+import ProductCard from "@/components/ProductCard";
+
+// Product gallery loaded on interaction - saves ~15-20KB on initial product page load
+const SwipeableImageGallery = dynamic(
+  () => import("@/components/SwipeableImageGallery"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="relative aspect-[4/5] bg-gradient-to-br from-warm-100 to-warm-200 animate-pulse rounded-sm" />
+    ),
+  }
+);
 import { useCart } from "@/lib/cart-context";
 import { useToast } from "@/lib/toast-context";
 
-// Structured data for breadcrumbs (SEO)
-function generateBreadcrumbSchema(slug: string, productName: string) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yourbrand.com";
-  
+const SITE_URL = "https://loladrip.com";
+
+// BreadcrumbList schema for product or category (SEO)
+function breadcrumbSchemaProduct(slug: string, productName: string) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": `${siteUrl}/`
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Shop",
-        "item": `${siteUrl}/shop`
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": productName,
-        "item": `${siteUrl}/shop/${slug}`
-      }
-    ]
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Shop", item: `${SITE_URL}/shop` },
+      { "@type": "ListItem", position: 3, name: productName, item: `${SITE_URL}/shop/${slug}` },
+    ],
+  };
+}
+function breadcrumbSchemaCategory(slug: string, categoryName: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Shop", item: `${SITE_URL}/shop` },
+      { "@type": "ListItem", position: 3, name: categoryName, item: `${SITE_URL}/shop/${slug}` },
+    ],
+  };
+}
+
+// Product schema for rich snippets (Google Shopping, product carousels)
+function generateProductSchema(product: {
+  name: string;
+  description: string;
+  price: number;
+  slug: string;
+  id: number;
+  category: string;
+  imageUrl?: string;
+  images?: string[];
+}) {
+  const image = product.images?.[0] || product.imageUrl;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: image ? [image] : undefined,
+    sku: product.slug,
+    category: product.category,
+    brand: { "@type": "Brand", name: "Lola Drip" },
+    offers: {
+      "@type": "Offer",
+      url: `${SITE_URL}/shop/${product.slug}`,
+      priceCurrency: "USD",
+      price: product.price,
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+    // Optional: add AggregateRating when you have reviews
+    // aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "124" },
   };
 }
 
@@ -44,10 +91,10 @@ interface ProductPageProps {
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
+export default function ShopSlugPage({ params }: ProductPageProps) {
+  const category = getCategoryBySlug(params.slug);
   const product = getProductBySlug(params.slug);
 
-  // React Hooks must be called before any conditional returns
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(
     product?.colors?.[0]?.name || null
@@ -55,6 +102,57 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const { addToCart, setIsCartOpen } = useCart();
   const { showToast } = useToast();
+
+  // Category page: breadcrumb + BreadcrumbList + product grid (internal linking)
+  if (category) {
+    const categoryProducts = getProductsByCategory(category.name);
+    const categoryBreadcrumbSchema = breadcrumbSchemaCategory(params.slug, category.name);
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryBreadcrumbSchema) }}
+        />
+        <div className="pt-40 pb-40 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <nav className="mb-16" aria-label="Breadcrumb">
+              <ol className="flex items-center space-x-3 text-warm-600 text-xs uppercase tracking-[0.15em] font-light">
+                <li>
+                  <Link href="/" className="hover:text-warm-900 transition-colors duration-100">Home</Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href="/shop" className="hover:text-warm-900 transition-colors duration-100">Shop</Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li className="text-warm-900" aria-current="page">{category.name}</li>
+              </ol>
+            </nav>
+            <h1 className="text-4xl md:text-5xl font-playfair text-warm-900 mb-12 font-normal tracking-[0.02em]">
+              {category.name}
+            </h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10">
+              {categoryProducts.map((p) => (
+                <ProductCard
+                  key={p.id}
+                  id={p.id}
+                  slug={p.slug}
+                  name={p.name}
+                  price={p.price}
+                  originalPrice={p.originalPrice}
+                  isOnSale={p.isOnSale}
+                  category={p.category}
+                  imageUrl={p.imageUrl}
+                  imageAlt={p.imageAlt}
+                  videoUrl={p.videoUrl}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   if (!product) {
     return (
@@ -85,14 +183,19 @@ export default function ProductPage({ params }: ProductPageProps) {
     ? [product.imageUrl]
     : [];
 
-  const breadcrumbSchema = generateBreadcrumbSchema(params.slug, product.name);
+  const breadcrumbSchema = breadcrumbSchemaProduct(params.slug, product.name);
+  const productSchema = generateProductSchema(product);
+  const relatedProducts = getRelatedProducts(product, 4);
 
   return (
     <>
-      {/* Structured Data for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
     <div className="pt-40 pb-40 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -103,7 +206,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               <Link
                 href="/"
                 aria-label="Go to home page"
-                className="hover:text-warm-900 transition-colors duration-300"
+                className="hover:text-warm-900 transition-colors duration-100"
               >
                 Home
               </Link>
@@ -113,7 +216,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               <Link
                 href="/shop"
                 aria-label="Go to shop page"
-                className="hover:text-warm-900 transition-colors duration-300"
+                className="hover:text-warm-900 transition-colors duration-100"
               >
                 Shop
               </Link>
@@ -130,7 +233,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="md:hidden">
               <SwipeableImageGallery
                 images={productImages}
-                alt={product.imageAlt || product.name}
+                alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip`}
               />
             </div>
             
@@ -141,9 +244,9 @@ export default function ProductPage({ params }: ProductPageProps) {
                 {productImages[selectedImage] ? (
                   <Image
                     src={productImages[selectedImage]}
-                    alt={product.imageAlt || `${product.name} - ${selectedImage + 1}`}
+                    alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip - View ${selectedImage + 1}`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="object-cover group-hover:scale-105 transition-transform duration-200 ease-out"
                     priority
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
                     quality={90}
@@ -178,7 +281,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`relative aspect-square bg-warm-100 overflow-hidden border-2 transition-all duration-200 rounded-sm min-h-[44px] ${
+                      className={`relative aspect-square bg-warm-100 overflow-hidden border-2 transition-transform duration-100 rounded-sm min-h-[44px] ${
                         selectedImage === index
                           ? "border-gold-600 shadow-md scale-105"
                           : "border-transparent hover:border-warm-300 hover:scale-105 hover:shadow-md"
@@ -186,7 +289,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     >
                       <Image
                         src={image}
-                        alt={`${product.name} - View ${index + 1}`}
+                        alt={`${product.name} - ${product.category} - Lola Drip - Thumbnail ${index + 1}`}
                         fill
                         className="object-cover"
                         sizes="128px"
@@ -277,7 +380,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-6 py-3.5 border transition-all duration-200 text-xs uppercase tracking-[0.2em] font-light min-w-[60px] min-h-[44px] rounded-sm flex items-center justify-center ${
+                    className={`px-6 py-3.5 border transition-colors duration-100 text-xs uppercase tracking-[0.2em] font-light min-w-[60px] min-h-[44px] rounded-sm flex items-center justify-center active:scale-95 ${
                       selectedSize === size
                         ? "border-warm-900 bg-warm-900 text-warm-50 shadow-md scale-105"
                         : "border-warm-300 text-warm-700 hover:border-warm-900 hover:scale-105 hover:shadow-sm"
@@ -300,7 +403,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     <button
                       key={color.name}
                       onClick={() => setSelectedColor(color.name)}
-                      className={`relative w-12 h-12 rounded-full border-2 transition-all duration-300 ${
+                      className={`relative w-12 h-12 rounded-full border-2 transition-transform duration-100 ${
                         selectedColor === color.name
                           ? "border-gold-600 scale-110 shadow-md"
                           : "border-warm-300 hover:border-warm-600 hover:scale-110 hover:shadow-sm"
@@ -356,12 +459,12 @@ export default function ProductPage({ params }: ProductPageProps) {
                   setIsCartOpen(true);
                 }}
                 disabled={!selectedSize}
-                className="w-full bg-warm-900 text-warm-50 px-10 py-5 md:py-6 hover:bg-warm-800 hover:text-gold-100 disabled:bg-warm-300 disabled:cursor-not-allowed transition-all duration-200 md:duration-500 text-sm uppercase tracking-[0.3em] font-light group relative overflow-hidden hover:scale-[1.02] hover:shadow-xl disabled:hover:scale-100 disabled:hover:shadow-none rounded-sm border border-gold-500/20 min-h-[44px] md:min-h-[56px] flex items-center justify-center"
+                className="w-full bg-warm-900 text-warm-50 px-10 py-5 md:py-6 hover:bg-warm-800 hover:text-gold-100 disabled:bg-warm-300 disabled:cursor-not-allowed transition-transform duration-150 text-sm uppercase tracking-[0.3em] font-light group relative overflow-hidden hover:scale-[1.02] active:scale-95 hover:shadow-xl disabled:hover:scale-100 disabled:hover:shadow-none rounded-sm border border-gold-500/20 min-h-[44px] md:min-h-[56px] flex items-center justify-center"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   Add to Bag
                   <svg
-                    className="ml-3 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200 md:duration-500"
+                    className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-150"
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -372,7 +475,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-400/10 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-500 md:duration-1000" />
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-200" />
               </button>
               {!selectedSize && (
                 <p className="text-warm-500 text-xs text-center mt-4 font-light">
@@ -418,6 +521,32 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </div>
+
+        {/* Related Products - internal linking & SEO */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-24 pt-16 border-t border-warm-200">
+            <h2 className="text-2xl md:text-3xl font-playfair text-warm-900 mb-10 font-normal tracking-[0.02em]">
+              You May Also Like
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+              {relatedProducts.map((p) => (
+                <ProductCard
+                  key={p.id}
+                  id={p.id}
+                  slug={p.slug}
+                  name={p.name}
+                  price={p.price}
+                  originalPrice={p.originalPrice}
+                  isOnSale={p.isOnSale}
+                  category={p.category}
+                  imageUrl={p.imageUrl}
+                  imageAlt={p.imageAlt}
+                  videoUrl={p.videoUrl}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
     </>

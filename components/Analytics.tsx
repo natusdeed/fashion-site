@@ -31,15 +31,17 @@ export default function Analytics() {
     return null;
   }
 
+  // Use lazyOnload to defer analytics until after page is fully loaded
+  // Reduces impact on FCP/LCP - loads after user interaction or idle
   return (
     <>
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
       />
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];

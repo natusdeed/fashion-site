@@ -13,23 +13,16 @@ import { WishlistProvider } from "@/lib/wishlist-context";
 import PageTransition from "@/components/animations/PageTransition";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Analytics from "@/components/Analytics";
+import DebugErrorHandler from "@/components/DebugErrorHandler";
 
-// Dynamic imports for modals - code splitting for better performance
-// These components are loaded only when needed (below the fold or on interaction)
-const NewsletterPopup = dynamic(() => import("@/components/NewsletterPopup"), {
-  ssr: false, // No SSR needed for popup
-  loading: () => null, // No loading state needed
-});
-
-const CartDrawer = dynamic(() => import("@/components/CartDrawer"), {
-  ssr: false, // No SSR needed for drawer
-  loading: () => null, // No loading state needed
-});
-
-const QuickViewModal = dynamic(() => import("@/components/QuickViewModal"), {
-  ssr: false, // No SSR needed for modal
-  loading: () => null, // No loading state needed
-});
+// Dynamic imports for modals - code splitting for better performance.
+// No custom loading component in root layout (Server Component) to avoid "e[o] is not a function" during RSC serialization.
+const NewsletterPopup = dynamic(
+  () => import("@/components/NewsletterPopup"),
+  { ssr: false }
+);
+const CartDrawer = dynamic(() => import("@/components/CartDrawer"), { ssr: false });
+const QuickViewModal = dynamic(() => import("@/components/QuickViewModal"), { ssr: false });
 
 // Primary font for logo & headings - luxury serif
 const playfair = Playfair_Display({
@@ -53,23 +46,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://loladrip.com'),
+  metadataBase: new URL("https://loladrip.com"),
   title: {
-    default: "Lola Drip | Modern Women's Fashion & Premium Collections",
+    default: "Lola Drip - Luxury Women's Fashion | Designer Dresses & Elegant Clothing",
     template: "%s | Lola Drip",
   },
-  description: "Discover modern women's fashion with Lola Drip. Curated collection of designer pieces, elegant styles, and premium quality clothing. Timeless elegance meets contemporary style.",
+  description:
+    "Lola Drip: luxury women's fashion e-commerce. Shop designer dresses, elegant clothing, evening wear & accessories. Free shipping on orders over $200. Premium quality, timeless style.",
   keywords: [
-    "women's fashion",
-    "modern fashion",
-    "premium clothing",
-    "designer dresses",
+    "luxury fashion",
     "women's clothing",
-    "fashion boutique",
-    "contemporary fashion",
-    "style",
-    "fashion collections",
-    "women's wear"
+    "designer dresses",
+    "elegant fashion",
+    "premium clothing",
+    "evening wear",
+    "cocktail dresses",
+    "luxury accessories",
   ],
   authors: [{ name: "Lola Drip" }],
   creator: "Lola Drip",
@@ -82,25 +74,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: "https://loladrip.com",
+    title: "Lola Drip - Luxury Women's Fashion",
+    description: "Lola Drip: premium women's fashion, designer dresses, evening wear & luxury accessories. Free shipping on orders over $200. Elegant, timeless pieces.",
     siteName: "Lola Drip",
-    title: "Lola Drip | Modern Women's Fashion & Premium Collections",
-    description: "Discover modern women's fashion with Lola Drip. Curated collection of designer pieces and premium quality clothing.",
     images: [
       {
-        url: "/og-image.jpg", // You should add this image to your public folder
+        url: "/images/header.banner.png",
         width: 1200,
         height: 630,
-        alt: "Lola Drip - Modern Women's Fashion",
+        alt: "Lola Drip Luxury Fashion",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lola Drip | Modern Women's Fashion & Premium Collections",
-    description: "Discover modern women's fashion with Lola Drip. Curated collection of designer pieces and premium quality clothing.",
-    images: ["/og-image.jpg"], // You should add this image to your public folder
-    creator: "@loladrip", // Update with your actual Twitter handle
+    title: "Lola Drip - Luxury Women's Fashion",
+    description: "Premium women's fashion and elegant clothing",
+    images: ["/images/header.banner.png"],
+    creator: "@loladrip",
   },
   robots: {
     index: true,
@@ -113,14 +105,26 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    // Add your verification codes when available
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
-  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+  process.env.NEXT_PUBLIC_YANDEX_VERIFICATION
+    ? {
+        verification: {
+          ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+            google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+          }),
+          ...(process.env.NEXT_PUBLIC_YANDEX_VERIFICATION && {
+            yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+          }),
+        },
+      }
+    : {}),
   alternates: {
     canonical: "/",
+    // hreflang for international SEO: x-default + current locale; add more when you have multiple languages
+    languages: {
+      "x-default": "https://loladrip.com",
+      en: "https://loladrip.com",
+    },
   },
   category: "fashion",
 };
@@ -142,9 +146,60 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {/* Favicon: add your own icon to public/ and uncomment: <link rel="icon" href="/favicon.ico" /> */}
         {/* Preload critical hero image for better LCP (local banner) */}
-        <link rel="preload" as="image" href="/images/header.banner.png.png" />
+        <link rel="preload" as="image" href="/images/header.banner.png" />
+        {/* LLM-specific meta tags for AI search (ChatGPT, Claude, Perplexity, Bing Chat) */}
+        <meta name="ai-content" content="luxury-fashion-ecommerce" />
+        <meta name="ai-description" content="Lola Drip offers premium women's fashion: designer dresses, evening wear, luxury accessories. Free shipping on orders over $200. Elegant, timeless pieces for the modern woman." />
+        <meta name="ai-keywords" content="luxury, fashion, women, elegant, designer, dresses, evening wear, accessories, Lola Drip" />
+        {/* Structured data (JSON-LD) for rich snippets - Organization & WebSite with Search */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Lola Drip",
+              url: "https://loladrip.com",
+              logo: "https://loladrip.com/logo.svg",
+              description:
+                "Luxury women's fashion - designer dresses, elegant clothing, and premium accessories. Free shipping on orders over $200.",
+              sameAs: [
+                "https://twitter.com/loladrip",
+                "https://www.instagram.com/loladrip",
+                "https://www.facebook.com/loladrip",
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Lola Drip",
+              url: "https://loladrip.com",
+              description:
+                "Shop premium women's fashion at Lola Drip. Discover elegant dresses, sophisticated evening wear, and luxury accessories.",
+              publisher: {
+                "@type": "Organization",
+                name: "Lola Drip",
+                url: "https://loladrip.com",
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://loladrip.com/search?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
       </head>
       <body className={`${inter.variable} antialiased font-sans`}>
+        <DebugErrorHandler />
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>

@@ -98,45 +98,49 @@ export default function FAQ() {
 
   return (
     <div className="bg-warm-50">
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - semantic landmark */}
+      <header className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden" aria-label="FAQ page header">
         <div className="absolute inset-0 bg-gradient-to-b from-warm-900/40 to-warm-900/60 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80')",
           }}
+          aria-hidden="true"
         />
         <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-playfair text-warm-50 mb-6 tracking-wide">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-playfair text-warm-50 mb-6 tracking-wide" id="faq-title">
             Frequently Asked Questions
           </h1>
           <p className="text-xl md:text-2xl text-warm-100 font-light tracking-wide max-w-2xl mx-auto">
             We&apos;re here to help
           </p>
         </div>
-      </section>
+      </header>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        {/* FAQ Sections */}
+      {/* Main Content - semantic main with sections */}
+      <main id="main-content" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20" role="main" aria-label="FAQ content">
+        {/* FAQ Sections - proper heading hierarchy h1 → h2 → content */}
         {faqSections.map((section, sectionIndex) => (
-          <div key={sectionIndex} className="mb-16 last:mb-0">
-            <h2 className="text-3xl md:text-4xl font-playfair text-warm-900 mb-8">
+          <section key={sectionIndex} className="mb-16 last:mb-0" aria-labelledby={`section-${sectionIndex}`}>
+            <h2 id={`section-${sectionIndex}`} className="text-3xl md:text-4xl font-playfair text-warm-900 mb-8">
               {section.title}
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-4" role="list">
               {section.items.map((item, itemIndex) => {
                 const currentIndex = questionIndex++;
                 return (
                   <div
                     key={itemIndex}
                     className="bg-white border border-warm-200 overflow-hidden transition-all duration-300 hover:border-gold-400"
+                    role="listitem"
                   >
                     <button
                       onClick={() => toggleQuestion(currentIndex)}
                       className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2"
                       aria-expanded={openIndex === currentIndex}
+                      aria-controls={`answer-${currentIndex}`}
+                      id={`question-${currentIndex}`}
                     >
                       <span className="text-lg font-light text-warm-900 pr-8">
                         {item.question}
@@ -158,6 +162,9 @@ export default function FAQ() {
                       </svg>
                     </button>
                     <div
+                      id={`answer-${currentIndex}`}
+                      role="region"
+                      aria-labelledby={`question-${currentIndex}`}
                       className={`overflow-hidden transition-all duration-300 ${
                         openIndex === currentIndex
                           ? "max-h-[1000px] opacity-100"
@@ -187,21 +194,21 @@ export default function FAQ() {
                 );
               })}
             </div>
-          </div>
+          </section>
         ))}
 
         {/* Still Have Questions Section */}
-        <div className="bg-white border border-warm-200 p-8 lg:p-10 mt-16">
-          <h2 className="text-3xl font-playfair text-warm-900 mb-6 text-center">
+        <section className="bg-white border border-warm-200 p-8 lg:p-10 mt-16" aria-labelledby="contact-faq-heading">
+          <h2 id="contact-faq-heading" className="text-3xl font-playfair text-warm-900 mb-6 text-center">
             Still Have Questions?
           </h2>
           <p className="text-warm-700 font-light text-center mb-8 text-lg">
             We&apos;re here to help!
           </p>
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div>
+          <div className="grid md:grid-cols-3 gap-6 text-center" role="list">
+            <div role="listitem">
               <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center" aria-hidden="true">
                   <svg className="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
@@ -217,9 +224,9 @@ export default function FAQ() {
                 hello@loladrip.com
               </a>
             </div>
-            <div>
+            <div role="listitem">
               <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center" aria-hidden="true">
                   <svg className="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
@@ -235,9 +242,9 @@ export default function FAQ() {
                 (571) 234-2051
               </a>
             </div>
-            <div>
+            <div role="listitem">
               <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center" aria-hidden="true">
                   <svg className="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -252,8 +259,8 @@ export default function FAQ() {
               </p>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }

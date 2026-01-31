@@ -135,7 +135,6 @@ export default function Contact() {
       // Replace with actual API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
-      console.log("Form submitted:", formData);
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
       

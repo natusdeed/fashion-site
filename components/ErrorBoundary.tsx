@@ -24,12 +24,10 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Log error to console in development
     if (process.env.NODE_ENV === "development") {
       console.error("Error caught by boundary:", error, errorInfo);
     }
-    
-    // In production, you could send this to an error tracking service
+    // In production, send to error tracking (e.g. Sentry.captureException(error, { contexts: { react: errorInfo } }))
     // Example: Sentry.captureException(error, { contexts: { react: errorInfo } });
   }
 

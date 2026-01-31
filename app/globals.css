@@ -84,16 +84,11 @@
     min-width: 44px;
   }
 
-  /* Mobile-specific animation speeds (200ms) */
+  /* Mobile: faster transitions for snappier feel */
   @media (max-width: 768px) {
-    * {
-      --mobile-transition: 200ms;
-    }
-    
     button,
-    a,
-    [class*="transition"] {
-      transition-duration: var(--mobile-transition) !important;
+    a[role="button"] {
+      transition-duration: 150ms !important;
     }
   }
 
@@ -135,9 +130,9 @@
     letter-spacing: 0.01em;
   }
 
-  /* Add smooth transitions globally - SAFE */
+  /* Light global transition - instant feel for interactive elements */
   * {
-    @apply transition-colors duration-300 ease-in-out;
+    @apply transition-colors duration-150 ease-out;
   }
 
   /* Smooth scroll - SAFE */
@@ -163,6 +158,18 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Instant button response - zero perceived lag */
+  .btn-instant {
+    @apply transition-transform duration-100 ease-out active:scale-95 hover:scale-[1.02];
+    will-change: transform;
+  }
+
+  /* Fast menu animation - GPU-accelerated */
+  .menu-instant {
+    @apply transition-all duration-200 ease-out;
+    will-change: transform, opacity;
   }
 }
 

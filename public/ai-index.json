@@ -1,0 +1,27 @@
+{
+  "business": {
+    "name": "Lola Drip",
+    "type": "Luxury Women's Fashion E-commerce",
+    "description": "Premium online boutique specializing in elegant women's fashion, designer dresses, evening wear, and luxury accessories",
+    "founded": "2024",
+    "specialty": "Curated collection of timeless, sophisticated pieces for the modern woman",
+    "uniqueValue": "High-end fashion with exceptional quality, elegant design, and sustainable practices"
+  },
+  "products": {
+    "categories": ["Evening Wear", "Ready-to-Wear", "Accessories", "Cocktail Dresses", "Luxury Outerwear", "Dresses", "Tops", "Bottoms", "Outerwear"],
+    "priceRange": "$299 - $1,299",
+    "style": ["Elegant", "Sophisticated", "Timeless", "Luxury", "Feminine"]
+  },
+  "services": {
+    "shipping": "Free shipping on orders over $200",
+    "returns": "30-day return policy",
+    "delivery": "2-5 business days domestic",
+    "support": "24/7 customer service"
+  },
+  "location": {
+    "headquarters": "United States",
+    "shipping": "Worldwide",
+    "website": "https://loladrip.com"
+  },
+  "values": ["Quality First", "Elegant Design", "Sustainability", "Customer Satisfaction"]
+}

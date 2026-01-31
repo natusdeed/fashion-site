@@ -68,11 +68,11 @@ export default function SearchBar({
     }
   }, []);
 
-  // Debounce search query
+  // Debounce search query - 150ms max for instant feel
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(searchQuery);
-    }, 300);
+    }, 150);
 
     return () => clearTimeout(timer);
   }, [searchQuery]);
@@ -255,11 +255,11 @@ export default function SearchBar({
                 }
               }}
               placeholder="Search for products..."
-              className="w-full px-4 py-3 pl-12 pr-32 bg-warm-100 border border-warm-300 rounded-sm text-warm-900 placeholder-warm-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-all duration-300"
+              className="w-full px-4 py-3 pl-12 pr-32 bg-warm-100 border border-warm-300 rounded-sm text-warm-900 placeholder-warm-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors duration-100"
             />
             <button
               type="submit"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-warm-600 hover:text-gold-600 transition-colors duration-300"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-warm-600 hover:text-gold-600 transition-colors duration-100"
               aria-label="Submit search"
             >
               <svg
@@ -277,7 +277,7 @@ export default function SearchBar({
             <button
               type="button"
               onClick={() => setShowFilters(!showFilters)}
-              className="absolute right-20 top-1/2 transform -translate-y-1/2 px-3 py-1.5 text-xs text-warm-600 hover:text-gold-600 transition-colors duration-300 flex items-center gap-1"
+              className="absolute right-20 top-1/2 -translate-y-1/2 px-3 py-1.5 text-xs text-warm-600 hover:text-gold-600 transition-colors duration-100 flex items-center gap-1"
             >
               <svg
                 className="w-4 h-4"
@@ -295,7 +295,7 @@ export default function SearchBar({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-warm-600 hover:text-warm-900 transition-colors duration-300"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-warm-600 hover:text-warm-900 transition-colors duration-100"
               aria-label="Close search"
             >
               <svg
@@ -439,7 +439,7 @@ export default function SearchBar({
                               {product.imageUrl && (
                                 <LazyImage
                                   src={product.imageUrl}
-                                  alt={product.name}
+                                  alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip`}
                                   fill
                                   sizes="64px"
                                   className="object-cover"

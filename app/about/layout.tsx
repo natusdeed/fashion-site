@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us | Our Story | Lola Drip",
-  description: "Discover the story behind Lola Drip. We are dedicated to curating the finest collection of women's fashion, combining exotic designs with timeless elegance. Learn about our mission, values, and commitment to luxury fashion.",
+  description:
+    "Lola Drip: our story, mission & values. Curated luxury women's fashion, timeless elegance & sustainable practices. Learn about our brand and commitment to quality.",
   keywords: [
     "about us",
     "our story",

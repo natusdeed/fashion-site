@@ -166,7 +166,7 @@ export default function QuickViewModal() {
             {/* Close Button */}
             <button
               onClick={closeQuickView}
-              className="absolute top-4 right-4 z-10 p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-warm-600 hover:text-warm-900 hover:bg-white transition-all duration-200 shadow-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="absolute top-4 right-4 z-10 p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-warm-600 hover:text-warm-900 hover:bg-white transition-transform duration-100 shadow-lg min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95"
               aria-label="Close modal"
             >
               <svg
@@ -201,10 +201,10 @@ export default function QuickViewModal() {
                       <div className="relative w-full h-full">
                         <Image
                           src={productImages[selectedImageIndex]}
-                          alt={product.name}
+                          alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip`}
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
-                          className={`object-cover transition-transform duration-300 ease-out ${
+                          className={`object-cover transition-transform duration-200 ease-out ${
                             isZoomed ? "scale-150" : "scale-100"
                           }`}
                           style={{
@@ -234,7 +234,7 @@ export default function QuickViewModal() {
                         >
                           <Image
                             src={image}
-                            alt={`${product.name} view ${index + 1}`}
+                            alt={`${product.name} - ${product.category} - Lola Drip - View ${index + 1}`}
                             fill
                             sizes="80px"
                             className="object-cover"
@@ -288,7 +288,7 @@ export default function QuickViewModal() {
                         <button
                           key={size}
                           onClick={() => setSelectedSize(size)}
-                          className={`px-6 py-3 border transition-all duration-200 text-xs uppercase tracking-[0.2em] font-light min-w-[60px] min-h-[44px] rounded-sm flex items-center justify-center ${
+                          className={`px-6 py-3 border transition-transform duration-100 text-xs uppercase tracking-[0.2em] font-light min-w-[60px] min-h-[44px] rounded-sm flex items-center justify-center active:scale-95 ${
                             selectedSize === size
                               ? "border-gold-600 bg-gold-50 text-warm-900"
                               : "border-warm-300 text-warm-700 hover:border-warm-600 hover:bg-warm-100"
@@ -311,7 +311,7 @@ export default function QuickViewModal() {
                           <button
                             key={color.name}
                             onClick={() => setSelectedColor(color.name)}
-                            className={`relative w-12 h-12 rounded-full border-2 transition-all duration-300 ${
+                            className={`relative w-12 h-12 rounded-full border-2 transition-transform duration-100 ${
                               selectedColor === color.name
                                 ? "border-gold-600 scale-110 shadow-md ring-2 ring-gold-200"
                                 : "border-warm-300 hover:border-warm-600 hover:scale-110 hover:shadow-sm"
@@ -349,7 +349,7 @@ export default function QuickViewModal() {
                       <button
                         onClick={() => handleQuantityChange(-1)}
                         disabled={quantity <= 1}
-                        className="p-2.5 border border-warm-300 text-warm-600 hover:text-warm-900 hover:bg-warm-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center"
+                        className="p-2.5 border border-warm-300 text-warm-600 hover:text-warm-900 hover:bg-warm-100 disabled:opacity-50 disabled:cursor-not-allowed transition-transform duration-100 rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95"
                         aria-label="Decrease quantity"
                       >
                         <svg
@@ -377,7 +377,7 @@ export default function QuickViewModal() {
                       <button
                         onClick={() => handleQuantityChange(1)}
                         disabled={quantity >= 10}
-                        className="p-2.5 border border-warm-300 text-warm-600 hover:text-warm-900 hover:bg-warm-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center"
+                        className="p-2.5 border border-warm-300 text-warm-600 hover:text-warm-900 hover:bg-warm-100 disabled:opacity-50 disabled:cursor-not-allowed transition-transform duration-100 rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95"
                         aria-label="Increase quantity"
                       >
                         <svg
@@ -402,7 +402,7 @@ export default function QuickViewModal() {
                     <button
                       onClick={handleAddToCart}
                       disabled={!selectedSize}
-                      className="w-full bg-warm-900 text-warm-50 py-4 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 disabled:bg-warm-300 disabled:cursor-not-allowed transition-colors duration-300 min-h-[44px] flex items-center justify-center gap-2"
+                      className="w-full bg-warm-900 text-warm-50 py-4 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 disabled:bg-warm-300 disabled:cursor-not-allowed transition-transform duration-150 min-h-[44px] flex items-center justify-center gap-2 active:scale-95"
                     >
                       Add to Cart
                       <svg
@@ -421,7 +421,7 @@ export default function QuickViewModal() {
                     </button>
                     <button
                       onClick={handleWishlistToggle}
-                      className={`w-full border py-4 text-sm uppercase tracking-[0.15em] font-light transition-colors duration-300 min-h-[44px] flex items-center justify-center gap-2 ${
+                      className={`w-full border py-4 text-sm uppercase tracking-[0.15em] font-light transition-transform duration-150 min-h-[44px] flex items-center justify-center gap-2 active:scale-95 ${
                         isWishlisted
                           ? "border-red-500 text-red-600 bg-red-50 hover:bg-red-100"
                           : "border-warm-900 text-warm-900 hover:bg-warm-900 hover:text-warm-50"

@@ -9,17 +9,35 @@ import { initSmoothScroll } from "@/lib/smooth-scroll";
 import { motion } from "framer-motion";
 
 // Dynamic imports for below-the-fold components - code splitting for better performance
-const FeaturedCollection = dynamic(() => import("@/components/FeaturedCollection"), {
-  loading: () => <div className="h-96 bg-warm-50 animate-pulse" />,
-});
+const CollectionSkeleton = () => (
+  <div className="py-20 md:py-32 px-6 lg:px-8 bg-warm-50">
+    <div className="max-w-7xl mx-auto">
+      <div className="h-12 bg-warm-200 rounded w-1/3 mx-auto mb-16 animate-pulse" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="animate-pulse">
+            <div className="aspect-[3/4] bg-warm-200 rounded-sm mb-4" />
+            <div className="h-3 bg-warm-200 rounded w-1/3 mb-2" />
+            <div className="h-5 bg-warm-300 rounded w-2/3" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
 
-const Collections = dynamic(() => import("@/components/Collections"), {
-  loading: () => <div className="h-96 bg-warm-50 animate-pulse" />,
-});
-
-const CompleteCollection = dynamic(() => import("@/components/CompleteCollection"), {
-  loading: () => <div className="h-96 bg-warm-50 animate-pulse" />,
-});
+const FeaturedCollection = dynamic(
+  () => import("@/components/FeaturedCollection"),
+  { loading: () => <CollectionSkeleton /> }
+);
+const Collections = dynamic(
+  () => import("@/components/Collections"),
+  { loading: () => <CollectionSkeleton /> }
+);
+const CompleteCollection = dynamic(
+  () => import("@/components/CompleteCollection"),
+  { loading: () => <CollectionSkeleton /> }
+);
 
 export default function Home() {
   useEffect(() => {
@@ -62,7 +80,7 @@ export default function Home() {
               <Link
                 href="/shop"
                 aria-label="Explore our complete luxury fashion collection"
-                className="group inline-flex items-center text-warm-900 border border-warm-900 px-10 py-4 hover:bg-warm-900 hover:text-warm-50 transition-all duration-300 text-xs uppercase tracking-[0.2em] font-light hover:shadow-lg rounded-sm hover:border-gold-500/30"
+                className="group inline-flex items-center text-warm-900 border border-warm-900 px-10 py-4 hover:bg-warm-900 hover:text-warm-50 transition-colors duration-150 text-xs uppercase tracking-[0.2em] font-light hover:shadow-lg rounded-sm hover:border-gold-500/30 active:scale-95 hover:scale-105"
               >
                 Explore Collection
                 <motion.svg

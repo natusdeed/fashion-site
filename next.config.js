@@ -1,6 +1,18 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: true, // only used when ANALYZE=true; wrapper applied conditionally below
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Force production build to be fresh (helps avoid Vercel cache issues)
+  generateBuildId: async () => `build-${Date.now()}`,
+  // Remove console.* in production for smaller bundles
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // SWC minification (default in Next.js 14, explicit for clarity)
+  swcMinify: true,
   images: {
     // Optimize image formats: WebP with JPG fallback
     formats: ['image/avif', 'image/webp'],
@@ -23,8 +35,6 @@ const nextConfig = {
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
-  // Enable SWC minification for smaller bundles
-  swcMinify: true,
   // Optimize production builds
   productionBrowserSourceMaps: false,
   // Headers for caching strategies
@@ -38,10 +48,22 @@ const nextConfig = {
             value: 'on'
           },
           {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
+          },
+          {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN'
           },
-        ],
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin'
+          }
+        ]
       },
       {
         // Cache static assets aggressively
@@ -77,4 +99,6 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+// Only wrap with bundle-analyzer when ANALYZE=true to avoid webpack config changes during normal dev/build
+// (fixes "Cannot read properties of undefined (reading 'call')" from stale or analyzer-modified chunks)
+module.exports = process.env.ANALYZE === 'true' ? withBundleAnalyzer(nextConfig) : nextConfig;

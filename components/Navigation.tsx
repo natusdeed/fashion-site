@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-// CartDrawer and QuickViewModal are now dynamically imported in layout.tsx for better code splitting
 import SearchBar from "@/components/SearchBar";
 import { motion } from "framer-motion";
+import { throttle } from "@/lib/utils";
 import { useCart } from "@/lib/cart-context";
 import { useQuickView } from "@/lib/quickview-context";
 import { useWishlist } from "@/lib/wishlist-context";
@@ -52,12 +52,12 @@ export default function Navigation() {
   const pathname = usePathname();
   const shopMenuRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll effect
+  // Handle scroll effect - throttled 16ms (60fps) + passive for instant response
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    }, 16);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -127,7 +127,7 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300 ${
+        className={`sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-150 ${
           isScrolled ? "shadow-sm" : ""
         }`}
       >
@@ -140,7 +140,7 @@ export default function Navigation() {
               aria-label="Lola Drip - Home"
             >
               <span 
-                className="text-4xl tracking-tight transition-all duration-300 group-hover:scale-105 group-hover:text-[#D4AF37] text-[#1a1a1a]"
+                className="text-4xl tracking-tight transition-transform duration-100 group-hover:scale-105 active:scale-95 group-hover:text-[#D4AF37] text-[#1a1a1a]"
                 style={{
                   fontFamily: 'var(--font-playfair), Georgia, serif',
                   fontWeight: 600,
@@ -157,7 +157,7 @@ export default function Navigation() {
                   <Link
                     href={link.href}
                     onMouseEnter={() => link.label === "SHOP" && setIsShopMenuOpen(true)}
-                    className={`group relative px-3 py-2 text-base font-medium tracking-widest uppercase transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
+                    className={`group relative px-3 py-2 text-base font-medium tracking-widest uppercase transition-colors duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
                       isActive(link.href)
                         ? "text-[#D4AF37]"
                         : "text-[#4a4a4a] hover:text-[#1a1a1a]"
@@ -170,18 +170,18 @@ export default function Navigation() {
                     {link.label}
                     {/* Active gold underline */}
                     {isActive(link.href) && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full transition-all duration-300" />
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full transition-transform duration-100" />
                     )}
                     {/* Hover underline (only when not active) - gold underline appearing */}
                     {!isActive(link.href) && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100" />
+                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full scale-x-0 transition-transform duration-150 origin-center group-hover:scale-x-100" />
                     )}
                   </Link>
 
                   {/* Shop Mega Menu */}
                   {link.label === "SHOP" && (
                     <div
-                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-warm-50 border border-warm-200 shadow-2xl transition-all duration-300 ${
+                      className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-warm-50 border border-warm-200 shadow-2xl transition-[transform,opacity] duration-200 ease-out ${
                         isShopMenuOpen
                           ? "opacity-100 visible translate-y-0"
                           : "opacity-0 invisible -translate-y-2 pointer-events-none"
@@ -199,14 +199,14 @@ export default function Navigation() {
                             <div className="relative overflow-hidden rounded-sm mb-2 aspect-square">
                               <Image
                                 src={category.image}
-                                alt={category.name}
+                                alt={`Shop ${category.name} - Lola Drip`}
                                 fill
                                 sizes="(max-width: 768px) 50vw, 200px"
-                                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                className="object-cover transition-transform duration-200 group-hover:scale-110"
                               />
-                              <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
                             </div>
-                            <p className="text-sm font-light text-warm-700 group-hover:text-gold-600 transition-colors duration-300 text-center">
+                            <p className="text-sm font-light text-warm-700 group-hover:text-gold-600 transition-colors duration-100 text-center">
                               {category.name}
                             </p>
                           </Link>
@@ -223,7 +223,7 @@ export default function Navigation() {
               {/* Search Icon */}
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
+                className="p-2 rounded-full transition-transform duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 active:scale-95 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Search"
               >
                 <svg
@@ -242,7 +242,7 @@ export default function Navigation() {
               {/* Wishlist Icon with Badge */}
               <Link
                 href="/wishlist"
-                className="relative p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
+                className="relative p-2 rounded-full transition-transform duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 active:scale-95 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Wishlist"
               >
                 <svg
@@ -271,7 +271,7 @@ export default function Navigation() {
               {/* User Icon */}
               <Link
                 href="/account"
-                className="p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
+                className="p-2 rounded-full transition-transform duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 active:scale-95 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Account"
               >
                 <svg
@@ -290,7 +290,7 @@ export default function Navigation() {
               {/* Shopping Cart Icon with Badge */}
               <motion.button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
+                className="relative p-2 rounded-full transition-transform duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 active:scale-95 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
                 aria-label="Shopping Cart"
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
@@ -347,7 +347,7 @@ export default function Navigation() {
 
         {/* Expandable Search Bar */}
         <div
-          className={`overflow-visible transition-all duration-500 ease-in-out ${
+          className={`overflow-visible transition-all duration-200 ease-out ${
             isSearchOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
@@ -514,10 +514,14 @@ export default function Navigation() {
                 </svg>
                 Account
               </Link>
-              <Link
-                href="/cart"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center px-4 py-3.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 min-h-[44px]"
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsCartOpen(true);
+                }}
+                className="flex items-center w-full px-4 py-3.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 min-h-[44px] text-left"
+                aria-label="Open shopping cart"
               >
                 <svg
                   className="w-5 h-5 mr-3"
@@ -536,7 +540,7 @@ export default function Navigation() {
                     {cartCount}
                   </span>
                 )}
-              </Link>
+              </button>
             </motion.div>
           </div>
         </motion.div>

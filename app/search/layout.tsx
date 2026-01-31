@@ -9,9 +9,12 @@ export const metadata: Metadata = {
     "fashion search",
     "product search",
   ],
+  alternates: {
+    canonical: "/search",
+  },
   robots: {
-    index: false, // Don't index search pages
-    follow: false,
+    index: false, // Don't index search result pages to avoid duplicate content
+    follow: true,
   },
 };
 

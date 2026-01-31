@@ -108,7 +108,7 @@ export default function MobileBottomNav() {
               <button
                 key={item.href}
                 onClick={item.onClick}
-                className={`relative flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2 rounded-sm transition-colors duration-200 ${
+                className={`relative flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2 rounded-sm transition-colors duration-100 active:scale-95 ${
                   isActive(item.href)
                     ? "text-gold-600"
                     : "text-warm-600 hover:text-warm-900"
@@ -146,7 +146,7 @@ export default function MobileBottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2 rounded-sm transition-colors duration-200 ${
+              className={`relative flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2 rounded-sm transition-colors duration-100 active:scale-95 ${
                 isActive(item.href)
                   ? "text-gold-600"
                   : "text-warm-600 hover:text-warm-900"

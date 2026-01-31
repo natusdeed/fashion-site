@@ -51,7 +51,6 @@ export default function NewsletterPopup() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle newsletter subscription logic here
-    console.log("Newsletter subscription:", email);
     // Close popup and set cookie
     handleClose();
     setEmail("");

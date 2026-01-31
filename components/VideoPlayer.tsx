@@ -524,7 +524,7 @@ export default function VideoPlayer({
         <div className="absolute inset-0 z-10">
           <Image
             src={poster}
-            alt="Video poster"
+            alt="Lola Drip - Luxury Fashion Video"
             fill
             className="object-cover"
             priority

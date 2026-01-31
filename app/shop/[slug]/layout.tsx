@@ -1,13 +1,29 @@
 import type { Metadata } from "next";
-import { getProductBySlug } from "@/data/products";
+import { getProductBySlug, getCategoryBySlug } from "@/data/products";
+
+const SITE_URL = "https://loladrip.com";
 
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
+  const category = getCategoryBySlug(params.slug);
+  if (category) {
+    return {
+      title: `${category.name} | Shop | Lola Drip`,
+      description: `Shop ${category.name} at Lola Drip. Premium luxury fashion with exceptional craftsmanship and timeless elegance.`,
+      openGraph: {
+        title: `${category.name} | Lola Drip`,
+        description: `Shop ${category.name} – luxury women's fashion.`,
+        url: `${SITE_URL}/shop/${params.slug}`,
+        siteName: "Lola Drip",
+      },
+      alternates: { canonical: `/shop/${params.slug}` },
+    };
+  }
+
   const product = getProductBySlug(params.slug);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yourbrand.com";
 
   if (!product) {
     return {
@@ -16,12 +32,15 @@ export async function generateMetadata({
     };
   }
 
-  const productImage = product.images?.[0] || product.imageUrl || "/product-placeholder.jpg";
-  const productDescription = product.description || product.longDescription || `Discover ${product.name} - ${product.category} from Luxe Couture. Premium luxury fashion with exceptional craftsmanship and timeless elegance.`;
+  const productImage = product.images?.[0] || product.imageUrl || "/images/shop.header.png";
+  const productDescription =
+    product.description ||
+    product.longDescription ||
+    `Discover ${product.name} - ${product.category} at Lola Drip. Premium luxury fashion with exceptional craftsmanship and timeless elegance.`;
   const priceFormatted = `$${product.price.toLocaleString()}`;
 
   return {
-    title: `${product.name} | ${product.category} | Luxe Couture`,
+    title: `${product.name} | ${product.category}`,
     description: productDescription,
     keywords: [
       product.name.toLowerCase(),
@@ -29,27 +48,27 @@ export async function generateMetadata({
       "luxury fashion",
       "designer clothing",
       "premium quality",
-      "luxe couture",
+      "Lola Drip",
       priceFormatted,
     ],
     openGraph: {
-      title: `${product.name} | Luxe Couture`,
+      title: `${product.name} | Lola Drip`,
       description: productDescription,
       type: "website",
-      url: `${siteUrl}/shop/${params.slug}`,
+      url: `${SITE_URL}/shop/${params.slug}`,
       images: [
         {
           url: productImage,
           width: 1200,
           height: 1200,
-          alt: product.name,
+          alt: `${product.name} - ${product.category} - Lola Drip`,
         },
       ],
-      siteName: "Luxe Couture",
+      siteName: "Lola Drip",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} | ${priceFormatted} | Luxe Couture`,
+      title: `${product.name} | ${priceFormatted} | Lola Drip`,
       description: productDescription,
       images: [productImage],
     },

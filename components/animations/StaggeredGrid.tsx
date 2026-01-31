@@ -16,27 +16,26 @@ export default function StaggeredGrid({
   staggerDelay = 50,
   threshold = 0.1,
 }: StaggeredGridProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Start visible so products show immediately (fixes shop grid appearing empty)
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
         }
       },
-      { threshold }
+      {
+        threshold,
+        rootMargin: "0px 0px 300px 0px",
+      }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    const el = ref.current;
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
   }, [threshold]);
 
   const containerVariants = {
@@ -44,7 +43,7 @@ export default function StaggeredGrid({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: staggerDelay / 1000, // Convert ms to seconds
+        staggerChildren: staggerDelay / 1000,
       },
     },
   };
@@ -54,11 +53,12 @@ export default function StaggeredGrid({
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-      },
+      transition: { duration: 0.5 },
     },
   };
+
+  // Normalize children to array (handles single array child from products.map())
+  const items = Array.isArray(children) ? children : [children];
 
   return (
     <motion.div
@@ -68,7 +68,7 @@ export default function StaggeredGrid({
       animate={isVisible ? "visible" : "hidden"}
       className={className}
     >
-      {children.map((child, index) => (
+      {items.map((child, index) => (
         <motion.div key={index} variants={itemVariants}>
           {child}
         </motion.div>

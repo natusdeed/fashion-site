@@ -31,7 +31,7 @@ export default function CartDrawer() {
     setTimeout(() => {
       removeFromCart(itemId);
       setRemovingItemId(null);
-    }, 200);
+    }, 150);
   };
 
   const handleQuantityChange = (itemId: string, newQuantity: number) => {
@@ -56,7 +56,6 @@ export default function CartDrawer() {
     // Navigate to checkout page
     setIsCartOpen(false);
     // You can add navigation logic here
-    console.log("Proceeding to checkout");
   };
 
   return (
@@ -68,7 +67,7 @@ export default function CartDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 bg-warm-900/50 backdrop-blur-sm z-50"
             onClick={() => setIsCartOpen(false)}
           />
@@ -94,7 +93,7 @@ export default function CartDrawer() {
                 </h2>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="p-2 text-warm-600 hover:text-warm-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="p-2 text-warm-600 hover:text-warm-900 transition-colors duration-100 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-sm min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label="Close cart"
                 >
                   <svg
@@ -184,7 +183,7 @@ export default function CartDrawer() {
                           <div className="relative w-20 h-20 flex-shrink-0 bg-warm-100 rounded-sm overflow-hidden">
                             <Image
                               src={item.image}
-                              alt={item.name}
+                              alt={`${item.name} - Lola Drip`}
                               fill
                               sizes="80px"
                               className="object-cover"
@@ -363,7 +362,7 @@ export default function CartDrawer() {
                   <Link
                     href="/shop"
                     onClick={() => setIsCartOpen(false)}
-                    className="inline-block bg-warm-900 text-warm-50 px-8 py-3 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-colors duration-300 min-h-[44px] flex items-center justify-center"
+                    className="inline-block bg-warm-900 text-warm-50 px-8 py-3 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-transform duration-150 min-h-[44px] flex items-center justify-center active:scale-95"
                   >
                     Continue Shopping
                   </Link>
@@ -405,13 +404,13 @@ export default function CartDrawer() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsCartOpen(false)}
-                    className="flex-1 border border-warm-900 text-warm-900 py-3.5 text-sm uppercase tracking-[0.15em] font-light hover:bg-warm-900 hover:text-warm-50 transition-colors duration-300 min-h-[44px]"
+                    className="flex-1 border border-warm-900 text-warm-900 py-3.5 text-sm uppercase tracking-[0.15em] font-light hover:bg-warm-900 hover:text-warm-50 transition-transform duration-150 min-h-[44px] active:scale-95"
                   >
                     Continue Shopping
                   </button>
                   <button
                     onClick={handleCheckout}
-                    className="flex-1 bg-warm-900 text-warm-50 py-3.5 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-colors duration-300 min-h-[44px]"
+                    className="flex-1 bg-warm-900 text-warm-50 py-3.5 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-transform duration-150 min-h-[44px] active:scale-95"
                   >
                     Checkout
                   </button>

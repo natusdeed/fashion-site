@@ -6,8 +6,8 @@ import AmbientVideoBackground from "@/components/AmbientVideoBackground";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Background media URLs (use actual file: header.banner.png.png)
-const heroBackgroundImage = "/images/header.banner.png.png";
+// Background media URLs (use actual file: header.banner.png)
+const heroBackgroundImage = "/images/header.banner.png";
 // Optional: Add your ambient video URL here when ready
 // Example: const heroVideoUrl = "/videos/hero-ambient.mp4";
 const heroVideoUrl = ""; // Set this to your video URL when ready
@@ -61,7 +61,7 @@ export default function Hero() {
             fallbackImageUrl={heroBackgroundImage}
             overlayOpacity={0.5}
             playbackRate={0.75}
-            alt="Luxury fashion collection"
+            alt="Lola Drip - Luxury Women's Fashion - Designer Dresses & Elegant Clothing"
             className="w-full h-full"
           />
         ) : (
@@ -69,11 +69,14 @@ export default function Hero() {
           <>
             <Image
               src={heroBackgroundImage}
-              alt="Luxury fashion collection"
+              alt="Lola Drip - Luxury Women's Fashion - Designer Dresses & Elegant Clothing"
               fill
               priority
+              fetchPriority="high"
               quality={85}
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               className="object-cover object-[center_35%]"
             />
             {/* Dark Overlay for Text Readability */}
@@ -103,7 +106,7 @@ export default function Hero() {
             <Link
               href="/shop"
               aria-label="Shop the new collection"
-              className="group inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 md:px-12 md:py-5 hover:bg-gold-accent hover:border-gold-accent transition-all duration-300 ease-in-out text-xs md:text-sm uppercase tracking-[0.2em] font-inter font-light relative overflow-hidden"
+              className="group inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 md:px-12 md:py-5 hover:bg-gold-accent hover:border-gold-accent transition-colors duration-150 ease-out text-xs md:text-sm uppercase tracking-[0.2em] font-inter font-light relative overflow-hidden active:scale-95 hover:scale-105"
             >
               <span className="relative z-10">SHOP THE NEW COLLECTION</span>
               <motion.svg
@@ -128,7 +131,7 @@ export default function Hero() {
       <motion.button
         onClick={scrollToContent}
         aria-label="Scroll to content"
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center text-white/80 hover:text-white transition-colors duration-300 group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-white/80 hover:text-white transition-colors duration-100 group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >

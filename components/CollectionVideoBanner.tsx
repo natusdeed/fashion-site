@@ -320,12 +320,12 @@ export default function CollectionVideoBanner({
         >
           <Image
             src={imageUrl}
-            alt={collectionName}
+            alt={`${collectionName} - Lola Drip`}
             fill
             priority
-            quality={90}
+            quality={95}
             sizes="100vw"
-            className="object-cover"
+            className="object-cover contrast-[1.08] saturate-[1.12]"
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
@@ -357,11 +357,13 @@ export default function CollectionVideoBanner({
         )}
       </div>
 
-      {/* Dark Overlay Gradient for Text Readability */}
-      <div
-        className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/50 to-black/60"
-        style={{ backgroundColor: overlayColor }}
-      />
+      {/* Dark Overlay for Text Readability (hidden when overlayOpacity is 0) */}
+      {overlayOpacity > 0 && (
+        <div
+          className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/50 to-black/60"
+          style={{ backgroundColor: overlayColor }}
+        />
+      )}
 
       {/* Content Overlay */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -390,7 +392,7 @@ export default function CollectionVideoBanner({
             <Link
               href={ctaLink}
               aria-label={`${ctaText} - ${collectionName}`}
-              className="group inline-flex items-center justify-center bg-gold-500 text-warm-900 px-6 py-3 md:px-8 md:py-4 hover:bg-gold-400 transition-all duration-300 ease-in-out text-xs md:text-sm uppercase tracking-[0.2em] font-light rounded-sm shadow-lg hover:shadow-xl hover:shadow-gold-500/20 min-h-[44px]"
+              className="group inline-flex items-center justify-center bg-gold-500 text-warm-900 px-6 py-3 md:px-8 md:py-4 hover:bg-gold-400 transition-transform duration-150 ease-out text-xs md:text-sm uppercase tracking-[0.2em] font-light rounded-sm shadow-lg hover:shadow-xl hover:shadow-gold-500/20 min-h-[44px] active:scale-95 hover:scale-105"
             >
               <span className="relative z-10">{ctaText}</span>
               <motion.svg

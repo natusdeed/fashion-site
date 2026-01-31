@@ -84,7 +84,7 @@ export default function Collections() {
               <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110">
                 <Image
                   src={collection.image}
-                  alt={collection.title}
+                  alt={`${collection.title} - Collection - Lola Drip`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"

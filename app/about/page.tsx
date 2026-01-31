@@ -62,7 +62,7 @@ export default function About() {
         >
           <Image
             src="/images/about-header.png.jpg"
-            alt="About us hero"
+            alt="Lola Drip - About Us - Our Story - Luxury Women's Fashion"
             fill
             priority
             quality={90}
@@ -126,7 +126,7 @@ export default function About() {
               >
                 <Image
                   src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80"
-                  alt="Fashion collection"
+                  alt="Lola Drip - Fashion Collection - Luxury Women's Clothing"
                   fill
                   loading="lazy"
                   quality={85}
@@ -241,7 +241,7 @@ export default function About() {
               >
                 <Image
                   src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=80"
-                  alt="Fashion elegance"
+                  alt="Lola Drip - Fashion Elegance - Luxury Evening Wear"
                   fill
                   loading="lazy"
                   quality={85}

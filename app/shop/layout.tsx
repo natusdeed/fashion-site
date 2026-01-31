@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Shop | Premium Women's Fashion Collection",
-  description: "Browse our complete collection of premium women's fashion. Discover elegant dresses, sophisticated ready-to-wear pieces, and exclusive accessories. Timeless elegance meets contemporary style.",
+  description:
+    "Shop Lola Drip: designer dresses, evening wear, tops, bottoms & outerwear. Premium women's fashion, $299–$1,299. Free shipping on orders over $200.",
   keywords: [
     "women's fashion",
     "fashion collection",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Shop | Lola Drip - Premium Women's Fashion",
-    description: "Browse our complete collection of premium women's fashion. Discover elegant styles and timeless pieces.",
+    description: "Shop Lola Drip: designer dresses, evening wear, tops, bottoms & outerwear. Premium women's fashion. Free shipping on orders over $200.",
     type: "website",
     images: [
       {

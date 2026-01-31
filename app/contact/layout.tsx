@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact Us | Get in Touch with Lola Drip",
-  description: "Get in touch with Lola Drip. We're here to help with any questions about our fashion collection, orders, or styling advice. Reach out to our team today.",
+  description:
+    "Contact Lola Drip: email hello@loladrip.com, phone (571) 234-2051. Questions about orders, shipping, returns, or styling? We're here to help.",
   keywords: [
     "contact",
     "customer service",
