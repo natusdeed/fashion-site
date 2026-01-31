@@ -6,6 +6,7 @@ import CollectionVideoBanner from "@/components/CollectionVideoBanner";
 import Link from "next/link";
 import { useEffect } from "react";
 import { initSmoothScroll } from "@/lib/smooth-scroll";
+import { getFallbackProducts } from "@/data/products";
 import type { Product } from "@/data/products";
 
 const PER_PAGE = 12;
@@ -17,10 +18,12 @@ interface ShopGridProps {
 }
 
 export default function ShopGrid({
-  products,
+  products: productsProp,
   currentPage,
   totalPages,
 }: ShopGridProps) {
+  const products = productsProp?.length > 0 ? productsProp : getFallbackProducts().slice(0, PER_PAGE);
+
   useEffect(() => {
     initSmoothScroll();
   }, []);
@@ -38,26 +41,32 @@ export default function ShopGrid({
 
       <div className="pt-20 pb-40 px-6 lg:px-8 bg-warm-50">
         <div className="max-w-7xl mx-auto">
-          <StaggeredGrid
-            staggerDelay={50}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12"
-          >
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                slug={product.slug}
-                name={product.name}
-                price={product.price}
-                originalPrice={product.originalPrice}
-                isOnSale={product.isOnSale}
-                category={product.category}
-                imageUrl={product.imageUrl}
-                imageAlt={product.imageAlt}
-                videoUrl={product.videoUrl}
-              />
-            ))}
-          </StaggeredGrid>
+          {products.length === 0 ? (
+            <p className="text-warm-600 text-center py-16 text-sm uppercase tracking-[0.2em]">
+              No products found
+            </p>
+          ) : (
+            <StaggeredGrid
+              staggerDelay={50}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12"
+            >
+              {products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  slug={product.slug}
+                  name={product.name}
+                  price={product.price}
+                  originalPrice={product.originalPrice}
+                  isOnSale={product.isOnSale}
+                  category={product.category}
+                  imageUrl={product.imageUrl}
+                  imageAlt={product.imageAlt}
+                  videoUrl={product.videoUrl}
+                />
+              ))}
+            </StaggeredGrid>
+          )}
 
           {/* Pagination - rel next/prev set in page metadata */}
           {totalPages > 1 && (

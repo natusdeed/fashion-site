@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+const PLACEHOLDER_IMAGE = "/images/placeholder-product.svg";
+
 interface LazyImageProps {
   src: string;
   alt: string;
@@ -11,6 +13,8 @@ interface LazyImageProps {
   sizes?: string;
   className?: string;
   priority?: boolean;
+  /** On load error, show this image instead of "Failed to load" */
+  fallbackSrc?: string;
 }
 
 export default function LazyImage({
@@ -20,13 +24,27 @@ export default function LazyImage({
   sizes,
   className = "",
   priority = false,
+  fallbackSrc = PLACEHOLDER_IMAGE,
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
+
+  const displaySrc = useFallback && fallbackSrc ? fallbackSrc : (src || fallbackSrc || PLACEHOLDER_IMAGE);
 
   // Create a tiny blur placeholder
   const blurDataURL =
     "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y1ZjFlOCIvPjwvc3ZnPg==";
+
+  const handleError = () => {
+    if (fallbackSrc && !useFallback) {
+      setUseFallback(true);
+      setHasError(false);
+      setIsLoaded(false);
+    } else {
+      setHasError(true);
+    }
+  };
 
   if (hasError) {
     return (
@@ -54,9 +72,8 @@ export default function LazyImage({
         />
       )}
 
-      {/* Actual image with responsive srcset - Optimized for WebP with JPG fallback */}
       <Image
-        src={src}
+        src={displaySrc}
         alt={alt}
         fill={fill}
         sizes={sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
@@ -64,13 +81,11 @@ export default function LazyImage({
           isLoaded ? "opacity-100" : "opacity-0"
         } ${fill ? "object-cover" : ""}`}
         onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
+        onError={handleError}
         loading={priority ? undefined : "lazy"}
         quality={85}
         placeholder="blur"
         blurDataURL={blurDataURL}
-        // Next.js automatically handles WebP/AVIF with JPG fallback
-        // No need for manual srcSet - Next.js Image handles this
       />
     </div>
   );

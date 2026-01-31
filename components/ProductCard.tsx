@@ -278,8 +278,8 @@ export default function ProductCard({
           onClick={handleMobileVideoToggle}
           onTouchStart={handleMobileVideoToggle}
         >
-          {/* Image Display */}
-          {imageUrl && (
+          {/* Image Display - use placeholder if imageUrl missing or broken */}
+          {(imageUrl || "/images/placeholder-product.svg") && (
             <div
               className={`absolute inset-0 transition-opacity duration-150 ${
                 (isHovered && hasVideo && !isMobileVideoActive) || (isMobileVideoActive && hasVideo)
@@ -288,11 +288,12 @@ export default function ProductCard({
               }`}
             >
               <LazyImage
-                src={imageUrl}
+                src={imageUrl || "/images/placeholder-product.svg"}
                 alt={imageAlt || name}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="object-cover transition-transform duration-200 ease-out group-hover:scale-105"
+                fallbackSrc="/images/placeholder-product.svg"
               />
             </div>
           )}
