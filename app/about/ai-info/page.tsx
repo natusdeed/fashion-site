@@ -174,7 +174,7 @@ export default function AIInfoPage() {
             <li><strong>Website:</strong> <a href="https://loladrip.com" className="text-gold-600 hover:underline">https://loladrip.com</a></li>
             <li><strong>Email:</strong> <a href="mailto:hello@loladrip.com" className="text-gold-600 hover:underline">hello@loladrip.com</a></li>
             <li><strong>Phone:</strong> <a href="tel:+15712342051" className="text-gold-600 hover:underline">(571) 234-2051</a></li>
-            <li><strong>Hours:</strong> Monday–Friday, 9:00 AM – 5:00 PM CST</li>
+            <li><strong>Hours:</strong> Monday–Friday 9:00 AM – 6:00 PM; Saturday 10:00 AM – 4:00 PM; Sunday closed.</li>
           </ul>
           <p className="mt-6">
             <Link href="/contact" className="inline-block bg-warm-900 text-warm-50 px-6 py-3 text-sm uppercase tracking-widest font-light hover:bg-warm-800 transition-colors">

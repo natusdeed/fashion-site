@@ -225,76 +225,33 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Address Card */}
+              {/* No physical location */}
               <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-all duration-300 hover:shadow-lg">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
                       <svg className="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                       </svg>
                     </div>
                   </div>
                   <div>
                     <h3 className="text-xs font-light text-warm-600 uppercase tracking-[0.2em] mb-2">
-                      Address
+                      Location
                     </h3>
                     <p className="text-warm-800 font-light text-lg leading-relaxed">
-                      123 Fashion Avenue<br />
-                      New York, NY 10001<br />
-                      United States
+                      Online only. Based in Richmond, Texas 77407. We ship worldwide.
                     </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Office Hours Card */}
-              <div className="bg-white p-6 border border-warm-200 hover:border-gold-400 transition-all duration-300 hover:shadow-lg">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xs font-light text-warm-600 uppercase tracking-[0.2em] mb-3">
-                      Office Hours
-                    </h3>
-                    <div className="text-warm-800 font-light leading-relaxed space-y-1">
-                      <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                      <p>Saturday: 10:00 AM - 4:00 PM</p>
-                      <p>Sunday: Closed</p>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Embedded Map Section */}
+            {/* Tagline */}
             <div className="mt-10 pt-10 border-t border-warm-200">
-              <h3 className="text-2xl font-playfair text-warm-900 mb-4">
-                Visit Our Boutique
-              </h3>
-              <p className="text-warm-700 font-light leading-relaxed mb-6">
-                Experience our collections in person at our flagship boutique.
-                Our expert stylists are ready to help you find the perfect piece.
+              <p className="text-warm-700 font-light leading-relaxed text-lg italic">
+                An online boutique delivering curated styles straight to your door.
               </p>
-              <div className="relative h-[300px] rounded-sm overflow-hidden border border-warm-200">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.184133389887!2d-73.98811768459399!3d40.748440979327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0"
-                  title="Lola Drip Boutique Location"
-                />
-              </div>
             </div>
           </div>
 

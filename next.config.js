@@ -11,8 +11,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // SWC minification (default in Next.js 14, explicit for clarity)
-  swcMinify: true,
   images: {
     // Optimize image formats: WebP with JPG fallback
     formats: ['image/avif', 'image/webp'],

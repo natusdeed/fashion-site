@@ -82,7 +82,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-warm-300 text-sm leading-relaxed mb-6 font-light">
-              Discover exquisite luxury women&apos;s fashion with our curated collection of designer pieces. Timeless elegance, exceptional craftsmanship.
+              An online boutique delivering curated styles straight to your door.
             </p>
             {/* Newsletter Signup */}
             <div>

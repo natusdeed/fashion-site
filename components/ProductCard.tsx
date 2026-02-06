@@ -44,11 +44,13 @@ export default function ProductCard({
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMobileVideoActive, setIsMobileVideoActive] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [hasVideoError, setHasVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
   const isWishlisted = id ? isInWishlist(id) : false;
-  const hasVideo = Boolean(videoUrl);
+  // Only show video if URL exists and hasn't errored
+  const hasVideo = Boolean(videoUrl) && !hasVideoError;
 
   // Intersection Observer to stop video when out of viewport
   useEffect(() => {
@@ -87,9 +89,23 @@ export default function ProductCard({
       setIsVideoLoaded(true);
     };
 
-    const handleError = (e: Event) => {
-      console.error('Video load error:', e);
+    const handleError = () => {
+      // Extract meaningful error info from MediaError
+      const mediaError = video.error;
+      if (mediaError) {
+        const errorMessages: Record<number, string> = {
+          1: 'MEDIA_ERR_ABORTED - Video loading was aborted',
+          2: 'MEDIA_ERR_NETWORK - Network error while loading video',
+          3: 'MEDIA_ERR_DECODE - Video decoding failed',
+          4: 'MEDIA_ERR_SRC_NOT_SUPPORTED - Video format not supported',
+        };
+        // Only log in development, silently fail in production
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`Video error for ${slug}:`, errorMessages[mediaError.code] || `Unknown error (code: ${mediaError.code})`);
+        }
+      }
       setIsVideoLoaded(false);
+      setHasVideoError(true); // Disable video functionality for this product
     };
 
     video.addEventListener('loadeddata', handleLoadedData);
@@ -118,9 +134,10 @@ export default function ProductCard({
           .then(() => {
             setIsVideoPlaying(true);
           })
-          .catch((error) => {
-            console.error('Video play error:', error);
+          .catch(() => {
+            // Video play failed (likely autoplay blocked or video error)
             setIsVideoPlaying(false);
+            setHasVideoError(true);
           });
       }
     } else {
@@ -158,6 +175,7 @@ export default function ProductCard({
       // Play video
       video.play().catch(() => {
         setIsVideoPlaying(false);
+        setHasVideoError(true);
       });
       setIsMobileVideoActive(true);
       setIsVideoPlaying(true);
@@ -311,13 +329,25 @@ export default function ProductCard({
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               onPlay={() => setIsVideoPlaying(true)}
               onPause={() => setIsVideoPlaying(false)}
               onLoadedData={() => setIsVideoLoaded(true)}
               onError={(e) => {
-                console.error('Video error:', e);
+                // Extract meaningful error from MediaError object
+                const video = e.currentTarget;
+                const mediaError = video.error;
+                if (mediaError && process.env.NODE_ENV === 'development') {
+                  const errorMessages: Record<number, string> = {
+                    1: 'MEDIA_ERR_ABORTED',
+                    2: 'MEDIA_ERR_NETWORK', 
+                    3: 'MEDIA_ERR_DECODE',
+                    4: 'MEDIA_ERR_SRC_NOT_SUPPORTED',
+                  };
+                  console.warn(`Video failed for ${slug}:`, errorMessages[mediaError.code] || `Code ${mediaError.code}`);
+                }
                 setIsVideoLoaded(false);
+                setHasVideoError(true);
               }}
             />
           )}

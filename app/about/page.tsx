@@ -79,6 +79,9 @@ export default function About() {
           <p className="text-xl md:text-2xl lg:text-3xl text-warm-100 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
             Where Passion Meets Beauty and Sophistication
           </p>
+          <p className="mt-4 text-base md:text-lg text-warm-200/90 font-light tracking-wide max-w-2xl mx-auto">
+            An online boutique delivering curated styles straight to your door.
+          </p>
         </div>
       </section>
 

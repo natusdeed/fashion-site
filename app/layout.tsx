@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
@@ -14,15 +13,7 @@ import PageTransition from "@/components/animations/PageTransition";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Analytics from "@/components/Analytics";
 import DebugErrorHandler from "@/components/DebugErrorHandler";
-
-// Dynamic imports for modals - code splitting for better performance.
-// No custom loading component in root layout (Server Component) to avoid "e[o] is not a function" during RSC serialization.
-const NewsletterPopup = dynamic(
-  () => import("@/components/NewsletterPopup"),
-  { ssr: false }
-);
-const CartDrawer = dynamic(() => import("@/components/CartDrawer"), { ssr: false });
-const QuickViewModal = dynamic(() => import("@/components/QuickViewModal"), { ssr: false });
+import ClientProviders from "./components/ClientProviders";
 
 // Primary font for logo & headings - luxury serif
 const playfair = Playfair_Display({
@@ -210,13 +201,12 @@ export default function RootLayout({
                 <QuickViewProvider>
                   <Navigation />
                   <PageTransition>
-                    <main className="min-h-screen pb-16 md:pb-0">{children}</main>
+                    <ClientProviders>
+                      <main className="min-h-screen pb-16 md:pb-0">{children}</main>
+                    </ClientProviders>
                   </PageTransition>
                   <Footer />
                   <MobileBottomNav />
-                  <NewsletterPopup />
-                  <CartDrawer />
-                  <QuickViewModal />
                 </QuickViewProvider>
               </WishlistProvider>
             </CartProvider>

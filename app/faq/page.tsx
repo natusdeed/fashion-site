@@ -254,8 +254,9 @@ export default function FAQ() {
                 Hours
               </h3>
               <p className="text-warm-800 font-light">
-                Monday – Friday<br />
-                9:00 AM – 5:00 PM CST
+                Monday – Friday: 9:00 AM – 6:00 PM<br />
+                Saturday: 10:00 AM – 4:00 PM<br />
+                Sunday: Closed
               </p>
             </div>
           </div>
