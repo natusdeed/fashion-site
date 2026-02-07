@@ -1,14 +1,54 @@
 import type { Metadata } from "next";
 import { getProductBySlug, getCategoryBySlug } from "@/data/products";
+import { getAccessoryBySlug, getAccessoryCategoryBySlug } from "@/data/accessories";
 
 const SITE_URL = "https://loladrip.com";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const category = getCategoryBySlug(params.slug);
+  const { slug } = await params;
+
+  // Accessory category (handbags, purses, etc.) or "accessories" = all
+  const accessoryCategory = getAccessoryCategoryBySlug(slug) || (slug === "accessories" ? { slug: "accessories", name: "Accessories" } : null);
+  if (accessoryCategory) {
+    return {
+      title: `${accessoryCategory.name} | Shop | Lola Drip`,
+      description: `Shop ${accessoryCategory.name} at Lola Drip. Premium luxury accessories with exceptional craftsmanship and timeless elegance.`,
+      openGraph: {
+        title: `${accessoryCategory.name} | Lola Drip`,
+        description: `Shop ${accessoryCategory.name} – luxury accessories.`,
+        url: `${SITE_URL}/shop/${slug}`,
+        siteName: "Lola Drip",
+      },
+      alternates: { canonical: `/shop/${slug}` },
+    };
+  }
+
+  // Accessory product
+  const accessory = getAccessoryBySlug(slug);
+  if (accessory) {
+    const imageUrl = accessory.image.startsWith("http")
+      ? accessory.image
+      : `${SITE_URL}/images/placeholder-product.svg`;
+    return {
+      title: `${accessory.name} | ${accessory.category} | Lola Drip`,
+      description: accessory.description,
+      openGraph: {
+        title: `${accessory.name} | Lola Drip`,
+        description: accessory.description,
+        type: "website",
+        url: `${SITE_URL}/shop/${slug}`,
+        images: [{ url: imageUrl, width: 1200, height: 1200, alt: accessory.name }],
+        siteName: "Lola Drip",
+      },
+      alternates: { canonical: `/shop/${slug}` },
+    };
+  }
+
+  const category = getCategoryBySlug(slug);
   if (category) {
     return {
       title: `${category.name} | Shop | Lola Drip`,
@@ -16,14 +56,14 @@ export async function generateMetadata({
       openGraph: {
         title: `${category.name} | Lola Drip`,
         description: `Shop ${category.name} – luxury women's fashion.`,
-        url: `${SITE_URL}/shop/${params.slug}`,
+        url: `${SITE_URL}/shop/${slug}`,
         siteName: "Lola Drip",
       },
-      alternates: { canonical: `/shop/${params.slug}` },
+      alternates: { canonical: `/shop/${slug}` },
     };
   }
 
-  const product = getProductBySlug(params.slug);
+  const product = getProductBySlug(slug);
 
   if (!product) {
     return {
@@ -55,7 +95,7 @@ export async function generateMetadata({
       title: `${product.name} | Lola Drip`,
       description: productDescription,
       type: "website",
-      url: `${SITE_URL}/shop/${params.slug}`,
+      url: `${SITE_URL}/shop/${slug}`,
       images: [
         {
           url: productImage,
@@ -73,7 +113,7 @@ export async function generateMetadata({
       images: [productImage],
     },
     alternates: {
-      canonical: `/shop/${params.slug}`,
+      canonical: `/shop/${slug}`,
     },
     other: {
       "product:price:amount": product.price.toString(),

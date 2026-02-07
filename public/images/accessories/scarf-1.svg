@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#f5f1e8"/>
+  <path d="M80 180 Q120 220 160 200 Q200 180 240 200 Q280 220 320 180" stroke="#d4d0c8" stroke-width="2" fill="none"/>
+  <path d="M80 230 Q120 270 160 250 Q200 230 240 250 Q280 270 320 230" stroke="#d4d0c8" stroke-width="2" fill="none"/>
+  <circle cx="200" cy="225" r="25" fill="#d4d0c8" opacity="0.3"/>
+  <text x="200" y="420" text-anchor="middle" fill="#8c8880" font-family="system-ui,sans-serif" font-size="14">Scarf</text>
+</svg>

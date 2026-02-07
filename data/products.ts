@@ -317,12 +317,23 @@ export const products: Product[] = [
 ];
 
 // Category slugs used in URLs (must match Navigation /shop/dresses etc.)
+// Includes accessory categories from data/accessories.ts
 export const CATEGORY_SLUG_TO_NAME: Record<string, string> = {
   dresses: "Dresses",
   outerwear: "Outerwear",
   tops: "Tops",
   bottoms: "Bottoms",
   "evening-wear": "Evening Wear",
+  // Accessory categories
+  accessories: "Accessories",
+  handbags: "Handbags",
+  purses: "Purses",
+  earrings: "Earrings",
+  necklaces: "Necklaces",
+  bracelets: "Bracelets",
+  sunglasses: "Sunglasses",
+  scarves: "Scarves",
+  belts: "Belts",
 };
 
 export type CategoryInfo = { slug: string; name: string };
@@ -367,7 +378,7 @@ export function getRelatedProducts(product: Product, limit: number = 4): Product
 
 /** Fallback list when getAllProducts() returns empty (server/client). Ensures shop grid never shows "No products found" due to build/runtime edge cases. */
 const FALLBACK_LIST: Product[] = [
-  { id: 1, slug: "silk-evening-gown", name: "Silk Evening Gown", price: 1299, category: "Evening Wear", imageUrl: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80", imageAlt: "Silk Evening Gown - Lola Drip", description: "Luxurious silk evening gown.", sizes: ["XS", "S", "M", "L", "XL"], colors: [{ name: "Black", value: "#1a1a1a" }, { name: "Ivory", value: "#faf8f3" }] },
+  { id: 1, slug: "silk-evening-gown", name: "Silk Evening Gown", price: 1299, category: "Evening Wear", imageUrl: "/images/silk-evening-gown.png", imageAlt: "Silk Evening Gown - Red and teal floral evening gown - Lola Drip", description: "Luxurious silk evening gown.", sizes: ["XS", "S", "M", "L", "XL"], colors: [{ name: "Black", value: "#1a1a1a" }, { name: "Ivory", value: "#faf8f3" }] },
   { id: 2, slug: "cashmere-trench-coat", name: "Cashmere Trench Coat", price: 899, category: "Outerwear", imageUrl: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80", imageAlt: "Cashmere Trench Coat - Lola Drip", description: "Classic cashmere trench.", sizes: ["XS", "S", "M", "L", "XL"], colors: [{ name: "Camel", value: "#c19a6b" }, { name: "Navy", value: "#1e3a5f" }] },
   { id: 3, slug: "lace-cocktail-dress", name: "Lace Cocktail Dress", price: 699, category: "Evening Wear", imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80", imageAlt: "Lace Cocktail Dress - Lola Drip", description: "Elegant lace cocktail dress.", sizes: ["XS", "S", "M", "L", "XL"], colors: [{ name: "Ivory", value: "#faf8f3" }, { name: "Black", value: "#1a1a1a" }] },
   { id: 4, slug: "velvet-blazer", name: "Velvet Blazer", price: 449, category: "Tops", imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80", imageAlt: "Velvet Blazer - Lola Drip", description: "Luxurious velvet blazer.", sizes: ["XS", "S", "M", "L", "XL"], colors: [{ name: "Emerald", value: "#064e3b" }, { name: "Burgundy", value: "#722f37" }] },

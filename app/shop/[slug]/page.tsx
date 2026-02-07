@@ -3,14 +3,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { use, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   getProductBySlug,
   getCategoryBySlug,
   getProductsByCategory,
   getRelatedProducts,
 } from "@/data/products";
+import {
+  getAccessoryCategoryBySlug,
+  getAccessoryBySlug,
+  getAccessoriesByCategory,
+  getFeaturedAccessories,
+  getAllAccessories,
+  accessoryCategories,
+  getAccessorySlug,
+  getAccessoryNumericId,
+  accessories,
+} from "@/data/accessories";
 import ProductCard from "@/components/ProductCard";
+import AccessoryCard from "@/components/AccessoryCard";
 
 // Product gallery loaded on interaction - saves ~15-20KB on initial product page load
 const SwipeableImageGallery = dynamic(
@@ -86,14 +99,17 @@ function generateProductSchema(product: {
 }
 
 interface ProductPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export default function ShopSlugPage({ params }: ProductPageProps) {
-  const category = getCategoryBySlug(params.slug);
-  const product = getProductBySlug(params.slug);
+  const { slug } = use(params);
+  const searchParams = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
+  const accessoryCategory = getAccessoryCategoryBySlug(slug);
+  const accessory = getAccessoryBySlug(slug);
+  const category = getCategoryBySlug(slug);
+  const product = getProductBySlug(slug);
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(
@@ -103,10 +119,185 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
   const { addToCart, setIsCartOpen } = useCart();
   const { showToast } = useToast();
 
-  // Category page: breadcrumb + BreadcrumbList + product grid (internal linking)
+  // 1. Accessory category page (handbags, purses, earrings, etc.) or "accessories" = all
+  const isAllAccessories = slug === "accessories";
+  const hasCategoryFilter = isAllAccessories && categoryFromUrl && accessoryCategories.some((c) => c.id === categoryFromUrl);
+  const effectiveCategory = hasCategoryFilter ? categoryFromUrl! : slug;
+  const accessoryCategoryOrAll =
+    accessoryCategory ||
+    (isAllAccessories ? { slug: "accessories", name: "Accessories" } : null);
+  if (accessoryCategoryOrAll) {
+    const categoryAccessories =
+      isAllAccessories && !hasCategoryFilter
+        ? getAllAccessories()
+        : getAccessoriesByCategory(effectiveCategory);
+    const displayName = hasCategoryFilter
+      ? accessoryCategories.find((c) => c.id === categoryFromUrl)?.name ?? "Accessories"
+      : accessoryCategoryOrAll.name;
+    const categoryBreadcrumbSchema = breadcrumbSchemaCategory(slug, displayName);
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryBreadcrumbSchema) }}
+        />
+        <div className="pt-40 pb-40 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <nav className="mb-16" aria-label="Breadcrumb">
+              <ol className="flex items-center space-x-3 text-warm-600 text-xs uppercase tracking-[0.15em] font-light">
+                <li>
+                  <Link href="/" className="hover:text-warm-900 transition-colors duration-100">Home</Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href="/shop" className="hover:text-warm-900 transition-colors duration-100">Shop</Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li className="text-warm-900" aria-current="page">{displayName}</li>
+              </ol>
+            </nav>
+            <h1 className="text-4xl md:text-5xl font-playfair text-warm-900 mb-8 font-normal tracking-[0.02em]">
+              {displayName}
+            </h1>
+            {/* Category filter - for all accessory pages */}
+            <div className="flex flex-wrap gap-3 mb-12">
+              <Link
+                href="/shop/accessories"
+                className={`px-4 py-2 text-sm uppercase tracking-[0.15em] font-light border transition-colors ${
+                  isAllAccessories && !hasCategoryFilter
+                    ? "border-warm-900 text-warm-900 bg-warm-50"
+                    : "border-warm-300 text-warm-600 hover:border-gold-500 hover:text-gold-600"
+                }`}
+              >
+                All
+              </Link>
+              {accessoryCategories.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={isAllAccessories ? `/shop/accessories?category=${cat.id}` : `/shop/${cat.id}`}
+                  className={`px-4 py-2 text-sm uppercase tracking-[0.15em] font-light border transition-colors ${
+                    effectiveCategory === cat.id
+                      ? "border-warm-900 text-warm-900 bg-warm-50"
+                      : "border-warm-300 text-warm-600 hover:border-gold-500 hover:text-gold-600"
+                  }`}
+                >
+                  {cat.icon} {cat.name}
+                </Link>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10">
+              {categoryAccessories.map((a) => (
+                <AccessoryCard key={a.id} accessory={a} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // 2. Accessory product detail page
+  if (accessory) {
+    const accessoryImage = accessory.image.startsWith("http")
+      ? accessory.image
+      : "/images/placeholder-product.svg";
+    const relatedAccessories = getFeaturedAccessories(4).filter((a) => a.id !== accessory.id);
+    const accessorySlug = getAccessoryBySlug(slug) ? slug : getAccessorySlug(accessory);
+    const breadcrumbSchema = breadcrumbSchemaProduct(accessorySlug, accessory.name);
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <div className="pt-40 pb-40 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <nav className="mb-16" aria-label="Breadcrumb">
+              <ol className="flex items-center space-x-3 text-warm-600 text-xs uppercase tracking-[0.15em] font-light">
+                <li>
+                  <Link href="/" className="hover:text-warm-900 transition-colors duration-100">Home</Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href="/shop" className="hover:text-warm-900 transition-colors duration-100">Shop</Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li className="text-warm-900" aria-current="page">{accessory.name}</li>
+              </ol>
+            </nav>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 mb-40">
+              <div className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden rounded-sm">
+                <Image
+                  src={accessoryImage}
+                  alt={accessory.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
+                />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-warm-500 text-xs uppercase tracking-[0.2em] font-light mb-4">
+                  {accessory.category}
+                </p>
+                <h1 className="text-4xl md:text-5xl font-playfair text-warm-900 mb-8 font-normal tracking-[0.02em]">
+                  {accessory.name}
+                </h1>
+                <div className="flex items-center gap-2 mb-8">
+                  <span className="text-2xl text-warm-700 font-light">${accessory.price.toFixed(2)}</span>
+                  {accessory.originalPrice && (
+                    <span className="text-lg text-warm-500 line-through">
+                      ${accessory.originalPrice.toFixed(2)}
+                    </span>
+                  )}
+                </div>
+                <p className="text-warm-700 leading-relaxed mb-12 font-light">{accessory.description}</p>
+                {accessory.inStock && (
+                  <button
+                    onClick={() => {
+                      const accessoryIndex = accessories.findIndex((a) => a.id === accessory.id) ?? 0;
+                      addToCart({
+                        productId: getAccessoryNumericId(accessory, accessoryIndex >= 0 ? accessoryIndex : 0),
+                        name: accessory.name,
+                        price: accessory.price,
+                        image: accessoryImage,
+                        size: "One Size",
+                        color: "Default",
+                        colorValue: "#000000",
+                        slug: getAccessorySlug(accessory),
+                      });
+                      showToast(`${accessory.name} added to cart`, "success");
+                      setIsCartOpen(true);
+                    }}
+                    className="w-full bg-warm-900 text-warm-50 px-10 py-5 md:py-6 hover:bg-warm-800 text-sm uppercase tracking-[0.3em] font-light rounded-sm border border-gold-500/20 min-h-[56px] flex items-center justify-center"
+                  >
+                    Add to Bag
+                  </button>
+                )}
+              </div>
+            </div>
+            {relatedAccessories.length > 0 && (
+              <div className="mt-24 pt-16 border-t border-warm-200">
+                <h2 className="text-2xl md:text-3xl font-playfair text-warm-900 mb-10 font-normal tracking-[0.02em]">
+                  You May Also Like
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                  {relatedAccessories.map((a) => (
+                    <AccessoryCard key={a.id} accessory={a} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // 3. Product category page (dresses, outerwear, etc.)
   if (category) {
     const categoryProducts = getProductsByCategory(category.name);
-    const categoryBreadcrumbSchema = breadcrumbSchemaCategory(params.slug, category.name);
+    const categoryBreadcrumbSchema = breadcrumbSchemaCategory(slug, category.name);
     return (
       <>
         <script
@@ -183,7 +374,7 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
     ? [product.imageUrl]
     : [];
 
-  const breadcrumbSchema = breadcrumbSchemaProduct(params.slug, product.name);
+  const breadcrumbSchema = breadcrumbSchemaProduct(slug, product.name);
   const productSchema = generateProductSchema(product);
   const relatedProducts = getRelatedProducts(product, 4);
 

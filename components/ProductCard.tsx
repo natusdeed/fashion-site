@@ -118,7 +118,7 @@ export default function ProductCard({
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('error', handleError);
     };
-  }, [hasVideo]);
+  }, [hasVideo, slug]);
 
   // Handle desktop hover to play/pause video
   useEffect(() => {

@@ -38,9 +38,15 @@ const shopCategories = [
     href: "/shop/evening-wear",
     image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80",
   },
+  {
+    name: "Accessories",
+    href: "/shop/accessories",
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80",
+  },
 ];
 
 export default function Navigation() {
+  const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -51,6 +57,9 @@ export default function Navigation() {
   const wishlistCount = getWishlistCount();
   const pathname = usePathname();
   const shopMenuRef = useRef<HTMLDivElement>(null);
+
+  // Defer path-dependent UI until after mount to avoid hydration mismatch
+  useEffect(() => setMounted(true), []);
 
   // Handle scroll effect - throttled 16ms (60fps) + passive for instant response
   useEffect(() => {
@@ -112,8 +121,8 @@ export default function Navigation() {
   const navLinks = [
     { href: "/", label: "HOME" },
     { href: "/shop", label: "SHOP" },
+    { href: "/shop/accessories", label: "ACCESSORIES" },
     { href: "/about", label: "ABOUT" },
-    { href: "/contact", label: "CONTACT" },
   ];
 
   const isActive = (href: string) => {
@@ -122,7 +131,6 @@ export default function Navigation() {
     }
     return pathname.startsWith(href);
   };
-
 
   return (
     <>
@@ -158,7 +166,7 @@ export default function Navigation() {
                     href={link.href}
                     onMouseEnter={() => link.label === "SHOP" && setIsShopMenuOpen(true)}
                     className={`group relative px-3 py-2 text-base font-medium tracking-widest uppercase transition-colors duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded-sm ${
-                      isActive(link.href)
+                      mounted && isActive(link.href)
                         ? "text-[#D4AF37]"
                         : "text-[#4a4a4a] hover:text-[#1a1a1a]"
                     }`}
@@ -168,12 +176,12 @@ export default function Navigation() {
                     }}
                   >
                     {link.label}
-                    {/* Active gold underline */}
-                    {isActive(link.href) && (
+                    {/* Active gold underline - only after mount to avoid hydration mismatch */}
+                    {mounted && isActive(link.href) && (
                       <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full transition-transform duration-100" />
                     )}
                     {/* Hover underline (only when not active) - gold underline appearing */}
-                    {!isActive(link.href) && (
+                    {mounted && !isActive(link.href) && (
                       <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] rounded-full scale-x-0 transition-transform duration-150 origin-center group-hover:scale-x-100" />
                     )}
                   </Link>
@@ -427,7 +435,7 @@ export default function Navigation() {
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
                       className={`block px-4 py-3.5 text-base font-light tracking-[0.15em] uppercase transition-all duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold-500 min-h-[44px] flex items-center ${
-                        isActive(link.href)
+                        mounted && isActive(link.href)
                           ? "text-warm-900 bg-warm-100 border-l-4 border-gold-500"
                           : "text-warm-600 hover:text-warm-900 hover:bg-warm-100"
                       }`}

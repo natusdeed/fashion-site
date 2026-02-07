@@ -18,7 +18,7 @@ const collections = [
   {
     title: "Accessories",
     image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
-    href: "/shop?category=accessories",
+    href: "/shop/accessories",
   },
 ];
 

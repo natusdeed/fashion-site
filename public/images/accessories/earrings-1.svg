@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#f5f1e8"/>
+  <circle cx="160" cy="220" r="35" stroke="#d4d0c8" stroke-width="2" fill="none"/>
+  <circle cx="240" cy="220" r="35" stroke="#d4d0c8" stroke-width="2" fill="none"/>
+  <circle cx="200" cy="300" r="20" fill="#d4d0c8" opacity="0.4"/>
+  <text x="200" y="420" text-anchor="middle" fill="#8c8880" font-family="system-ui,sans-serif" font-size="14">Earrings</text>
+</svg>

@@ -38,6 +38,10 @@ const CompleteCollection = dynamic(
   () => import("@/components/CompleteCollection"),
   { loading: () => <CollectionSkeleton /> }
 );
+const FeaturedAccessories = dynamic(
+  () => import("@/components/FeaturedAccessories"),
+  { loading: () => <CollectionSkeleton /> }
+);
 
 export default function Home() {
   useEffect(() => {
@@ -61,6 +65,11 @@ export default function Home() {
       {/* Complete Collection Section with Filters */}
       <FadeInOnScroll delay={200}>
         <CompleteCollection />
+      </FadeInOnScroll>
+
+      {/* Featured Accessories Section */}
+      <FadeInOnScroll delay={250}>
+        <FeaturedAccessories />
       </FadeInOnScroll>
 
       {/* CTA Section */}

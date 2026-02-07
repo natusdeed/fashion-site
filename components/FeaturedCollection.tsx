@@ -14,8 +14,8 @@ const featuredItems: FeaturedItem[] = [
   {
     name: "Silk Evening Gown",
     price: 1299,
-    imageUrl: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&q=80",
-    imageAlt: "Elegant silk evening gown",
+    imageUrl: "/images/silk-evening-gown.png",
+    imageAlt: "Elegant red and teal silk evening gown",
   },
   {
     name: "Cashmere Trench Coat",

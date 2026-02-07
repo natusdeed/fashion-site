@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllProducts, getCategories } from "@/data/products";
+import { getAllAccessories, getAccessorySlug } from "@/data/accessories";
 
 const BASE_URL = "https://loladrip.com";
 
@@ -56,12 +57,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // Accessory pages: priority 0.6
+  const accessories = getAllAccessories();
+  const accessoryPages: MetadataRoute.Sitemap = accessories.map((accessory) => ({
+    url: `${BASE_URL}/shop/${getAccessorySlug(accessory)}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
   // Static pages: priority 0.4
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE_URL}/about/ai-info`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE_URL}/search`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.4 },
+    { url: `${BASE_URL}/accessories`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE_URL}/wishlist`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.4 },
     { url: `${BASE_URL}/video-demo`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
@@ -72,5 +83,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/terms-of-service`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.4 },
   ];
 
-  return [...homePage, ...shopIndex, ...categoryPages, ...productPages, ...staticPages];
+  return [...homePage, ...shopIndex, ...categoryPages, ...productPages, ...accessoryPages, ...staticPages];
 }

@@ -28,6 +28,16 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'replicate.delivery',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pb.replicate.delivery',
+        pathname: '/**',
+      },
     ],
   },
   // Performance optimizations

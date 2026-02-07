@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#f5f1e8"/>
+  <line x1="160" y1="180" x2="160" y2="260" stroke="#d4d0c8" stroke-width="2"/>
+  <line x1="240" y1="180" x2="240" y2="260" stroke="#d4d0c8" stroke-width="2"/>
+  <circle cx="160" cy="270" r="15" fill="#d4d0c8" opacity="0.5"/>
+  <circle cx="240" cy="270" r="15" fill="#d4d0c8" opacity="0.5"/>
+  <text x="200" y="420" text-anchor="middle" fill="#8c8880" font-family="system-ui,sans-serif" font-size="14">Drop Earrings</text>
+</svg>

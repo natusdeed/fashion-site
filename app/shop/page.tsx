@@ -4,10 +4,10 @@ import ShopGrid, { PER_PAGE } from "@/components/ShopGrid";
 
 const BASE_URL = "https://loladrip.com";
 
-type Props = { searchParams: Promise<{ page?: string }> | { page?: string } };
+type Props = { searchParams: Promise<{ page?: string }> };
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const params = await Promise.resolve(searchParams);
+  const params = await searchParams;
   const page = Math.max(1, parseInt(params?.page || "1", 10) || 1);
   const allProducts = getAllProducts();
   const sourceProducts = allProducts.length > 0 ? allProducts : getFallbackProducts();
@@ -29,7 +29,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function ShopPage({ searchParams }: Props) {
-  const params = await Promise.resolve(searchParams);
+  const params = await searchParams;
   const page = Math.max(1, parseInt(params?.page || "1", 10) || 1);
   const allProducts = getAllProducts();
   const fallback = getFallbackProducts();

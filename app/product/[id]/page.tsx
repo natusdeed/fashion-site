@@ -49,9 +49,10 @@ function getProductById(id: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const product = getProductById(params.id);
+  const { id } = await params;
+  const product = getProductById(id);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://loladrip.com";
 
   if (!product) {
@@ -79,7 +80,7 @@ export async function generateMetadata({
       title: `${product.name} | Lola Drip`,
       description: productDescription,
       type: "website",
-      url: `${siteUrl}/product/${params.id}`,
+      url: `${siteUrl}/product/${id}`,
       images: [
         {
           url: productImage,
@@ -96,17 +97,18 @@ export async function generateMetadata({
       images: [productImage],
     },
     alternates: {
-      canonical: `/product/${params.id}`,
+      canonical: `/product/${id}`,
     },
   };
 }
 
-export default function ProductPage({
+export default async function ProductPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const product = getProductById(params.id);
+  const { id } = await params;
+  const product = getProductById(id);
 
   if (!product) {
     return (
@@ -130,7 +132,7 @@ export default function ProductPage({
     );
   }
 
-  const breadcrumbSchema = generateBreadcrumbSchema(params.id, product.name);
+  const breadcrumbSchema = generateBreadcrumbSchema(id, product.name);
 
   return (
     <>

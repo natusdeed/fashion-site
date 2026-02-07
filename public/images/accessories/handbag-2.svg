@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#f5f1e8"/>
+  <rect x="110" y="150" width="180" height="190" rx="6" stroke="#d4d0c8" stroke-width="2" fill="none"/>
+  <ellipse cx="200" cy="245" rx="35" ry="25" fill="#d4d0c8" opacity="0.4"/>
+  <text x="200" y="420" text-anchor="middle" fill="#8c8880" font-family="system-ui,sans-serif" font-size="14">Shoulder Bag</text>
+</svg>
