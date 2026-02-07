@@ -6,8 +6,8 @@ import AmbientVideoBackground from "@/components/AmbientVideoBackground";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Background media URLs (use actual file: header.banner.png)
-const heroBackgroundImage = "/images/header.banner.png";
+// Background media URLs (use actual file: header-banner.png)
+const heroBackgroundImage = "/images/header-banner.png";
 // Optional: Add your ambient video URL here when ready
 // Example: const heroVideoUrl = "/videos/hero-ambient.mp4";
 const heroVideoUrl = ""; // Set this to your video URL when ready

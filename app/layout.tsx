@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     siteName: "Lola Drip",
     images: [
       {
-        url: "/images/header.banner.png",
+        url: "/images/header-banner.png",
         width: 1200,
         height: 630,
         alt: "Lola Drip Luxury Fashion",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lola Drip - Luxury Women's Fashion",
     description: "Premium women's fashion and elegant clothing",
-    images: ["/images/header.banner.png"],
+    images: ["/images/header-banner.png"],
     creator: "@loladrip",
   },
   robots: {
@@ -137,7 +137,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {/* Favicon: add your own icon to public/ and uncomment: <link rel="icon" href="/favicon.ico" /> */}
         {/* Preload critical hero image for better LCP (local banner) */}
-        <link rel="preload" as="image" href="/images/header.banner.png" />
+        <link rel="preload" as="image" href="/images/header-banner.png" />
         {/* LLM-specific meta tags for AI search (ChatGPT, Claude, Perplexity, Bing Chat) */}
         <meta name="ai-content" content="luxury-fashion-ecommerce" />
         <meta name="ai-description" content="Lola Drip offers premium women's fashion: designer dresses, evening wear, luxury accessories. Free shipping on orders over $200. Elegant, timeless pieces for the modern woman." />
