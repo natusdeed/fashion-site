@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import NavigationWrapper from "./components/NavigationWrapper";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { ToastProvider } from "@/lib/toast-context";
@@ -126,7 +126,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#faf8f5" />
@@ -189,7 +189,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} antialiased font-sans`}>
+      <body className={`${inter.variable} antialiased font-sans`} suppressHydrationWarning>
         <DebugErrorHandler />
         <Suspense fallback={null}>
           <Analytics />
@@ -199,7 +199,7 @@ export default function RootLayout({
             <CartProvider>
               <WishlistProvider>
                 <QuickViewProvider>
-                  <Navigation />
+                  <NavigationWrapper />
                   <PageTransition>
                     <ClientProviders>
                       <main className="min-h-screen pb-16 md:pb-0">{children}</main>
