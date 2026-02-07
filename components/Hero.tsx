@@ -85,8 +85,8 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Content Overlay - positioned near bottom (40% downward from 2%) */}
-      <div className="absolute bottom-[1%] left-1/2 -translate-x-1/2 z-20 w-full max-w-6xl px-6 lg:px-8 text-center">
+      {/* Content Overlay - positioned near bottom, moved down by 100% */}
+      <div className="absolute bottom-[1%] left-1/2 -translate-x-1/2 translate-y-[100%] z-20 w-full max-w-6xl px-6 lg:px-8 text-center">
         <div className="flex flex-col items-center gap-4">
           {/* Main Headline */}
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-inter font-light text-white/90 tracking-[0.15em] uppercase">
