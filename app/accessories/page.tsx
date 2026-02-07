@@ -31,7 +31,7 @@ export default function AccessoriesPage() {
   return (
     <div>
       <CollectionVideoBanner
-        imageUrl="/images/shop.header.png"
+        imageUrl="/images/accessories-banner.png"
         collectionName="Accessories"
         description="Complete your look with our stunning collection"
         ctaLink="/shop/accessories"
