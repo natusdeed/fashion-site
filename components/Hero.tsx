@@ -79,14 +79,14 @@ export default function Hero() {
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               className="object-cover object-[center_35%]"
             />
-            {/* Gradient overlay: lighter at top (preserves face), darker at bottom for text */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60 z-10" />
+            {/* Gradient overlay: lighter at top (preserves face), darker at bottom for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70 z-10" />
           </>
         )}
       </div>
 
-      {/* Content Overlay - positioned near bottom, moved down by 100% */}
-      <div className="absolute bottom-[1%] left-1/2 -translate-x-1/2 translate-y-[100%] z-20 w-full max-w-6xl px-6 lg:px-8 text-center">
+      {/* Content Overlay - positioned at bottom of header banner */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 w-full max-w-6xl px-6 lg:px-8 text-center pb-4 sm:pb-8 md:pb-12">
         <div className="flex flex-col items-center gap-4">
           {/* Main Headline */}
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-inter font-light text-white/90 tracking-[0.15em] uppercase">
