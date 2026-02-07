@@ -5,9 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Force production build to be fresh (helps avoid Vercel cache issues)
-  generateBuildId: async () => `build-${Date.now()}`,
-  // Remove console.* in production for smaller bundles
+  // Avoid bundling replicate - helps API route work reliably on Vercel serverless
+  serverExternalPackages: ['replicate'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
