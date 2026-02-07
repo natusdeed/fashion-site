@@ -85,17 +85,13 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Content Overlay - positioned under neck region */}
-      <div className="absolute bottom-[35%] left-1/2 -translate-x-1/2 z-20 w-full max-w-6xl px-6 lg:px-8 text-center">
+      {/* Content Overlay - positioned near bottom (40% downward from 2%) */}
+      <div className="absolute bottom-[1%] left-1/2 -translate-x-1/2 z-20 w-full max-w-6xl px-6 lg:px-8 text-center">
         <div className="flex flex-col items-center gap-4">
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-white font-normal tracking-wide">
-            Timeless Elegance
-          </h1>
-          {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-inter font-light text-white/90 tracking-[0.15em] uppercase -mt-1">
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-inter font-light text-white/90 tracking-[0.15em] uppercase">
             MAKE YOUR LIFE LUXURIOUS
-          </p>
+          </h1>
           {/* CTA Button */}
           <div className="pt-2">
             <motion.div
