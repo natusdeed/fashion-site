@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 export default function RegisterForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get("redirect") ?? "/account/dashboard";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,7 +50,7 @@ export default function RegisterForm() {
         throw new Error(data.error || "Registration failed");
       }
 
-      router.push("/auth/login?registered=true");
+      router.push(`/auth/login?registered=true&redirect=${encodeURIComponent(redirectPath)}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -164,7 +166,7 @@ export default function RegisterForm() {
           <p className="text-warm-600 text-sm">
             Already have an account?{" "}
             <Link
-              href="/auth/login"
+              href={redirectPath ? `/auth/login?redirect=${encodeURIComponent(redirectPath)}` : "/auth/login"}
               className="text-gold-600 hover:text-gold-700 font-semibold"
             >
               Sign In

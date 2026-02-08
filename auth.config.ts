@@ -6,6 +6,8 @@ import type { NextAuthConfig } from "next-auth";
  * Full auth with Prisma/Credentials lives in auth.ts for API routes.
  */
 export default {
+  providers: [], // Required by NextAuth; actual providers are in auth.ts
+  secret: process.env.AUTH_SECRET,
   pages: {
     signIn: "/auth/login",
     signOut: "/auth/login",

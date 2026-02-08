@@ -91,7 +91,7 @@ export const accessories: Accessory[] = [
     category: 'earrings',
     price: 29.99,
     originalPrice: 44.99,
-    image: UNSPLASH('1515562141207-7cf88bde0d04'),
+    image: UNSPLASH('1515562141207-7a88fb7ce338'),
     description: 'Elegant crystal drops for evening wear',
     inStock: true
   },
@@ -101,7 +101,7 @@ export const accessories: Accessory[] = [
     name: 'Delicate Gold Chain',
     category: 'necklaces',
     price: 34.99,
-    image: UNSPLASH('1515562141207-7cf88bde0d04'),
+    image: UNSPLASH('1515562141207-7a88fb7ce338'),
     description: 'Minimalist gold chain for everyday elegance',
     inStock: true,
     featured: true

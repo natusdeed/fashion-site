@@ -52,11 +52,6 @@ export default function CartDrawer() {
     }
   };
 
-  const handleCheckout = () => {
-    // Navigate to checkout page
-    setIsCartOpen(false);
-    // You can add navigation logic here
-  };
 
   return (
     <AnimatePresence>
@@ -408,12 +403,13 @@ export default function CartDrawer() {
                   >
                     Continue Shopping
                   </button>
-                  <button
-                    onClick={handleCheckout}
-                    className="flex-1 bg-warm-900 text-warm-50 py-3.5 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-transform duration-150 min-h-[44px] active:scale-95"
+                  <Link
+                    href="/checkout"
+                    onClick={() => setIsCartOpen(false)}
+                    className="flex-1 bg-warm-900 text-warm-50 py-3.5 text-sm uppercase tracking-[0.15em] font-light hover:bg-gold-600 transition-transform duration-150 min-h-[44px] active:scale-95 flex items-center justify-center"
                   >
                     Checkout
-                  </button>
+                  </Link>
                 </div>
               </div>
             )}

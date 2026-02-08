@@ -8,7 +8,12 @@ export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
-  const protectedPaths = ["/account/dashboard", "/account/orders", "/account/addresses", "/account/settings", "/account/payment-methods", "/checkout"];
+  // Allow guest checkout — no login required for /checkout
+  if (nextUrl.pathname.startsWith("/checkout")) {
+    return;
+  }
+
+  const protectedPaths = ["/account/dashboard", "/account/orders", "/account/addresses", "/account/settings", "/account/payment-methods"];
   const isProtected = protectedPaths.some((path) => nextUrl.pathname.startsWith(path));
 
   if (isProtected && !isLoggedIn) {
@@ -22,11 +27,12 @@ export default auth((req) => {
 
 export const config = {
   matcher: [
+    "/checkout",
+    "/checkout/:path*",
     "/account/dashboard/:path*",
     "/account/orders/:path*",
     "/account/addresses/:path*",
     "/account/settings/:path*",
     "/account/payment-methods/:path*",
-    "/checkout/:path*",
   ],
 };

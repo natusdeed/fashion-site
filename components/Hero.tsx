@@ -49,7 +49,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen flex items-end justify-center overflow-hidden">
+    <section className="relative h-screen flex items-end justify-center overflow-hidden" suppressHydrationWarning>
       {/* Ambient Video Background or Static Image */}
       <div 
         ref={parallaxRef}

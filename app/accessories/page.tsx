@@ -1,14 +1,54 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { accessories, accessoryCategories } from '@/data/accessories';
+import { accessories, accessoryCategories, getAccessorySlug, getAccessoryNumericId } from '@/data/accessories';
 import CollectionVideoBanner from '@/components/CollectionVideoBanner';
+import { useCart } from '@/lib/cart-context';
+import { useToast } from '@/lib/toast-context';
+import type { Accessory } from '@/data/accessories';
 
 export default function AccessoriesPage() {
   const searchParams = useSearchParams();
   const categoryFromUrl = searchParams.get('category');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [addingIds, setAddingIds] = useState<Set<string>>(new Set());
+  const { addToCart } = useCart();
+  const { showToast } = useToast();
+
+  const handleAddToCart = useCallback(
+    async (item: Accessory) => {
+      if (addingIds.has(item.id) || !item.inStock) return;
+      setAddingIds((prev) => new Set(prev).add(item.id));
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        const idx = accessories.findIndex((a) => a.id === item.id) ?? 0;
+        const imageUrl = item.image.startsWith('http')
+          ? item.image
+          : '/images/placeholder-product.svg';
+        addToCart({
+          productId: getAccessoryNumericId(item, idx),
+          name: item.name,
+          price: item.price,
+          image: imageUrl,
+          size: 'One Size',
+          color: 'Default',
+          colorValue: '#000000',
+          slug: getAccessorySlug(item),
+        });
+        showToast(`${item.name} added to cart`, 'success');
+      } catch {
+        showToast('Failed to add item to cart', 'error');
+      } finally {
+        setAddingIds((prev) => {
+          const next = new Set(prev);
+          next.delete(item.id);
+          return next;
+        });
+      }
+    },
+    [addToCart, showToast, addingIds]
+  );
 
   useEffect(() => {
     if (categoryFromUrl && accessoryCategories.some((c) => c.id === categoryFromUrl)) {
@@ -128,14 +168,19 @@ export default function AccessoriesPage() {
                     )}
                   </div>
                   <button
+                    onClick={() => handleAddToCart(item)}
                     className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                       item.inStock
                         ? 'bg-gold-500 text-warm-900 hover:bg-gold-600'
                         : 'bg-warm-300 text-warm-600 cursor-not-allowed'
                     }`}
-                    disabled={!item.inStock}
+                    disabled={!item.inStock || addingIds.has(item.id)}
                   >
-                    {item.inStock ? 'Add to Cart' : 'Sold Out'}
+                    {addingIds.has(item.id)
+                      ? 'Adding...'
+                      : item.inStock
+                        ? 'Add to Cart'
+                        : 'Sold Out'}
                   </button>
                 </div>
               </div>
