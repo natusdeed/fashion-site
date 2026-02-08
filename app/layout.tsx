@@ -14,6 +14,7 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Analytics from "@/components/Analytics";
 import DebugErrorHandler from "@/components/DebugErrorHandler";
 import ClientProviders from "./components/ClientProviders";
+import AuthSessionProvider from "@/components/providers/SessionProvider";
 
 // Primary font for logo & headings - luxury serif
 const playfair = Playfair_Display({
@@ -199,14 +200,16 @@ export default function RootLayout({
             <CartProvider>
               <WishlistProvider>
                 <QuickViewProvider>
-                  <NavigationWrapper />
-                  <PageTransition>
-                    <ClientProviders>
-                      <main className="min-h-screen pb-16 md:pb-0">{children}</main>
-                    </ClientProviders>
-                  </PageTransition>
-                  <Footer />
-                  <MobileBottomNav />
+                  <AuthSessionProvider>
+                    <NavigationWrapper />
+                    <PageTransition>
+                      <ClientProviders>
+                        <main className="min-h-screen pb-16 md:pb-0">{children}</main>
+                      </ClientProviders>
+                    </PageTransition>
+                    <Footer />
+                    <MobileBottomNav />
+                  </AuthSessionProvider>
                 </QuickViewProvider>
               </WishlistProvider>
             </CartProvider>

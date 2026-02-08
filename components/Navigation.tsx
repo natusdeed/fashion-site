@@ -10,6 +10,7 @@ import { throttle } from "@/lib/utils";
 import { useCart } from "@/lib/cart-context";
 import { useQuickView } from "@/lib/quickview-context";
 import { useWishlist } from "@/lib/wishlist-context";
+import AccountNavLink from "@/components/AccountNavLink";
 
 // Shop categories with images for mega-menu
 const shopCategories = [
@@ -118,12 +119,13 @@ export default function Navigation() {
     };
   }, [isSearchOpen]);
 
+  // Static nav links - avoid any conditional logic that could cause hydration mismatch
   const navLinks = [
     { href: "/", label: "HOME" },
     { href: "/shop", label: "SHOP" },
     { href: "/shop/accessories", label: "ACCESSORIES" },
     { href: "/about", label: "ABOUT" },
-  ];
+  ] as const;
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -276,24 +278,8 @@ export default function Navigation() {
                 )}
               </Link>
 
-              {/* User Icon */}
-              <Link
-                href="/account"
-                className="p-2 rounded-full transition-transform duration-100 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[#D4AF37] hover:scale-110 active:scale-95 hover:bg-[#D4AF37]/10 text-[#4a4a4a]"
-                aria-label="Account"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </Link>
+              {/* User Icon / Account Dropdown */}
+              <AccountNavLink />
 
               {/* Shopping Cart Icon with Badge */}
               <motion.button
@@ -505,7 +491,7 @@ export default function Navigation() {
                 )}
               </Link>
               <Link
-                href="/account"
+                href="/account/dashboard"
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center px-4 py-3.5 text-warm-600 hover:text-warm-900 transition-colors duration-200 min-h-[44px]"
               >
@@ -520,7 +506,7 @@ export default function Navigation() {
                 >
                   <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                Account
+                My Account
               </Link>
               <button
                 type="button"

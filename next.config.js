@@ -11,6 +11,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   images: {
+    // Qualities used by Next/Image (required in Next.js 16+)
+    qualities: [75, 85, 90, 95],
     // Optimize image formats: WebP with JPG fallback
     formats: ['image/avif', 'image/webp'],
     // Responsive image sizes for different devices
