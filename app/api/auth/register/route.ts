@@ -4,6 +4,12 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
+    if (!process.env.DATABASE_URL?.trim()) {
+      return NextResponse.json(
+        { error: "Database not configured. Add DATABASE_URL to .env.local. See ACCOUNT_SYSTEM_SETUP.md." },
+        { status: 503 }
+      );
+    }
     const body = await request.json();
     const { email, name, password } = body;
 

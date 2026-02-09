@@ -24,6 +24,9 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          # Required for prisma generate (postinstall)
+          DATABASE_URL: "file:./dev.db"
         run: npm run build
 
       - name: Lint

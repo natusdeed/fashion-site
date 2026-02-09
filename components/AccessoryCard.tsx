@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import LazyImage from "@/components/LazyImage";
+import ImageLightbox from "@/components/ImageLightbox";
 import { useToast } from "@/lib/toast-context";
 import { useCart } from "@/lib/cart-context";
 import {
@@ -24,6 +25,7 @@ export default function AccessoryCard({ accessory }: AccessoryCardProps) {
   const { showToast } = useToast();
   const { addToCart, setIsCartOpen } = useCart();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const imageUrl = accessory.image.startsWith("http")
     ? accessory.image
@@ -67,7 +69,18 @@ export default function AccessoryCard({ accessory }: AccessoryCardProps) {
         className="block"
         aria-label={`View ${accessory.name} details`}
       >
-        <div className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm">
+        <div
+          className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsLightboxOpen(true);
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && setIsLightboxOpen(true)}
+          aria-label="View full image"
+        >
           <LazyImage
             src={imageUrl}
             alt={accessory.name}
@@ -109,6 +122,13 @@ export default function AccessoryCard({ accessory }: AccessoryCardProps) {
           </div>
         </div>
       </Link>
+
+      <ImageLightbox
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        src={imageUrl}
+        alt={accessory.name}
+      />
 
       {accessory.inStock && (
         <button

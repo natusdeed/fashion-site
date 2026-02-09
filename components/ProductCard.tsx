@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import LazyImage from "@/components/LazyImage";
+import ImageLightbox from "@/components/ImageLightbox";
 import { useToast } from "@/lib/toast-context";
 import { motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
@@ -45,6 +46,7 @@ export default function ProductCard({
   const [isMobileVideoActive, setIsMobileVideoActive] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [hasVideoError, setHasVideoError] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -287,14 +289,17 @@ export default function ProductCard({
         className="block"
         aria-label={`View ${name} product details`}
       >
-        {/* Product Image Container */}
+        {/* Product Image Container - Click image to open lightbox; Quick View button opens product modal */}
         <div 
           ref={containerRef}
-          className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm"
+          className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm cursor-pointer"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          onClick={handleMobileVideoToggle}
-          onTouchStart={handleMobileVideoToggle}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsLightboxOpen(true);
+          }}
         >
           {/* Image Display - use placeholder if imageUrl missing or broken */}
           {(imageUrl || "/images/placeholder-product.svg") && (
@@ -356,9 +361,15 @@ export default function ProductCard({
             <div className="absolute inset-0 bg-warm-200" />
           )}
 
-          {/* Video Icon Badge - Bottom Right */}
+          {/* Video Icon Badge - Bottom Right (tap to play/pause on mobile) */}
           {hasVideo && (
-            <div className="absolute bottom-3 right-3 z-20 bg-[#D4AF37] rounded-full p-2 shadow-lg">
+            <button
+              type="button"
+              onClick={handleMobileVideoToggle}
+              onTouchStart={handleMobileVideoToggle}
+              className="absolute bottom-3 right-3 z-20 bg-[#D4AF37] rounded-full p-2 shadow-lg min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95 md:pointer-events-none"
+              aria-label={isMobileVideoActive ? "Pause video" : "Play video"}
+            >
               <svg
                 className="w-4 h-4 text-white"
                 fill="currentColor"
@@ -366,7 +377,7 @@ export default function ProductCard({
               >
                 <path d="M8 5v14l11-7z" />
               </svg>
-            </div>
+            </button>
           )}
 
           {/* SALE Badge - Top Left */}
@@ -403,10 +414,10 @@ export default function ProductCard({
             </svg>
           </motion.button>
 
-          {/* Quick View Icon - Center - Hidden on mobile */}
+          {/* Quick View Icon - Center (visible on mobile, hover on desktop) */}
           <motion.button
             onClick={handleQuickViewClick}
-            className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 p-3 bg-white/95 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-transform duration-100 hover:bg-white shadow-lg min-h-[44px] min-w-[44px] active:scale-95"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 p-3 bg-white/95 backdrop-blur-sm rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-transform duration-100 hover:bg-white shadow-lg min-h-[44px] min-w-[44px] active:scale-95"
             aria-label="Quick view"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -490,6 +501,15 @@ export default function ProductCard({
           </div>
         </div>
       </Link>
+
+      {/* Full-screen image lightbox */}
+      <ImageLightbox
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        src={imageUrl || "/images/placeholder-product.svg"}
+        alt={imageAlt || name}
+        images={imageUrl ? [imageUrl] : []}
+      />
     </div>
   );
 }

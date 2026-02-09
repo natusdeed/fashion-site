@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useCart } from '@/lib/cart-context';
 
 export default function CheckoutButton() {
+  const { cartItems } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -11,7 +13,20 @@ export default function CheckoutButton() {
     setError(null);
 
     try {
-      const response = await fetch('/api/checkout', { method: 'POST' });
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cartItems.map((item) => ({
+            name: item.name,
+            price: item.price,
+            image: item.image,
+            quantity: item.quantity,
+            size: item.size,
+            color: item.color,
+          })),
+        }),
+      });
       const data = await response.json();
 
       if (!response.ok) {
@@ -33,10 +48,10 @@ export default function CheckoutButton() {
     <div className="flex flex-col items-center gap-2">
       <button
         onClick={handleBuy}
-        disabled={loading}
-        className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-all"
+        disabled={loading || cartItems.length === 0}
+        className="w-full bg-warm-900 hover:bg-gold-600 disabled:bg-warm-400 disabled:cursor-not-allowed text-warm-50 font-medium py-4 px-6 rounded-lg transition-colors duration-300 uppercase tracking-[0.15em]"
       >
-        {loading ? 'Redirecting...' : 'Buy Now 💳'}
+        {loading ? 'Redirecting...' : 'Checkout 💳'}
       </button>
       {error && (
         <p className="text-red-600 text-sm" role="alert">

@@ -24,6 +24,7 @@ import {
 } from "@/data/accessories";
 import ProductCard from "@/components/ProductCard";
 import AccessoryCard from "@/components/AccessoryCard";
+import ImageLightbox from "@/components/ImageLightbox";
 
 // Product gallery loaded on interaction - saves ~15-20KB on initial product page load
 const SwipeableImageGallery = dynamic(
@@ -116,6 +117,7 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
     product?.colors?.[0]?.name || null
   );
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isFullImageOpen, setIsFullImageOpen] = useState(false);
   const { addToCart, setIsCartOpen } = useCart();
   const { showToast } = useToast();
 
@@ -226,16 +228,36 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
               </ol>
             </nav>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 mb-40">
-              <div className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden rounded-sm">
+              <div
+                className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden rounded-sm cursor-pointer group"
+                onClick={() => setIsFullImageOpen(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && setIsFullImageOpen(true)}
+                aria-label="View full image"
+              >
                 <Image
                   src={accessoryImage}
                   alt={accessory.name}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-200"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   quality={90}
                 />
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <div className="bg-warm-50/90 backdrop-blur-sm px-3 py-2 rounded-sm border border-gold-300/20">
+                    <svg className="w-4 h-4 text-warm-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
+              <ImageLightbox
+                isOpen={isFullImageOpen}
+                onClose={() => setIsFullImageOpen(false)}
+                src={accessoryImage}
+                alt={accessory.name}
+              />
               <div className="flex flex-col">
                 <p className="text-warm-500 text-xs uppercase tracking-[0.2em] font-light mb-4">
                   {accessory.category}
@@ -430,8 +452,15 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
             
             {/* Desktop: Original Gallery */}
             <div className="hidden md:block">
-              {/* Main Image - Bigger */}
-              <div className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 mb-10 overflow-hidden group">
+              {/* Main Image - Click to view full 100% (no cropping) */}
+              <div
+                className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 mb-10 overflow-hidden group cursor-pointer"
+                onClick={() => setIsFullImageOpen(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && setIsFullImageOpen(true)}
+                aria-label="View full image"
+              >
                 {productImages[selectedImage] ? (
                   <Image
                     src={productImages[selectedImage]}
@@ -447,7 +476,7 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-200" />
                 )}
-                {/* Zoom indicator */}
+                {/* Click hint: View full image */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <div className="bg-warm-50/90 backdrop-blur-sm px-3 py-2 rounded-sm border border-gold-300/20">
                     <svg
@@ -465,18 +494,33 @@ export default function ShopSlugPage({ params }: ProductPageProps) {
                 </div>
               </div>
 
-              {/* Thumbnail Gallery */}
+              {/* Full image lightbox - 100% visible, no cropping */}
+              <ImageLightbox
+                isOpen={isFullImageOpen}
+                onClose={() => setIsFullImageOpen(false)}
+                src={productImages[selectedImage] || product.imageUrl || ""}
+                alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip`}
+                images={productImages}
+                currentIndex={selectedImage}
+                onIndexChange={setSelectedImage}
+              />
+
+              {/* Thumbnail Gallery - Click to select or open lightbox */}
               {productImages.length > 1 && (
                 <div className="grid grid-cols-4 gap-4">
                   {productImages.map((image: string, index: number) => (
                     <button
                       key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`relative aspect-square bg-warm-100 overflow-hidden border-2 transition-transform duration-100 rounded-sm min-h-[44px] ${
+                      onClick={() => {
+                        setSelectedImage(index);
+                        setIsFullImageOpen(true);
+                      }}
+                      className={`relative aspect-square bg-warm-100 overflow-hidden border-2 transition-transform duration-100 rounded-sm min-h-[44px] cursor-pointer ${
                         selectedImage === index
                           ? "border-gold-600 shadow-md scale-105"
                           : "border-transparent hover:border-warm-300 hover:scale-105 hover:shadow-md"
                       }`}
+                      aria-label={`View image ${index + 1} in full screen`}
                     >
                       <Image
                         src={image}

@@ -9,7 +9,23 @@ const getBaseUrl = () => {
   return 'http://localhost:3002';
 };
 
-export async function POST() {
+// Ensure image URL is absolute for Stripe
+function toAbsoluteImageUrl(image: string, baseUrl: string): string {
+  if (!image) return '';
+  if (image.startsWith('http://') || image.startsWith('https://')) return image;
+  return `${baseUrl.replace(/\/$/, '')}${image.startsWith('/') ? image : `/${image}`}`;
+}
+
+interface CheckoutItem {
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+  size?: string;
+  color?: string;
+}
+
+export async function POST(request: Request) {
   const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
   if (!secretKey) {
     return NextResponse.json(
@@ -18,26 +34,48 @@ export async function POST() {
     );
   }
 
-  const stripe = new Stripe(secretKey);
   const baseUrl = getBaseUrl();
+  let items: CheckoutItem[] = [];
 
   try {
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'Super Cool T-Shirt',
-              description: 'A stylish fashion piece from Lola Drip',
-              images: ['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400'],
-            },
-            unit_amount: 2000, // $20.00 in cents
-          },
-          quantity: 1,
+    const body = await request.json();
+    items = body?.items ?? [];
+  } catch {
+    // Empty body or invalid JSON
+  }
+
+  if (items.length === 0) {
+    return NextResponse.json(
+      { error: 'Your cart is empty. Add items to checkout.' },
+      { status: 400 }
+    );
+  }
+
+  const stripe = new Stripe(secretKey);
+
+  try {
+    const line_items = items.map((item) => ({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          description: [item.size && `Size: ${item.size}`, item.color && `Color: ${item.color}`]
+            .filter(Boolean)
+            .join(' • ') || 'Lola Drip',
+          images: (() => {
+            const url = item.image ? toAbsoluteImageUrl(item.image, baseUrl) : '';
+            return url ? [url] : undefined;
+          })(),
         },
-      ],
+        unit_amount: Math.round(item.price * 100), // $ to cents
+      },
+      quantity: item.quantity,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+      line_items,
       mode: 'payment',
+      payment_method_types: ['card'],
       success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/checkout`,
     });

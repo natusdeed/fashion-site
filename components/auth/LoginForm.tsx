@@ -10,6 +10,7 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get("redirect") ?? "/account/dashboard";
   const isCheckoutRedirect = redirectPath.startsWith("/checkout");
+  const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,12 +19,24 @@ export default function LoginForm() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [googleEnabled, setGoogleEnabled] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (searchParams.get("registered") === "true") {
       setSuccess("Account created! Please sign in.");
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    fetch("/api/auth/providers")
+      .then((r) => r.json())
+      .then((data) => setGoogleEnabled(!!data?.google))
+      .catch(() => setGoogleEnabled(false));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,8 +65,12 @@ export default function LoginForm() {
   };
 
   const handleGoogleSignIn = () => {
-    setGoogleLoading(true);
     setError("");
+    if (!googleEnabled) {
+      setError("Google sign-in is not configured. Add AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET to .env.local.");
+      return;
+    }
+    setGoogleLoading(true);
     signIn("google", { callbackUrl: redirectPath });
   };
 
@@ -113,8 +130,8 @@ export default function LoginForm() {
           </span>
         </button>
 
-        {/* Guest Checkout - shown when user came from checkout */}
-        {isCheckoutRedirect && (
+        {/* Guest Checkout - shown when user came from checkout (deferred until after mount to avoid hydration mismatch) */}
+        {mounted && isCheckoutRedirect && (
           <>
             <p className="text-sm text-warm-600 mb-3 text-center">
               Your cart is saved. No account needed to complete your purchase.
@@ -206,13 +223,13 @@ export default function LoginForm() {
           <p className="text-warm-600 text-sm">
             Don&apos;t have an account?{" "}
             <Link
-              href={isCheckoutRedirect ? `/auth/register?redirect=${encodeURIComponent(redirectPath)}` : "/auth/register"}
+              href={mounted && isCheckoutRedirect ? `/auth/register?redirect=${encodeURIComponent(redirectPath)}` : "/auth/register"}
               className="text-gold-600 hover:text-gold-700 font-semibold"
             >
               Create Account
             </Link>
           </p>
-          {isCheckoutRedirect && (
+          {mounted && isCheckoutRedirect && (
             <p className="text-xs text-warm-500">
               Create an account to track orders and save your cart for later.
             </p>

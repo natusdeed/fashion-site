@@ -146,6 +146,7 @@ export default function MobileBottomNav() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={item.href === "/"}
               className={`relative flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2 rounded-sm transition-colors duration-100 active:scale-95 ${
                 isActive(item.href)
                   ? "text-gold-600"

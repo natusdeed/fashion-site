@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import ImageLightbox from "@/components/ImageLightbox";
 import { useCart } from "@/lib/cart-context";
 import { useWishlist } from "@/lib/wishlist-context";
 import { useToast } from "@/lib/toast-context";
@@ -15,6 +16,7 @@ interface ProductPageContentProps {
 export default function ProductPageContent({ product }: ProductPageContentProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>(product.colors?.[0]?.name ?? "");
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const { addToCart, setIsCartOpen } = useCart();
   const { addToWishlist, isInWishlist, removeFromWishlist } = useWishlist();
   const { showToast } = useToast();
@@ -75,7 +77,14 @@ export default function ProductPageContent({ product }: ProductPageContentProps)
         </nav>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
+          <div
+            className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden cursor-pointer"
+            onClick={() => setIsLightboxOpen(true)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && setIsLightboxOpen(true)}
+            aria-label="View full image"
+          >
             {product.imageUrl || product.images?.[0] ? (
               <Image
                 src={productImage}
@@ -169,6 +178,14 @@ export default function ProductPageContent({ product }: ProductPageContentProps)
             </div>
           </div>
         </div>
+
+        <ImageLightbox
+          isOpen={isLightboxOpen}
+          onClose={() => setIsLightboxOpen(false)}
+          src={productImage}
+          alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip`}
+          images={product.images && product.images.length > 0 ? product.images : product.imageUrl ? [product.imageUrl] : []}
+        />
       </div>
     </div>
   );

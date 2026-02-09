@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { accessories, accessoryCategories, getAccessorySlug, getAccessoryNumericId } from '@/data/accessories';
 import CollectionVideoBanner from '@/components/CollectionVideoBanner';
+import ImageLightbox from '@/components/ImageLightbox';
 import { useCart } from '@/lib/cart-context';
 import { useToast } from '@/lib/toast-context';
 import type { Accessory } from '@/data/accessories';
@@ -16,6 +18,7 @@ export default function AccessoriesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [failedImageIds, setFailedImageIds] = useState<Set<string>>(() => new Set());
   const [addingIds, setAddingIds] = useState<Set<string>>(new Set());
+  const [lightboxItem, setLightboxItem] = useState<Accessory | null>(null);
   const { addToCart } = useCart();
   const { showToast } = useToast();
 
@@ -143,13 +146,20 @@ export default function AccessoriesPage() {
               key={item.id}
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-warm-100"
             >
-              <div className="relative h-64 bg-warm-100">
-                <img
+              <div
+                className="relative h-64 bg-warm-100 cursor-pointer"
+                onClick={() => setLightboxItem(item)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && setLightboxItem(item)}
+                aria-label="View full image"
+              >
+                <Image
                   src={failedImageIds.has(item.id) ? PLACEHOLDER_IMAGE : item.image}
                   alt={item.name}
-                  className="w-full h-full object-cover [content-visibility:visible]"
-                  loading="lazy"
-                  decoding="async"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-cover"
                   onError={() => handleImageError(item.id)}
                 />
                 {item.featured && (
@@ -195,6 +205,15 @@ export default function AccessoriesPage() {
             </div>
           ))}
         </div>
+
+        {lightboxItem && (
+          <ImageLightbox
+            isOpen={!!lightboxItem}
+            onClose={() => setLightboxItem(null)}
+            src={failedImageIds.has(lightboxItem.id) ? PLACEHOLDER_IMAGE : (lightboxItem.image.startsWith('http') ? lightboxItem.image : PLACEHOLDER_IMAGE)}
+            alt={lightboxItem.name}
+          />
+        )}
         </div>
       </div>
     </div>

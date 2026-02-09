@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useCallback } from "react";
 import { accessories } from "@/data/accessories";
 
@@ -61,16 +62,20 @@ export default function FeaturedAccessories() {
               key={item.id}
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow border border-warm-100"
             >
-              <div className="relative h-48 bg-warm-100">
-                <img
+              <Link
+                href={`/shop/accessories?category=${item.category}`}
+                className="block relative h-48 bg-warm-100 cursor-pointer"
+                aria-label={`View ${item.name} in ${item.category}`}
+              >
+                <Image
                   src={failedImageIds.has(item.id) ? PLACEHOLDER_IMAGE : item.image}
                   alt={item.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
                   onError={() => handleImageError(item.id)}
                 />
-              </div>
+              </Link>
               <div className="p-4">
                 <h3 className="font-semibold text-warm-900 mb-2">{item.name}</h3>
                 <div className="flex items-center justify-between">

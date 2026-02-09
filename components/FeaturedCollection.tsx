@@ -2,12 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import ImageLightbox from "@/components/ImageLightbox";
 
 interface FeaturedItem {
   name: string;
   price: number;
   imageUrl: string;
   imageAlt: string;
+  slug: string;
 }
 
 const featuredItems: FeaturedItem[] = [
@@ -16,23 +19,27 @@ const featuredItems: FeaturedItem[] = [
     price: 1299,
     imageUrl: "/images/silk-evening-gown.png",
     imageAlt: "Elegant red and teal silk evening gown",
+    slug: "elegant-silk-dress",
   },
   {
     name: "Cashmere Trench Coat",
     price: 899,
     imageUrl: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80",
     imageAlt: "Luxurious cashmere trench coat",
+    slug: "luxury-trench-coat",
   },
   {
     name: "Lace Cocktail Dress",
     price: 699,
     imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
     imageAlt: "Beautiful lace cocktail dress",
+    slug: "lace-cocktail-dress",
   },
 ];
 
 export default function FeaturedCollection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [lightboxItem, setLightboxItem] = useState<FeaturedItem | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -90,9 +97,10 @@ export default function FeaturedCollection() {
         {/* Featured Items Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
           {featuredItems.map((item, index) => (
-            <div
+            <Link
               key={item.name}
-              className={`group relative ${
+              href={`/shop/${item.slug}`}
+              className={`group relative block ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -100,9 +108,21 @@ export default function FeaturedCollection() {
               style={{
                 transition: `opacity 0.8s ease-out ${index * 0.2}s, transform 0.8s ease-out ${index * 0.2}s`,
               }}
+              aria-label={`View ${item.name} - ${item.price}`}
             >
-              {/* Product Image Container */}
-              <div className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm">
+              {/* Product Image Container - Click to view full screen */}
+              <div
+                className="relative aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden mb-4 rounded-sm cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setLightboxItem(item);
+                }}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && setLightboxItem(item)}
+                aria-label="View full image"
+              >
                 <Image
                   src={item.imageUrl}
                   alt={item.imageAlt}
@@ -126,9 +146,18 @@ export default function FeaturedCollection() {
                   ${item.price.toLocaleString()}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
+
+        {lightboxItem && (
+          <ImageLightbox
+            isOpen={!!lightboxItem}
+            onClose={() => setLightboxItem(null)}
+            src={lightboxItem.imageUrl}
+            alt={lightboxItem.imageAlt}
+          />
+        )}
       </div>
     </section>
   );

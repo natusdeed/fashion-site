@@ -63,6 +63,18 @@ STRIPE_WEBHOOK_SECRET=whsec_...  # For webhooks (optional)
 - [Railway](https://railway.app) – free tier
 - [Supabase](https://supabase.com) – free tier
 
+**Google Sign-In (optional):**
+1. Go to [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials)
+2. Create project (or select existing) → **Create Credentials** → **OAuth client ID**
+3. Application type: **Web application**
+4. Add Authorized redirect URI: `http://localhost:3002/api/auth/callback/google` (for dev) or `https://yoursite.com/api/auth/callback/google` (for production)
+5. Copy the **Client ID** and **Client Secret** into `.env.local`:
+   ```env
+   AUTH_GOOGLE_ID=your-client-id.apps.googleusercontent.com
+   AUTH_GOOGLE_SECRET=your-client-secret
+   ```
+6. Restart the dev server. The "Continue with Google" button will appear when configured.
+
 ### 3. Database Setup
 
 ```bash

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
 import { useToast } from "@/lib/toast-context";
 import { useQuickView } from "@/lib/quickview-context";
+import ImageLightbox from "@/components/ImageLightbox";
 
 export default function QuickViewModal() {
   const { isOpen, product, closeQuickView } = useQuickView();
@@ -17,6 +18,7 @@ export default function QuickViewModal() {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [isFullImageOpen, setIsFullImageOpen] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
 
   const { addToCart, setIsCartOpen } = useCart();
@@ -40,6 +42,7 @@ export default function QuickViewModal() {
       setSelectedImageIndex(0);
       setQuantity(1);
       setIsZoomed(false);
+      setIsFullImageOpen(false);
     }
   }, [isOpen, product]);
 
@@ -189,13 +192,18 @@ export default function QuickViewModal() {
               <div className="grid md:grid-cols-2 gap-6 md:gap-8 p-6 md:p-8">
                 {/* Left Column - Images */}
                 <div className="space-y-4">
-                  {/* Main Image with Zoom */}
+                  {/* Main Image - Click to view full 100% (no cropping) */}
                   <div
                     ref={imageRef}
-                    className="relative aspect-square bg-warm-100 rounded-sm overflow-hidden cursor-zoom-in group"
+                    className="relative aspect-square bg-warm-100 rounded-sm overflow-hidden cursor-pointer group"
                     onMouseEnter={handleImageZoom}
                     onMouseMove={handleImageMove}
                     onMouseLeave={handleImageLeave}
+                    onClick={() => setIsFullImageOpen(true)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && setIsFullImageOpen(true)}
+                    aria-label="View full image"
                   >
                     {productImages[selectedImageIndex] && (
                       <div className="relative w-full h-full">
@@ -214,9 +222,24 @@ export default function QuickViewModal() {
                         />
                       </div>
                     )}
-                    {/* Zoom indicator - only show on desktop */}
-                    <div className="absolute inset-0 bg-warm-900/0 md:group-hover:bg-warm-900/5 transition-colors duration-200 pointer-events-none hidden md:block" />
+                    {/* Click hint: full image view */}
+                    <div className="absolute inset-0 bg-warm-900/0 md:group-hover:bg-warm-900/5 transition-colors duration-200 pointer-events-none flex items-center justify-center">
+                      <div className="opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 bg-warm-100/90 backdrop-blur-sm px-4 py-2 rounded-sm border border-warm-200">
+                        <span className="text-warm-700 text-xs uppercase tracking-wider">View full image</span>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Full image lightbox - 100% visible, no cropping */}
+                  <ImageLightbox
+                    isOpen={isFullImageOpen}
+                    onClose={() => setIsFullImageOpen(false)}
+                    src={productImages[selectedImageIndex] || product.imageUrl || ""}
+                    alt={product.imageAlt || `${product.name} - ${product.category} - Lola Drip`}
+                    images={productImages}
+                    currentIndex={selectedImageIndex}
+                    onIndexChange={setSelectedImageIndex}
+                  />
 
                   {/* Thumbnails */}
                   {productImages.length > 1 && (

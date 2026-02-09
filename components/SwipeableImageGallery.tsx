@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ImageLightbox from "@/components/ImageLightbox";
 
 interface SwipeableImageGalleryProps {
   images: string[];
@@ -17,6 +18,7 @@ export default function SwipeableImageGallery({
 }: SwipeableImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isFullImageOpen, setIsFullImageOpen] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
@@ -70,12 +72,17 @@ export default function SwipeableImageGallery({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Main Image Container */}
+      {/* Main Image Container - Click to view full 100% (no cropping) */}
       <div
-        className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden rounded-sm"
+        className="relative aspect-[4/5] lg:aspect-[3/4] bg-gradient-to-br from-warm-50 to-warm-100 overflow-hidden rounded-sm cursor-pointer"
         onTouchStart={isMobile ? onTouchStart : undefined}
         onTouchMove={isMobile ? onTouchMove : undefined}
         onTouchEnd={isMobile ? onTouchEnd : undefined}
+        onClick={() => setIsFullImageOpen(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setIsFullImageOpen(true)}
+        aria-label="View full image"
       >
         <motion.div
           className="relative w-full h-full"
@@ -171,6 +178,17 @@ export default function SwipeableImageGallery({
           ))}
         </div>
       )}
+
+        {/* Full image lightbox - 100% visible, no cropping */}
+      <ImageLightbox
+        isOpen={isFullImageOpen}
+        onClose={() => setIsFullImageOpen(false)}
+        src={images[currentIndex]}
+        alt={`${alt} - ${currentIndex + 1}`}
+        images={images}
+        currentIndex={currentIndex}
+        onIndexChange={setCurrentIndex}
+      />
 
       {/* Swipe Indicators - Mobile Only */}
       {isMobile && images.length > 1 && (

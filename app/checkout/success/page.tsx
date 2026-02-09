@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CheckoutSuccessClearCart from "@/components/CheckoutSuccessClearCart";
 
 export const metadata = {
   title: "Order Confirmed | Lola Drip",
@@ -8,6 +9,7 @@ export const metadata = {
 export default function CheckoutSuccessPage() {
   return (
     <div className="min-h-screen bg-warm-50 py-16 px-4 flex items-center justify-center">
+      <CheckoutSuccessClearCart />
       <div className="max-w-md text-center">
         <div className="text-6xl mb-6">✓</div>
         <h1 className="text-3xl font-bold text-warm-900 mb-4 font-playfair">
